@@ -19,7 +19,6 @@ const burgerIngredientsPropTypes = PropTypes.shape({
 
 class BurgerIngredients extends React.Component {
     render() {
-        // const [current, setCurrent] = React.useState('one')
         return (
                 <div className={burgerIngredients.container}>
                     <div style={{ display: 'flex' }}>
