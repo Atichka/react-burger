@@ -3,12 +3,7 @@
 }
 
 .tabs {
-    height: 50px;
     display: flex;
-    list-style: none;
-    font-size: 18px;
-    padding: 0;
-    margin: 0;
 }
 
 .tab {

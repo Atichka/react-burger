@@ -21,7 +21,7 @@ class BurgerIngredients extends React.Component {
     render() {
         return (
                 <div className={burgerIngredients.container}>
-                    <div style={{ display: 'flex' }}>
+                    <div className={burgerIngredients.tabs}>
                         <Tab value="one">
                             Булки
                         </Tab>
