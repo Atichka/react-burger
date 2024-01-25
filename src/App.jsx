@@ -2,16 +2,20 @@ import React from 'react';
 
 import AppHeader from './components/AppHeader/appHeader';
 import BurgerIngredients from './components/BurgerIngredients/burgerIngredients'
+import BurgerConstructor from './components/BurgerConstructor/burgerConstructor'
 
-import './App.css';
+import app from './App.module.css';
 
 function App() {
   return (
     <div className="App">
-      <AppHeader />
+      <AppHeader> </AppHeader>
         <div>
-            <BurgerIngredients />
-            {/*<BurgerConstructor />*/}
+            <h1 className={app.title}>Соберите бургер</h1>
+            <div className={app.box}>
+                <BurgerIngredients />
+                <BurgerConstructor />
+            </div>
         </div>
     </div>
   );

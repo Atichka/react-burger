@@ -1,0 +1,44 @@
+.price {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: block;
+    position: relative;
+}
+
+.counter {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    background: #4C4CFF;
+    color: #F2F2F3;
+    border-radius: 50%;
+
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.cardName {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0;
+}
