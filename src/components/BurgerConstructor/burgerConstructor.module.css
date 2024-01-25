@@ -29,8 +29,11 @@
 }
 
 .total {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 8px;
+    justify-content: right;
+    align-items: center;
     margin-top: 50px;
 }
 
