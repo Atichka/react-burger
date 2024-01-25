@@ -21,7 +21,6 @@ class BurgerIngredients extends React.Component {
     render() {
         // const [current, setCurrent] = React.useState('one')
         return (
-            <div>
                 <div className={burgerIngredients.container}>
                     <div style={{ display: 'flex' }}>
                         <Tab value="one">
@@ -53,7 +52,6 @@ class BurgerIngredients extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
         );
     }
 }

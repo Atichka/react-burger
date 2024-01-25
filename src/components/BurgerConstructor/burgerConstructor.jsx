@@ -16,8 +16,8 @@ const burgerConstructorPropTypes = PropTypes.shape({
 class BurgerConstructor extends React.Component {
     render() {
         return (
-            <div className={burgerConstructor.box}>
-                <div>
+            <div >
+                <div className={burgerConstructor.box}>
                     <ConstructorItem type={"top"}
                                      image={imageSauce1}
                                      text={"Соус традиционный галактический"}
@@ -35,30 +35,26 @@ class BurgerConstructor extends React.Component {
                                      text={"Краторная булка N-200i (верх)"}
                                      price={"20"}
                                      isLoked={false}/>
+                    <ConstructorItem image={imageBurger1}
+                                     text={"Краторная булка N-200i (верх)"}
+                                     price={"20"}
+                                     isLoked={false}/>
                     <ConstructorItem type={"bottom"}
                                      image={imageBurger1}
                                      text={"Краторная булка N-200i (верх)"}
                                      price={"20"}
                                      isLoked={false}/>
-                    <div className={burgerConstructor.total}>
-                        <div className={burgerConstructor.price}>
-                            <p className={burgerConstructor.title}>{600}</p>
-                            <CurrencyIcon type="primary" />
-                        </div>
-                        <Button htmlType="button" type="primary" size="small" extraClass="ml-2">
-                            Оформить заказ
-                        </Button>
-                    </div>
+
                 </div>
-
-                {/*<div className={burgerConstructor.container}>*/}
-                {/*    jhgjh*/}
-
-                {/*</div>*/}
-                {/*<div className={burgerConstructor.total}>*/}
-                {/*    kgj*/}
-
-                {/*</div>*/}
+                <div className={burgerConstructor.total}>
+                    <div className={burgerConstructor.price}>
+                        <p className={burgerConstructor.title}>{600}</p>
+                        <CurrencyIcon type="primary" />
+                    </div>
+                    <Button htmlType="button" type="primary" size="small" extraClass="ml-2">
+                        Оформить заказ
+                    </Button>
+                </div>
             </div>
         );
     }

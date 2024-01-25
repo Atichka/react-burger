@@ -15,11 +15,7 @@
 }
 
 .box {
-  /*display: grid;*/
-  /*grid-template-columns: auto auto;*/
-  /*gap: 8px;*/
-  /*justify-content: center;*/
-  /*align-items: center;*/
+  display: flex;
 }
 
 .App-header {

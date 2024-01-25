@@ -13,6 +13,10 @@
 
 .box {
     display: block;
+    padding: 10px;
+    width: 600px;
+    overflow-y: auto;
+    height: 500px;
 }
 
 .price {
@@ -35,6 +39,15 @@
     justify-content: right;
     align-items: center;
     margin-top: 50px;
+}
+
+.items {
+    display: block;
+    padding: 10px;
+    float: left;
+    width: 600px;
+    overflow-y: auto;
+    height: 500px;
 }
 
 .title {
