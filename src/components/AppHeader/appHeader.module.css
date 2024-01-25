@@ -13,10 +13,12 @@
 }
 
 .text {
+    font-family: "JetBrainsMono", Arial, sans-serif;
     text-align: center;
 }
 
 .button {
+    font-family: "JetBrainsMono", Arial, sans-serif;
     color: #8585AD;
     background:none;
     border:none;

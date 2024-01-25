@@ -1,4 +1,5 @@
 .price {
+    font-family: "Iceland", Arial, sans-serif;
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -36,6 +37,7 @@
 }
 
 .cardName {
+    font-family: "JetBrainsMono", Arial, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
