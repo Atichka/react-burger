@@ -8,7 +8,7 @@ class Card extends React.Component {
     render() {
         return (
             <div className={card.card}>
-                <img src={this.props.image} alt='картинка' />
+                <img src={this.props.image} alt='картинка ингредиента' />
                 <div className={card.price}>
                     <p>{this.props.price}</p>
                     <CurrencyIcon type="primary" />
