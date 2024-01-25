@@ -10,11 +10,13 @@
     gap: 8px;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .text {
     font-family: "JetBrainsMono", Arial, sans-serif;
     text-align: center;
+    color: white;
 }
 
 .button {

@@ -9,10 +9,10 @@ class AppHeader extends React.Component {
         return (
             <header className={appHeader.header}>
                 <div className={appHeader.container}>
-                    <div className={appHeader.box}>
+                    <a href="#" className={appHeader.box}>
                         <BurgerIcon type="primary" />
                         <p className={appHeader.text}>Конструктор</p>
-                    </div>
+                    </a>
                     <div className={appHeader.box}>
                         <ListIcon type="secondary" />
                         <button className={appHeader.button}>Лента заказов</button>
