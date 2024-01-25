@@ -10,7 +10,7 @@ class ConstructorItem extends React.Component {
             <div className={constructorItem.item}>
                 {!this.props.isLoked &&
                 <DragIcon type="primary" />}
-                <ConstructorElement type="top"
+                <ConstructorElement type={this.props.type}
                                     isLocked={this.props.isLoked}
                                     text={this.props.text}
                                     price={this.props.price}

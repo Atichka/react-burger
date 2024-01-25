@@ -18,7 +18,8 @@ class BurgerConstructor extends React.Component {
         return (
             <div className={burgerConstructor.box}>
                 <div>
-                    <ConstructorItem image={imageSauce1}
+                    <ConstructorItem type={"top"}
+                                     image={imageSauce1}
                                      text={"Соус традиционный галактический"}
                                      price={"200"}
                                      isLoked={true}/>
@@ -34,7 +35,8 @@ class BurgerConstructor extends React.Component {
                                      text={"Краторная булка N-200i (верх)"}
                                      price={"20"}
                                      isLoked={false}/>
-                    <ConstructorItem image={imageBurger1}
+                    <ConstructorItem type={"bottom"}
+                                     image={imageBurger1}
                                      text={"Краторная булка N-200i (верх)"}
                                      price={"20"}
                                      isLoked={false}/>
