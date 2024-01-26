@@ -1,0 +1,57 @@
+.container {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.tabs {
+    display: flex;
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    color: #8585AD;
+    box-shadow: 0px -1px 0px 0px #2F2F37 inset;
+}
+
+.tabActive {
+    box-shadow: 0px -2px 0px 0px #4C4CFF inset;
+    color: #F2F2F3;
+}
+
+.content {
+    display: block;
+    padding: 10px;
+
+    float:left;
+    width:600px;
+    overflow-y: auto;
+    height: 500px;
+
+}
+
+.text {
+    font-family: "JetBrainsMono", Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.cards {
+    display: flex;
+    flexDirection: column;
+    gap: 10px;
+    flex-wrap: wrap;
+
+}
+
+.card {
+}
+
+.image {
+    /*background-image: require('../../images/bun-02.png');*/
+}

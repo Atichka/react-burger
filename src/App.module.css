@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .App-logo {
@@ -11,6 +12,10 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.box {
+  display: flex;
 }
 
 .App-header {
@@ -26,6 +31,14 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.title {
+  font-family: "JetBrainsMono", Arial, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
 }
 
 @keyframes App-logo-spin {

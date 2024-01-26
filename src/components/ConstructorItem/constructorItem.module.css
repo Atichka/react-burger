@@ -1,0 +1,8 @@
+.item {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 8px;
+    justify-content: right;
+    align-items: center;
+    margin-top: 8px;
+}
