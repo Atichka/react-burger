@@ -4,16 +4,16 @@ import constructorItem from './constructorItem.module.css'
 
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
-export default function ConstructorItem() {
+export default function ConstructorItem(props) {
         return (
             <div className={constructorItem.item}>
-                {!this.props.isLoked &&
+                {!props.isLoked &&
                 <DragIcon type="primary" />}
-                <ConstructorElement type={this.props.type}
-                                    isLocked={this.props.isLoked}
-                                    text={this.props.text}
-                                    price={this.props.price}
-                                    thumbnail={this.props.image}/>
+                <ConstructorElement type={props.type}
+                                    isLocked={props.isLoked}
+                                    text={props.text}
+                                    price={props.price}
+                                    thumbnail={props.image}/>
             </div>
         );
 }
