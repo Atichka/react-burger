@@ -6,7 +6,7 @@ import BurgerConstructor from './components/BurgerConstructor/burgerConstructor'
 
 import app from './App.module.css';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <AppHeader> </AppHeader>
@@ -20,5 +20,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

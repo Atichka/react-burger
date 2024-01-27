@@ -63,8 +63,7 @@ const sauce = [
     }
 ]
 
-class BurgerIngredients extends React.Component {
-    render() {
+export default function BurgerIngredients() {
         return (
                 <div className={burgerIngredients.container}>
                     <div className={burgerIngredients.tabs}>
@@ -98,7 +97,5 @@ class BurgerIngredients extends React.Component {
                     </div>
                 </div>
         );
-    }
 }
 
-export default BurgerIngredients;

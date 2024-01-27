@@ -7,7 +7,7 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 function Card(props) {
         return (
             <div className={card.card}>
-                <img src={props.image} alt='картинка ингредиента' />
+                <img src={props.image} alt={'картинка ингредиента ' + props.name} />
                 <div className={card.price}>
                     <p>{props.price}</p>
                     <CurrencyIcon type="primary" />

@@ -13,8 +13,7 @@ const burgerConstructorPropTypes = PropTypes.shape({
     isLoked: PropTypes.bool
 });
 
-class BurgerConstructor extends React.Component {
-    render() {
+export default function BurgerConstructor() {
         return (
             <div >
                 <div className={burgerConstructor.box}>
@@ -57,7 +56,4 @@ class BurgerConstructor extends React.Component {
                 </div>
             </div>
         );
-    }
 }
-
-export default BurgerConstructor;

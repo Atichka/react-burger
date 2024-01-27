@@ -4,8 +4,7 @@ import constructorItem from './constructorItem.module.css'
 
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
-class ConstructorItem extends React.Component {
-    render() {
+export default function ConstructorItem() {
         return (
             <div className={constructorItem.item}>
                 {!this.props.isLoked &&
@@ -17,7 +16,5 @@ class ConstructorItem extends React.Component {
                                     thumbnail={this.props.image}/>
             </div>
         );
-    }
 }
 
-export default ConstructorItem;
