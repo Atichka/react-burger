@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import AppHeader from './components/AppHeader/appHeader';
 import BurgerIngredients from './components/BurgerIngredients/burgerIngredients'
@@ -8,7 +8,7 @@ import app from './App.module.css';
 
 export default function App() {
     const url ="https://norma.nomoreparties.space/api/ingredients";
-    const [state, setState] = [];
+    const [state, setState] = useState([]);
 
         useEffect(() => {
             getData()
@@ -17,7 +17,7 @@ export default function App() {
     function getData() {
             fetch(url)
             .then((result) => result.json())
-                .then((result) => setState({ ...this.state, ingredients: result.data }))
+                .then((data) => setState({ ...this.state, ingredients: data.data }))
                 .catch((error) => console.log(error));
     }
   return (
@@ -25,10 +25,11 @@ export default function App() {
       <AppHeader> </AppHeader>
         <div>
             <h1 className={app.title}>Соберите бургер</h1>
-            <div className={app.box}>
+            {state?.ingredients?.length &&  (<div className={app.box}>
                 <BurgerIngredients data={state}/>
                 <BurgerConstructor />
-            </div>
+            </div>)
+            }
         </div>
     </div>
   );
