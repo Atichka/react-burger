@@ -17,7 +17,7 @@ export default function App() {
     function getData() {
             fetch(url)
             .then((result) => result.json())
-                .then((data) => setState({ ...this.state, ingredients: data.data }))
+                .then((data) => setState({ ...state, ingredients: data.data }))
                 .catch((error) => console.log(error));
     }
   return (
@@ -26,8 +26,8 @@ export default function App() {
         <div>
             <h1 className={app.title}>Соберите бургер</h1>
             {state?.ingredients?.length &&  (<div className={app.box}>
-                <BurgerIngredients data={state}/>
-                <BurgerConstructor />
+                <BurgerIngredients data={state.ingredients}/>
+                <BurgerConstructor data={state.ingredients}/>
             </div>)
             }
         </div>

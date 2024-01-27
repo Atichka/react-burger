@@ -81,8 +81,8 @@ export default function BurgerIngredients(props) {
                         <div>
                             <h2 className={burgerIngredients.text}>Булки</h2>
                                 <div className={burgerIngredients.cards}>
-                                    {burger.map((item, index) => (
-                                        <Card key={item.id} image={item.image} price={item.price} name={item.name} />
+                                    {props.data.map(item => (
+                                        <Card key={item._id} image={item.image} price={item.price} name={item.name} />
                                     ))}
                                 </div>
                         </div>

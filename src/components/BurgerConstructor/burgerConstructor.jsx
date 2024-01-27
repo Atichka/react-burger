@@ -6,6 +6,7 @@ import ConstructorItem from "../ConstructorItem/constructorItem";
 import imageSauce1 from "../../images/sauce-01.png";
 import imageBurger1 from "../../images/bun-02.png";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import Card from "../Card/card";
 
 const burgerConstructorPropTypes = PropTypes.shape({
     text: PropTypes.string.isRequired,
@@ -13,37 +14,17 @@ const burgerConstructorPropTypes = PropTypes.shape({
     isLoked: PropTypes.bool
 });
 
-export default function BurgerConstructor() {
+export default function BurgerConstructor(props) {
         return (
             <div >
                 <div className={burgerConstructor.box}>
-                    <ConstructorItem type={"top"}
-                                     image={imageSauce1}
-                                     text={"Соус традиционный галактический"}
-                                     price={"200"}
-                                     isLoked={true}/>
-                    <ConstructorItem image={imageSauce1}
-                                     text={"Соус традиционный галактический"}
-                                     price={"200"}
-                                     isLoked={true}/>
-                    <ConstructorItem image={imageBurger1}
-                                     text={"Краторная булка N-200i (верх)"}
-                                     price={"20"}
-                                     isLoked={false}/>
-                    <ConstructorItem image={imageBurger1}
-                                     text={"Краторная булка N-200i (верх)"}
-                                     price={"20"}
-                                     isLoked={false}/>
-                    <ConstructorItem image={imageBurger1}
-                                     text={"Краторная булка N-200i (верх)"}
-                                     price={"20"}
-                                     isLoked={false}/>
-                    <ConstructorItem type={"bottom"}
-                                     image={imageBurger1}
-                                     text={"Краторная булка N-200i (верх)"}
-                                     price={"20"}
-                                     isLoked={false}/>
-
+                    {props.data.map(item => (
+                        <ConstructorItem key={item._id}
+                        image={item.image}
+                        text={item.name}
+                        price={item.price}
+                        isLoked={false}/>
+                    ))}
                 </div>
                 <div className={burgerConstructor.total}>
                     <div className={burgerConstructor.price}>
