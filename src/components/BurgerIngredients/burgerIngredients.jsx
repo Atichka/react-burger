@@ -63,7 +63,7 @@ const sauce = [
     }
 ]
 
-export default function BurgerIngredients() {
+export default function BurgerIngredients(props) {
         return (
                 <div className={burgerIngredients.container}>
                     <div className={burgerIngredients.tabs}>
