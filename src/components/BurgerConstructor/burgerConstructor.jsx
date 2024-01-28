@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import burgerConstructor from './burgerConstructor.module.css'
@@ -11,19 +11,20 @@ import Card from "../Card/card";
 const burgerConstructorPropTypes = PropTypes.shape({
     text: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    isLoked: PropTypes.bool
+    isLocked: PropTypes.bool
 });
 
 export default function BurgerConstructor(props) {
+
         return (
             <div >
                 <div className={burgerConstructor.box}>
                     {props.data.map(item => (
-                        <ConstructorItem key={item._id}
+                        <ConstructorItem setModal={props.setModal} key={item._id}
                         image={item.image}
                         text={item.name}
                         price={item.price}
-                        isLoked={false}/>
+                        isLocked={false}/>
                     ))}
                 </div>
                 <div className={burgerConstructor.total}>

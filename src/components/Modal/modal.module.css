@@ -1,0 +1,32 @@
+.content {
+    display: flex;
+    width: 720px;
+    padding: 40px 40px 434px 40px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 15% auto;
+    border-radius: 40px;
+    border: 1px solid rgba(76, 76, 255, 0.20);
+    background: #1C1C21;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.04),
+                0 4px 8px 0 rgba(0, 0, 0, 0.04),
+                0 16px 24px 0 rgba(0, 0, 0, 0.04),
+                0 24px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+.title {
+    font-family: "JetBrainsMono", Arial, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    margin-left: 0;
+}
+
+.close {
+    width: 26px;
+    top: -26px;
+    right: -26px;
+    cursor: pointer;
+}
