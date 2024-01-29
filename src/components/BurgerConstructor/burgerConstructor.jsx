@@ -20,11 +20,11 @@ export default function BurgerConstructor(props) {
             <div >
                 <div className={burgerConstructor.box}>
                     {props.data.map(item => (
-                        <ConstructorItem setModal={props.setModal} key={item._id}
+                        <ConstructorItem setModal={props.setModal} setIngredient={props.setIngredient} key={item._id}
                         image={item.image}
                         text={item.name}
                         price={item.price}
-                        isLocked={false}/>
+                        isLocked={false} id={item._id}/>
                     ))}
                 </div>
                 <div className={burgerConstructor.total}>

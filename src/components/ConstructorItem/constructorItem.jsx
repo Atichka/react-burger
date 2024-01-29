@@ -7,7 +7,10 @@ import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger
 export default function ConstructorItem(props) {
 
         return (
-            <div className={constructorItem.item} onClick={() => props.setModal(true)}>
+            <div className={constructorItem.item} onClick={() => {
+                props.setModal(true);
+                props.setIngredient(props)
+            }}>
                 {!props.isLocked &&
                 <DragIcon type="primary" />}
                 <ConstructorElement type={props.type}

@@ -1,8 +1,8 @@
 .content {
-    display: flex;
+
     width: 720px;
-    padding: 40px 40px 434px 40px;
-    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
     align-items: center;
     flex-shrink: 0;
     margin: 15% auto;
@@ -13,6 +13,11 @@
                 0 4px 8px 0 rgba(0, 0, 0, 0.04),
                 0 16px 24px 0 rgba(0, 0, 0, 0.04),
                 0 24px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
 }
 
 .title {
@@ -30,3 +35,54 @@
     right: -26px;
     cursor: pointer;
 }
+
+.pic {
+    width: 480px;
+    height: 240px;
+    display: block;
+    margin: 0 auto;
+}
+
+.name {
+    font-family: "JetBrainsMono", Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: center;
+}
+
+.box {
+    width: 480px;
+    height: 240px;
+    display: block;
+    margin: 0 auto;
+}
+
+.block {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
+}
+
+.text {
+    font-family: "JetBrainsMono", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+
+    color: #8585AD;
+    text-align: center;
+}
+
+.paragraph {
+    color: #8585AD;
+    text-align: center;
+    font-family: "Iceland", Arial, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+

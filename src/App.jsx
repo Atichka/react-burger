@@ -11,6 +11,7 @@ export default function App() {
     const url ="https://norma.nomoreparties.space/api/ingredients";
     const [state, setState] = useState([]);
     const [isModal, setModal] = useState(false)
+    const [ingredient, setIngredient] = useState([])
 
         useEffect(() => {
             getData()
@@ -29,12 +30,12 @@ export default function App() {
             <h1 className={app.title}>Соберите бургер</h1>
             {state?.ingredients?.length &&  (<div className={app.box}>
                 <BurgerIngredients data={state.ingredients}/>
-                <BurgerConstructor setModal={setModal} data={state.ingredients}/>
+                <BurgerConstructor setModal={setModal} setIngredient={setIngredient} data={state.ingredients}/>
             </div>)
             }
         </div>
         {isModal &&
-            <ModalOverlay setModal={setModal}/>
+            <ModalOverlay setModal={setModal} ingredient={state.ingredients.filter(x => x._id === ingredient.id)}/>
         }
     </div>
   );
