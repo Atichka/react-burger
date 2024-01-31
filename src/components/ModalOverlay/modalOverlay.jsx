@@ -1,7 +1,8 @@
 import React from 'react';
 
 import modalOverlay from './modalOverlay.module.css'
-import Modal from '../Modal/modal'
+import IngredientDetails from '../IngredientDetails/ingredientDetails'
+import OrderDetails from '../OrderDetails/orderDetails'
 
 export default function ModalOverlay(props) {
     return (
@@ -9,14 +10,15 @@ export default function ModalOverlay(props) {
         props.setModal(false)
     }}>
         {props.ingredient &&
-            <Modal setModal={props.setModal}
-                   setWindowIngredient={props.setWindowIngredient}
-                   ingredient={props.ingredient} />
-        } else {
-        <Modal setModal={props.setModal}
-               windowsFinish={props.windowsFinish}
-               setWindowFinish={props.setWindowsFinish}/>
-    }
+            <IngredientDetails setModal={props.setModal}
+                               setWindowIngredient={props.setWindowIngredient}
+                               ingredient={props.ingredient} />
+        }
+        {props.windowsFinish &&
+            <OrderDetails setModal={props.setModal}
+                          windowsFinish={props.windowsFinish}
+                          setWindowFinish={props.setWindowsFinish}/>
+        }
     </div>
     )
 }
