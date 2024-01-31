@@ -8,7 +8,10 @@ import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-comp
 const burgerConstructorPropTypes = PropTypes.shape({
     text: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    isLocked: PropTypes.bool
+    isLocked: PropTypes.bool,
+    setModal: PropTypes.bool,
+    setIngredient: PropTypes.bool,
+    setWindowIngredient: PropTypes.bool
 });
 
 export default function BurgerConstructor(props) {

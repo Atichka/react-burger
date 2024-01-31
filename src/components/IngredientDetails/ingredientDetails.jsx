@@ -2,6 +2,17 @@ import React from 'react';
 
 import ingredientDetails from './ingredientDetails.module.css'
 import close from '../../images/close.svg'
+import PropTypes from "prop-types";
+
+const ingredientDetailsPropTypes = PropTypes.shape({
+    setModal: PropTypes.bool,
+    setWindowIngredient: PropTypes.bool,
+    name: PropTypes.string,
+    calories: PropTypes.number,
+    proteins: PropTypes.number,
+    fat: PropTypes.number,
+    carbohydrates: PropTypes.number
+});
 
 export default function IngredientDetails(props) {
     return (

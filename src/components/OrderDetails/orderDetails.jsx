@@ -4,6 +4,12 @@ import orderDetails from './orderDetails.module.css'
 import close from '../../images/close.svg'
 
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
+
+const orderDetailsPropTypes = PropTypes.shape({
+    setModal: PropTypes.bool,
+    setWindowFinish: PropTypes.bool
+});
 
 export default function OrderDetails(props) {
     return (

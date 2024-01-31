@@ -3,6 +3,13 @@ import React from 'react';
 import card from './card.module.css'
 
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from "prop-types";
+
+const cardPropTypes = PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    counter: PropTypes.number
+});
 
 function Card(props) {
         return (
