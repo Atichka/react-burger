@@ -5,7 +5,9 @@ import Modal from '../Modal/modal'
 
 export default function ModalOverlay(props) {
     return (
-    <div className={modalOverlay.modal}>
+    <div className={modalOverlay.modal} onClick={() => {
+        props.setModal(false)
+    }}>
         {props.ingredient &&
             <Modal setModal={props.setModal}
                    setWindowIngredient={props.setWindowIngredient}
