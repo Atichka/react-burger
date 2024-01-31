@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import constructorItem from './constructorItem.module.css'
 
@@ -9,7 +9,8 @@ export default function ConstructorItem(props) {
         return (
             <div className={constructorItem.item} onClick={() => {
                 props.setModal(true);
-                props.setIngredient(props)
+                props.setIngredient(props);
+                props.setWindowIngredient(true)
             }}>
                 {!props.isLocked &&
                 <DragIcon type="primary" />}
