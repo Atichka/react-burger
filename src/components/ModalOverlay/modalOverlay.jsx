@@ -14,6 +14,9 @@ const modalOverlayPropTypes = PropTypes.shape({
 });
 
 export default function ModalOverlay(props) {
+    document.addEventListener('keyup', (e) => {
+        if (e.keyCode === 27) props.setModal(false);
+    });
     return (
     <div className={modalOverlay.modal} onClick={() => {
         props.setModal(false)

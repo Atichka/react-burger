@@ -19,9 +19,6 @@ export default function App() {
 
         useEffect(() => {
             getData()
-            document.addEventListener('keyup', (e) => {
-                if (e.keyCode === 27) setModal(false);
-            });
         }, [])
 
     function getData() {
