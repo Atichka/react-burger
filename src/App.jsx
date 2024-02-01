@@ -7,8 +7,10 @@ import ModalOverlay from './components/ModalOverlay/modalOverlay'
 
 import app from './App.module.css';
 
+import * as constants from '../src/const'
+const url = constants.url;
+
 export default function App() {
-    const url ="https://norma.nomoreparties.space/api/ingredients";
     const [state, setState] = useState([]);
     const [isModal, setModal] = useState(false)
     const [ingredient, setIngredient] = useState([])
