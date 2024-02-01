@@ -5,6 +5,8 @@ import IngredientDetails from '../IngredientDetails/ingredientDetails'
 import OrderDetails from '../OrderDetails/orderDetails'
 import PropTypes from "prop-types";
 
+import {buttonEsc} from "../../const";
+
 const modalOverlayPropTypes = PropTypes.shape({
     setModal: PropTypes.bool,
     ingredient: PropTypes.array,
@@ -15,7 +17,7 @@ const modalOverlayPropTypes = PropTypes.shape({
 
 export default function ModalOverlay(props) {
     document.addEventListener('keyup', (e) => {
-        if (e.keyCode === 27) props.setModal(false);
+        if (e.keyCode === buttonEsc) props.setModal(false);
     });
     return (
     <div className={modalOverlay.modal} onClick={() => {
