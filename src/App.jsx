@@ -11,7 +11,7 @@ import * as constants from '../src/const'
 const url = constants.url;
 
 export default function App() {
-    const [state, setState] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
     const [isModal, setModal] = useState(false)
     const [ingredient, setIngredient] = useState([])
     const [windowIngredient, setWindowIngredient] = useState(false)
@@ -27,7 +27,7 @@ export default function App() {
     function getData() {
             fetch(url)
             .then((result) => result.json())
-                .then((data) => setState({ ...state, ingredients: data.data }))
+                .then((data) => setIngredients({ ...ingredients, ingredients: data.data }))
                 .catch((error) => console.log(error));
     }
   return (
@@ -35,18 +35,18 @@ export default function App() {
       <AppHeader />
         <div className={app.block}>
             <h1 className={app.title}>Соберите бургер</h1>
-            {state?.ingredients?.length &&  (<div className={app.box}>
-                <BurgerIngredients data={state.ingredients} />
+            {ingredients?.ingredients?.length &&  (<div className={app.box}>
+                <BurgerIngredients data={ingredients.ingredients} />
                 <BurgerConstructor setModal={setModal}
                                    setIngredient={setIngredient}
-                                   data={state.ingredients}
+                                   data={ingredients.ingredients}
                                    setWindowIngredient={setWindowIngredient}
                                    setWindowFinish={setWindowFinish}/>
             </div>)
             }
         </div>
         {isModal && windowIngredient &&
-            <ModalOverlay setModal={setModal} setWindowIngredient={setWindowIngredient} ingredient={state.ingredients.filter(x => x._id === ingredient.id)}/>
+            <ModalOverlay setModal={setModal} setWindowIngredient={setWindowIngredient} ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)}/>
         }
         {isModal && windowFinish &&
             <ModalOverlay setModal={setModal} windowsFinish={windowFinish} setWindowsFinish={setWindowFinish} />
