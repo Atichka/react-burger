@@ -31,7 +31,7 @@ export default function App() {
   return (
     <div className="App">
       <AppHeader />
-        <div>
+        <div className={app.block}>
             <h1 className={app.title}>Соберите бургер</h1>
             {state?.ingredients?.length &&  (<div className={app.box}>
                 <BurgerIngredients data={state.ingredients} />
