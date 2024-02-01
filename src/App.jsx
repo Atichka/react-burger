@@ -11,9 +11,9 @@ import * as constants from '../src/const'
 const url = constants.url;
 
 export default function App() {
-    const [ingredients, setIngredients] = useState([]);
+    const [ingredients, setIngredients] = useState(null);
     const [isModal, setModal] = useState(false)
-    const [ingredient, setIngredient] = useState([])
+    const [ingredient, setIngredient] = useState(null)
     const [windowIngredient, setWindowIngredient] = useState(false)
     const [windowFinish, setWindowFinish] = useState(false)
 
