@@ -4,11 +4,9 @@ import AppHeader from './components/AppHeader/appHeader';
 import BurgerIngredients from './components/BurgerIngredients/burgerIngredients'
 import BurgerConstructor from './components/BurgerConstructor/burgerConstructor'
 import ModalOverlay from './components/ModalOverlay/modalOverlay'
+import getData from "./functions";
 
 import app from './App.module.css';
-
-import * as constants from '../src/const'
-const url = constants.url;
 
 export default function App() {
     const [ingredients, setIngredients] = useState(null);
@@ -18,20 +16,10 @@ export default function App() {
     const [windowFinish, setWindowFinish] = useState(false)
 
         useEffect(() => {
-            getData()
+            getData().then((data) => {
+                setIngredients({ ...ingredients, ingredients: data.data })
+            });
         }, [])
-
-    function getData() {
-            fetch(url)
-                .then((response) => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    return Promise.reject(response);
-                })
-                .then((data) => setIngredients({ ...ingredients, ingredients: data.data }))
-                .catch((error) => console.log(error));
-    }
   return (
     <div className="App">
       <AppHeader />
