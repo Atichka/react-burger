@@ -23,7 +23,12 @@ export default function App() {
 
     function getData() {
             fetch(url)
-            .then((result) => result.json())
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    return Promise.reject(response);
+                })
                 .then((data) => setIngredients({ ...ingredients, ingredients: data.data }))
                 .catch((error) => console.log(error));
     }
