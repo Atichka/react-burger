@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import AppHeader from './components/AppHeader/appHeader';
 import BurgerIngredients from './components/BurgerIngredients/burgerIngredients'
 import BurgerConstructor from './components/BurgerConstructor/burgerConstructor'
-import ModalOverlay from './components/ModalOverlay/modalOverlay'
+import Modal from './components/Modal/modal'
 import getData from "./functions";
 
 import app from './App.module.css';
@@ -36,10 +36,10 @@ export default function App() {
             }
         </div>
         {isModal && windowIngredient &&
-            <ModalOverlay setModal={setModal} setWindowIngredient={setWindowIngredient} ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)}/>
+            <Modal setModal={setModal} setWindowIngredient={setWindowIngredient} ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)}/>
         }
         {isModal && windowFinish &&
-            <ModalOverlay setModal={setModal} windowsFinish={windowFinish} setWindowsFinish={setWindowFinish} />
+            <Modal setModal={setModal} windowsFinish={windowFinish} setWindowsFinish={setWindowFinish} />
         }
 
 

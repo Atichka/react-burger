@@ -16,7 +16,7 @@ const ingredientDetailsPropTypes = PropTypes.shape({
 
 export default function IngredientDetails(props) {
     return (
-        <div className={ingredientDetails.content}>
+        <div>
                     <div className={ingredientDetails.header}>
                         <h1 className={ingredientDetails.title}>Детали ингредиента</h1>
                         <img src={close} alt="" className={ingredientDetails.close} onClick={() => {

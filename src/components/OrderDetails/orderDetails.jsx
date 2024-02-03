@@ -13,7 +13,7 @@ const orderDetailsPropTypes = PropTypes.shape({
 
 export default function OrderDetails(props) {
     return (
-        <div className={orderDetails.content}>
+        <div>
                     <div className={orderDetails.buttonClose}>
                         <img src={close} alt="" className={orderDetails.close} onClick={() => {
                             props.setModal(false);
