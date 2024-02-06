@@ -29,7 +29,7 @@ export default function BurgerIngredients(props) {
                         <div>
                             <h2 className={burgerIngredients.text}>Булки</h2>
                                 <div className={burgerIngredients.cards}>
-                                    {props.data.map(item => (
+                                    {props.ingredients.map(item => (
                                         <Card key={item._id} image={item.image} price={item.price} name={item.name} />
                                     ))}
                                 </div>
@@ -37,7 +37,7 @@ export default function BurgerIngredients(props) {
                         <div>
                             <h2 className={burgerIngredients.text}>Соусы</h2>
                             <div className={burgerIngredients.cards}>
-                                {props.data.map(item => (
+                                {props.ingredients.map(item => (
                                     <Card key={item._id} image={item.image} price={item.price} name={item.name} counter={item.counter} />
                                 ))}
                             </div>

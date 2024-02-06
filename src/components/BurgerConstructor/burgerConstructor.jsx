@@ -18,7 +18,7 @@ export default function BurgerConstructor(props) {
         return (
             <div >
                 <div className={burgerConstructor.box}>
-                    {props.data.map(item => (
+                    {props.ingredients.map(item => (
                         <ConstructorItem setModal={props.setModal}
                                          setIngredient={props.setIngredient}
                                          setWindowIngredient={props.setWindowIngredient}
