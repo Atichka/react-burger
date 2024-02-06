@@ -4,7 +4,7 @@ import ingredientDetails from './ingredientDetails.module.css'
 import close from '../../images/close.svg'
 import PropTypes from "prop-types";
 
-const ingredientDetailsPropTypes = PropTypes.shape({
+ingredientDetails.propTypes = PropTypes.shape({
     setModal: PropTypes.bool,
     setWindowIngredient: PropTypes.bool,
     name: PropTypes.string,

@@ -5,7 +5,7 @@ import constructorItem from './constructorItem.module.css'
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
 
-const constructorItemPropTypes = PropTypes.shape({
+constructorItem.propTypes = PropTypes.shape({
     setModal: PropTypes.bool,
     setIngredient: PropTypes.bool,
     setWindowIngredient: PropTypes.bool,

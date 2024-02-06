@@ -5,7 +5,7 @@ import burgerConstructor from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 
-const burgerConstructorPropTypes = PropTypes.shape({
+burgerConstructor.propTypes = PropTypes.shape({
     text: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     isLocked: PropTypes.bool,

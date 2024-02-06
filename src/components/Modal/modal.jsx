@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {buttonEsc} from "../../const";
 
-const modalOverlayPropTypes = PropTypes.shape( {
+modalOverlay.propTypes = PropTypes.shape( {
     setModal: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired
 });

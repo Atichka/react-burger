@@ -39,18 +39,18 @@ export default function App() {
             }
         </div>
         {isModal && windowIngredient &&
-            <Modal setModal={setModal}>
+            (<Modal setModal={setModal}>
                 <IngredientDetails setModal={setModal}
                                    setWindowIngredient={setWindowIngredient}
                                    ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)} />
-            </Modal>
+            </Modal>)
         }
         {isModal && windowFinish &&
-            <Modal setModal={setModal}>
+            (<Modal setModal={setModal}>
                 <OrderDetails setModal={setModal}
                               windowsFinish={windowFinish}
                               setWindowFinish={setWindowFinish}/>
-            </Modal>
+            </Modal>)
         }
 
 

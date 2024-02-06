@@ -6,7 +6,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../../components/Card/card'
 import PropTypes from "prop-types";
 
-const burgerIngredientsPropTypes = PropTypes.shape({
+burgerIngredients.propTypes = PropTypes.shape({
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired
 });
