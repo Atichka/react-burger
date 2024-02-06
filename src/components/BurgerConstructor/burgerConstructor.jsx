@@ -11,7 +11,8 @@ burgerConstructor.propTypes = PropTypes.shape({
     isLocked: PropTypes.bool,
     setModal: PropTypes.bool,
     setIngredient: PropTypes.bool,
-    setWindowIngredient: PropTypes.bool
+    setWindowIngredient: PropTypes.bool,
+    key: PropTypes.number.isRequired
 });
 
 export default function BurgerConstructor(props) {
