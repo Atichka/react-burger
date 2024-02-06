@@ -7,22 +7,19 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {buttonEsc} from "../../const";
 
-const modalOverlayPropTypes = PropTypes.shape({
-    setModal: PropTypes.bool,
-    ingredient: PropTypes.array,
-    setWindowIngredient: PropTypes.bool,
-    windowsFinish: PropTypes.bool,
-    setWindowsFinish: PropTypes.bool
+const modalOverlayPropTypes = PropTypes.shape( {
+    setModal: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired
 });
 
-export default function Modal({onClick, children}) {
+export default function Modal({setModal, children}) {
     const modalRoot = document.querySelector('#modal')
 
     document.addEventListener('keyup', (e) => {
-        if (e.keyCode === buttonEsc) children.props.setModal(false);
+        if (e.keyCode === buttonEsc) setModal(false);
     });
     return ReactDOM.createPortal(
-        <div className={modal.modal} onClick={onClick}>
+        <div className={modal.modal} onClick={setModal}>
             <ModalOverlay />
             {children}
         </div>,
