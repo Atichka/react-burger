@@ -16,10 +16,10 @@ const modalOverlayPropTypes = PropTypes.shape({
 });
 
 export default function Modal({onClick, children}) {
-    const modalRoot = document.querySelector('.modal')
+    const modalRoot = document.querySelector('#modal')
 
     document.addEventListener('keyup', (e) => {
-        if (e.keyCode === buttonEsc) onClick(false);
+        if (e.keyCode === buttonEsc) children.props.setModal(false);
     });
     return ReactDOM.createPortal(
         <div className={modal.modal} onClick={onClick}>
