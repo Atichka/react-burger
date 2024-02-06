@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as constants from "./const";
 const url = constants.url;
 

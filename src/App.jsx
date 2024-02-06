@@ -7,6 +7,8 @@ import Modal from './components/Modal/modal'
 import getData from "./functions";
 
 import app from './App.module.css';
+import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
+import OrderDetails from "./components/OrderDetails/orderDetails";
 
 export default function App() {
     const [ingredients, setIngredients] = useState(null);
@@ -19,7 +21,8 @@ export default function App() {
             getData().then((data) => {
                 setIngredients({ ...ingredients, ingredients: data.data })
             });
-        }, [])
+        }, []);
+
   return (
     <div className="App">
       <AppHeader />
@@ -36,10 +39,18 @@ export default function App() {
             }
         </div>
         {isModal && windowIngredient &&
-            <Modal setModal={setModal} setWindowIngredient={setWindowIngredient} ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)}/>
+            <Modal setModal={setModal}>
+                <IngredientDetails setModal={setModal}
+                                   setWindowIngredient={setWindowIngredient}
+                                   ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)} />
+            </Modal>
         }
         {isModal && windowFinish &&
-            <Modal setModal={setModal} windowsFinish={windowFinish} setWindowsFinish={setWindowFinish} />
+            <Modal setModal={setModal}>
+                <OrderDetails setModal={setModal}
+                              windowsFinish={windowFinish}
+                              setWindowFinish={setWindowFinish}/>
+            </Modal>
         }
 
 
