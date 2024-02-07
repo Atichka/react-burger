@@ -3,9 +3,7 @@ import modal from './modal.module.css'
 import ModalOverlay from '../ModalOverlay/ModalOverlay'
 import PropTypes from "prop-types";
 
-
 import ReactDOM from "react-dom";
-import {buttonEsc} from "../../const";
 
 modal.propTypes = PropTypes.shape( {
     setModal: PropTypes.func.isRequired,
@@ -17,7 +15,7 @@ export default function Modal({setModal, children}) {
 
     useEffect(() => {
         document.addEventListener('keyup', (e) => {
-            if (e.keyCode === buttonEsc) setModal(false);
+            if (e.key === "Escape") setModal(false);
         });
 
         return () => {};
