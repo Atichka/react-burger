@@ -4,16 +4,6 @@ import ingredientDetails from './ingredientDetails.module.css'
 import close from '../../images/close.svg'
 import PropTypes from "prop-types";
 
-ingredientDetails.propTypes = {
-    setModal: PropTypes.func.isRequired,
-    setWindowIngredient: PropTypes.func.isRequired,
-    name: PropTypes.string,
-    calories: PropTypes.number,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number
-};
-
 export default function IngredientDetails(props) {
     return (
         <div>
@@ -49,4 +39,14 @@ export default function IngredientDetails(props) {
                 </div>
     );
 }
+
+ingredientDetails.propTypes = {
+    setModal: PropTypes.func.isRequired,
+    setWindowIngredient: PropTypes.func.isRequired,
+    name: PropTypes.string,
+    calories: PropTypes.number,
+    proteins: PropTypes.number,
+    fat: PropTypes.number,
+    carbohydrates: PropTypes.number
+};
 

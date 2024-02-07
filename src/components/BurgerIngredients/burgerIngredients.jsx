@@ -6,11 +6,6 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../../components/Card/card'
 import PropTypes from "prop-types";
 
-burgerIngredients.propTypes = {
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
-};
-
 export default function BurgerIngredients(props) {
         return (
                 <div className={burgerIngredients.container}>
@@ -46,4 +41,9 @@ export default function BurgerIngredients(props) {
                 </div>
         );
 }
+
+burgerIngredients.propTypes = {
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired
+};
 

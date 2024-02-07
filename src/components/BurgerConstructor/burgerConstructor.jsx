@@ -5,16 +5,6 @@ import burgerConstructor from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 
-burgerConstructor.propTypes = {
-    text: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    isLocked: PropTypes.bool,
-    setModal: PropTypes.bool,
-    setIngredient: PropTypes.bool,
-    setWindowIngredient: PropTypes.bool,
-    key: PropTypes.number.isRequired
-};
-
 export default function BurgerConstructor(props) {
         return (
             <div >
@@ -46,3 +36,13 @@ export default function BurgerConstructor(props) {
             </div>
         );
 }
+
+burgerConstructor.propTypes = {
+    text: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    isLocked: PropTypes.bool,
+    setModal: PropTypes.bool,
+    setIngredient: PropTypes.bool,
+    setWindowIngredient: PropTypes.bool,
+    key: PropTypes.number.isRequired
+};

@@ -6,11 +6,6 @@ import close from '../../images/close.svg'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
-orderDetails.propTypes = {
-    setModal: PropTypes.func.isRequired,
-    setWindowFinish: PropTypes.func.isRequiredl
-};
-
 export default function OrderDetails(props) {
     return (
         <div>
@@ -32,4 +27,9 @@ export default function OrderDetails(props) {
                 </div>
     );
 }
+
+orderDetails.propTypes = {
+    setModal: PropTypes.func.isRequired,
+    setWindowFinish: PropTypes.func.isRequiredl
+};
 

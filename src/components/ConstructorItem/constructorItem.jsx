@@ -5,17 +5,6 @@ import constructorItem from './constructorItem.module.css'
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
 
-constructorItem.propTypes = {
-    setModal: PropTypes.func.isRequired,
-    setIngredient: PropTypes.func.isRequired,
-    setWindowIngredient: PropTypes.func.isRequired,
-    setWindowFinish: PropTypes.func.isRequired,
-    isLocked: PropTypes.bool,
-    type: PropTypes.string,
-    text: PropTypes.string,
-    price: PropTypes.string
-};
-
 export default function ConstructorItem(props) {
 
         return (
@@ -35,4 +24,15 @@ export default function ConstructorItem(props) {
             </div>
         );
 }
+
+constructorItem.propTypes = {
+    setModal: PropTypes.func.isRequired,
+    setIngredient: PropTypes.func.isRequired,
+    setWindowIngredient: PropTypes.func.isRequired,
+    setWindowFinish: PropTypes.func.isRequired,
+    isLocked: PropTypes.bool,
+    type: PropTypes.string,
+    text: PropTypes.string,
+    price: PropTypes.string
+};
 
