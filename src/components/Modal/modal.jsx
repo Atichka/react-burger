@@ -10,7 +10,7 @@ modal.propTypes = {
     children: PropTypes.node.isRequired
 };
 
-export default function Modal({setModal, isModal, children}) {
+export default function Modal({setModal, children}) {
     const modalRoot = document.querySelector('#modal')
 
     useEffect(() => {
@@ -21,7 +21,9 @@ export default function Modal({setModal, isModal, children}) {
         return () => {};
     });
     return ReactDOM.createPortal(
-        <div className={modal.modal} onClick={isModal}>
+        <div className={modal.modal} onClick={() => {
+            setModal(false)
+        }}>
             <ModalOverlay />
             {children}
         </div>,

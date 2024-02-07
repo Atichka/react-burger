@@ -40,7 +40,6 @@ export default function App() {
         {isModal && windowIngredient &&
             (<Modal setModal={setModal}>
                 <IngredientDetails setModal={setModal}
-                                   isModal={isModal}
                                    setWindowIngredient={setWindowIngredient}
                                    ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)} />
             </Modal>)
