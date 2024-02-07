@@ -5,8 +5,8 @@ import close from '../../images/close.svg'
 import PropTypes from "prop-types";
 
 ingredientDetails.propTypes = {
-    setModal: PropTypes.bool,
-    setWindowIngredient: PropTypes.bool,
+    setModal: PropTypes.func.isRequired,
+    setWindowIngredient: PropTypes.func.isRequired,
     name: PropTypes.string,
     calories: PropTypes.number,
     proteins: PropTypes.number,

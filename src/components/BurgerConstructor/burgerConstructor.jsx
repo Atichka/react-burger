@@ -23,6 +23,7 @@ export default function BurgerConstructor(props) {
                         <ConstructorItem setModal={props.setModal}
                                          setIngredient={props.setIngredient}
                                          setWindowIngredient={props.setWindowIngredient}
+                                         setWindowFinish={props.setWindowFinish}
                                          key={item._id}
                                          image={item.image}
                                          text={item.name}

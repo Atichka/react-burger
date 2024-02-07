@@ -6,9 +6,10 @@ import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger
 import PropTypes from "prop-types";
 
 constructorItem.propTypes = {
-    setModal: PropTypes.bool,
-    setIngredient: PropTypes.bool,
-    setWindowIngredient: PropTypes.bool,
+    setModal: PropTypes.func.isRequired,
+    setIngredient: PropTypes.func.isRequired,
+    setWindowIngredient: PropTypes.func.isRequired,
+    setWindowFinish: PropTypes.func.isRequired,
     isLocked: PropTypes.bool,
     type: PropTypes.string,
     text: PropTypes.string,
@@ -21,7 +22,8 @@ export default function ConstructorItem(props) {
             <div className={constructorItem.item} onClick={() => {
                 props.setModal(true);
                 props.setIngredient(props);
-                props.setWindowIngredient(true)
+                props.setWindowIngredient(true);
+                props.setWindowFinish(false);
             }}>
                 {!props.isLocked &&
                 <DragIcon type="primary" />}

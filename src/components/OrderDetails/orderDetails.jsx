@@ -7,8 +7,8 @@ import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components"
 import PropTypes from "prop-types";
 
 orderDetails.propTypes = {
-    setModal: PropTypes.bool,
-    setWindowFinish: PropTypes.bool
+    setModal: PropTypes.func.isRequired,
+    setWindowFinish: PropTypes.func.isRequiredl
 };
 
 export default function OrderDetails(props) {
