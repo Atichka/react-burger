@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 
 import ReactDOM from "react-dom";
 
-modal.propTypes = PropTypes.shape( {
+modal.propTypes = {
     setModal: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired
-});
+};
 
 export default function Modal({setModal, children}) {
     const modalRoot = document.querySelector('#modal')

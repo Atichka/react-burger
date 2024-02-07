@@ -4,7 +4,7 @@ import ingredientDetails from './ingredientDetails.module.css'
 import close from '../../images/close.svg'
 import PropTypes from "prop-types";
 
-ingredientDetails.propTypes = PropTypes.shape({
+ingredientDetails.propTypes = {
     setModal: PropTypes.bool,
     setWindowIngredient: PropTypes.bool,
     name: PropTypes.string,
@@ -12,7 +12,7 @@ ingredientDetails.propTypes = PropTypes.shape({
     proteins: PropTypes.number,
     fat: PropTypes.number,
     carbohydrates: PropTypes.number
-});
+};
 
 export default function IngredientDetails(props) {
     return (
