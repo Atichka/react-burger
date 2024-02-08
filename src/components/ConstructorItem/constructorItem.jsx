@@ -1,6 +1,6 @@
 import React from 'react';
 
-import constructorItem from './constructorItem.module.css'
+import css from './constructorItem.module.css'
 
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 export default function ConstructorItem(props) {
 
         return (
-            <div className={constructorItem.item} onClick={() => {
+            <div className={css.item} onClick={() => {
                 props.setModal(true);
                 props.setIngredient(props);
                 props.setWindowIngredient(true);
@@ -25,7 +25,7 @@ export default function ConstructorItem(props) {
         );
 }
 
-constructorItem.propTypes = {
+ConstructorItem.propTypes = {
     setModal: PropTypes.func.isRequired,
     setIngredient: PropTypes.func.isRequired,
     setWindowIngredient: PropTypes.func.isRequired,
@@ -33,6 +33,6 @@ constructorItem.propTypes = {
     isLocked: PropTypes.bool,
     type: PropTypes.string,
     text: PropTypes.string,
-    price: PropTypes.string
+    price: PropTypes.number
 };
 

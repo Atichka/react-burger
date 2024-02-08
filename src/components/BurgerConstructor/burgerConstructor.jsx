@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import burgerConstructor from './burgerConstructor.module.css'
+import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 
 export default function BurgerConstructor(props) {
         return (
             <div >
-                <div className={burgerConstructor.box}>
+                <div className={css.box}>
                     {props.ingredients.map(item => (
                         <ConstructorItem setModal={props.setModal}
                                          setIngredient={props.setIngredient}
@@ -21,9 +21,9 @@ export default function BurgerConstructor(props) {
                                          isLocked={false} id={item._id}/>
                     ))}
                 </div>
-                <div className={burgerConstructor.total}>
-                    <div className={burgerConstructor.price}>
-                        <p className={burgerConstructor.title}>{600}</p>
+                <div className={css.total}>
+                    <div className={css.price}>
+                        <p className={css.title}>{600}</p>
                         <CurrencyIcon type="primary" />
                     </div>
                     <Button onClick={() => {
@@ -37,12 +37,12 @@ export default function BurgerConstructor(props) {
         );
 }
 
-burgerConstructor.propTypes = {
-    text: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+BurgerConstructor.propTypes = {
+    text: PropTypes.string,
+    price: PropTypes.number,
     isLocked: PropTypes.bool,
-    setModal: PropTypes.bool,
-    setIngredient: PropTypes.bool,
-    setWindowIngredient: PropTypes.bool,
-    key: PropTypes.number.isRequired
+    setModal: PropTypes.func.isRequired,
+    setIngredient: PropTypes.func.isRequired,
+    setWindowIngredient: PropTypes.func.isRequired,
+    key: PropTypes.number
 };

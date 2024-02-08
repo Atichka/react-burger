@@ -13,7 +13,9 @@ export default function Modal({setModal, children}) {
             if (e.key === "Escape") setModal(false);
         });
 
-        return () => {};
+        return () =>  {
+            document.removeEventListener('keyup', setModal)
+        }
     });
     return ReactDOM.createPortal(
         <div className={modal.modal} onClick={() => {

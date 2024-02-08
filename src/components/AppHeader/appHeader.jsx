@@ -1,26 +1,26 @@
 import React from 'react';
 
-import appHeader from './appHeader.module.css';
+import css from './appHeader.module.css';
 
 import { BurgerIcon, ListIcon, ProfileIcon, Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 
 export default function AppHeader() {
         return (
-            <header className={appHeader.header}>
-                <div className={appHeader.container}>
-                    <a href="#" className={appHeader.box}>
+            <header className={css.header}>
+                <div className={css.container}>
+                    <a href="#" className={css.box}>
                         <BurgerIcon type="primary" />
-                        <p className={appHeader.text}>Конструктор</p>
+                        <p className={css.text}>Конструктор</p>
                     </a>
-                    <div className={appHeader.box}>
+                    <div className={css.box}>
                         <ListIcon type="secondary" />
-                        <button className={appHeader.button}>Лента заказов</button>
+                        <button className={css.button}>Лента заказов</button>
                     </div>
                 </div>
                 <Logo />
-                <div className={appHeader.box}>
+                <div className={css.box}>
                     <ProfileIcon type="secondary" />
-                    <button className={appHeader.button}>Личный кабинет</button>
+                    <button className={css.button}>Личный кабинет</button>
                 </div>
             </header>
         );

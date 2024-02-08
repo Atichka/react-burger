@@ -1,26 +1,26 @@
 import React from 'react';
 
-import card from './card.module.css'
+import css from './card.module.css'
 
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
 
 export default function Card(props) {
         return (
-            <div className={card.card}>
+            <div className={css.card}>
                 <img src={props.image} alt={'картинка ингредиента ' + props.name} />
-                <div className={card.price}>
+                <div className={css.price}>
                     <p>{props.price}</p>
                     <CurrencyIcon type="primary" />
                     {props.counter > 0 &&
-                    <p className={card.counter}>{props.counter}</p>}
+                    <p className={css.counter}>{props.counter}</p>}
                 </div>
-                <p className={card.cardName}>{props.name}</p>
+                <p className={css.cardName}>{props.name}</p>
             </div>
         );
 };
 
-card.propTypes = {
+Card.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     counter: PropTypes.number

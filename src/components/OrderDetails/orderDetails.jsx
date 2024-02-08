@@ -1,6 +1,6 @@
 import React from 'react';
 
-import orderDetails from './orderDetails.module.css'
+import css from './orderDetails.module.css'
 import close from '../../images/close.svg'
 
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
@@ -9,27 +9,27 @@ import PropTypes from "prop-types";
 export default function OrderDetails(props) {
     return (
         <div>
-                    <div className={orderDetails.buttonClose}>
-                        <img src={close} alt="" className={orderDetails.close} onClick={() => {
+                    <div className={css.buttonClose}>
+                        <img src={close} alt="" className={css.close} onClick={() => {
                             props.setModal(false);
                             props.setWindowFinish(false)
                         }} />
                     </div>
-                    <h1 className={orderDetails.number}>034536</h1>
-                    <p className={orderDetails.name}>Идентификатор заказа</p>
-                    <div className={orderDetails.checkIcon}>
+                    <h1 className={css.number}>034536</h1>
+                    <p className={css.name}>Идентификатор заказа</p>
+                    <div className={css.checkIcon}>
                         <CheckMarkIcon type="primary" />
                     </div>
                     <div>
-                        <h3 className={orderDetails.text}>Ваш заказ начали готовить</h3>
-                        <p className={orderDetails.name}>Дождитесь готовности на орбитальной станции</p>
+                        <h3 className={css.text}>Ваш заказ начали готовить</h3>
+                        <p className={css.name}>Дождитесь готовности на орбитальной станции</p>
                     </div>
                 </div>
     );
 }
 
-orderDetails.propTypes = {
+OrderDetails.propTypes = {
     setModal: PropTypes.func.isRequired,
-    setWindowFinish: PropTypes.func.isRequiredl
+    setWindowFinish: PropTypes.func.isRequired
 };
 

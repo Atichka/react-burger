@@ -1,6 +1,6 @@
 import React from 'react';
 
-import burgerIngredients from './burgerIngredients.module.css';
+import css from './burgerIngredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../../components/Card/card'
@@ -8,8 +8,8 @@ import PropTypes from "prop-types";
 
 export default function BurgerIngredients(props) {
         return (
-                <div className={burgerIngredients.container}>
-                    <div className={burgerIngredients.tabs}>
+                <div className={css.container}>
+                    <div className={css.tabs}>
                         <Tab value="one">
                             Булки
                         </Tab>
@@ -20,18 +20,18 @@ export default function BurgerIngredients(props) {
                             Начинки
                         </Tab>
                     </div>
-                    <div className={burgerIngredients.content}>
+                    <div className={css.content}>
                         <div>
-                            <h2 className={burgerIngredients.text}>Булки</h2>
-                                <div className={burgerIngredients.cards}>
+                            <h2 className={css.text}>Булки</h2>
+                                <div className={css.cards}>
                                     {props.ingredients.map(item => (
                                         <Card key={item._id} image={item.image} price={item.price} name={item.name} />
                                     ))}
                                 </div>
                         </div>
                         <div>
-                            <h2 className={burgerIngredients.text}>Соусы</h2>
-                            <div className={burgerIngredients.cards}>
+                            <h2 className={css.text}>Соусы</h2>
+                            <div className={css.cards}>
                                 {props.ingredients.map(item => (
                                     <Card key={item._id} image={item.image} price={item.price} name={item.name} counter={item.counter} />
                                 ))}
@@ -42,8 +42,8 @@ export default function BurgerIngredients(props) {
         );
 }
 
-burgerIngredients.propTypes = {
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
+BurgerIngredients.propTypes = {
+    name: PropTypes.string,
+    price: PropTypes.number
 };
 
