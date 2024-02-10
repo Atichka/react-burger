@@ -1,8 +1,7 @@
 .item {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 20px auto;
     gap: 8px;
-    justify-content: right;
     align-items: center;
     margin-top: 8px;
 }

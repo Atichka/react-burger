@@ -1,23 +1,33 @@
 import React from 'react';
 
-import constructorItem from './constructorItem.module.css'
+import css from './constructorItem.module.css'
 
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from "prop-types";
 
-class ConstructorItem extends React.Component {
-    render() {
+export default function ConstructorItem(props) {
+
         return (
-            <div className={constructorItem.item}>
-                {!this.props.isLoked &&
+            <div className={css.item}>
+                {!props.isLocked &&
                 <DragIcon type="primary" />}
-                <ConstructorElement type={this.props.type}
-                                    isLocked={this.props.isLoked}
-                                    text={this.props.text}
-                                    price={this.props.price}
-                                    thumbnail={this.props.image}/>
+                <ConstructorElement type={props.type}
+                                    isLocked={props.isLocked}
+                                    text={props.text}
+                                    price={props.price}
+                                    thumbnail={props.image}/>
             </div>
         );
-    }
 }
 
-export default ConstructorItem;
+ConstructorItem.propTypes = {
+    setModal: PropTypes.func,
+    setIngredient: PropTypes.func,
+    setWindowIngredient: PropTypes.func,
+    setWindowFinish: PropTypes.func,
+    isLocked: PropTypes.bool,
+    type: PropTypes.string,
+    text: PropTypes.string,
+    price: PropTypes.number
+};
+

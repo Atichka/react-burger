@@ -16,6 +16,9 @@
 
 .box {
   display: flex;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
 }
 
 .App-header {
@@ -39,6 +42,10 @@
   font-style: normal;
   font-weight: 700;
   line-height: 40px;
+}
+
+.block {
+  margin-left: 60px;
 }
 
 @keyframes App-logo-spin {
