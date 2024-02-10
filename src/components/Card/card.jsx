@@ -7,7 +7,12 @@ import PropTypes from "prop-types";
 
 export default function Card(props) {
         return (
-            <div className={css.card}>
+            <div className={css.card} onClick={() => {
+                props.setModal(true);
+                props.setIngredient(props);
+                props.setWindowIngredient(true);
+                props.setWindowFinish(false);
+            }}>
                 <img src={props.image} alt={'картинка ингредиента ' + props.name} />
                 <div className={css.price}>
                     <p>{props.price}</p>

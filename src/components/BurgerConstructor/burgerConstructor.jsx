@@ -10,11 +10,7 @@ export default function BurgerConstructor(props) {
             <div >
                 <div className={css.box}>
                     {props.ingredients.map(item => (
-                        <ConstructorItem setModal={props.setModal}
-                                         setIngredient={props.setIngredient}
-                                         setWindowIngredient={props.setWindowIngredient}
-                                         setWindowFinish={props.setWindowFinish}
-                                         key={item._id}
+                        <ConstructorItem key={item._id}
                                          image={item.image}
                                          text={item.name}
                                          price={item.price}
@@ -41,8 +37,8 @@ BurgerConstructor.propTypes = {
     text: PropTypes.string,
     price: PropTypes.number,
     isLocked: PropTypes.bool,
-    setModal: PropTypes.func.isRequired,
-    setIngredient: PropTypes.func.isRequired,
-    setWindowIngredient: PropTypes.func.isRequired,
+    setModal: PropTypes.func,
+    setIngredient: PropTypes.func,
+    setWindowIngredient: PropTypes.func,
     key: PropTypes.number
 };

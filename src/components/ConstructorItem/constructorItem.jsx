@@ -8,12 +8,7 @@ import PropTypes from "prop-types";
 export default function ConstructorItem(props) {
 
         return (
-            <div className={css.item} onClick={() => {
-                props.setModal(true);
-                props.setIngredient(props);
-                props.setWindowIngredient(true);
-                props.setWindowFinish(false);
-            }}>
+            <div className={css.item}>
                 {!props.isLocked &&
                 <DragIcon type="primary" />}
                 <ConstructorElement type={props.type}
@@ -26,10 +21,10 @@ export default function ConstructorItem(props) {
 }
 
 ConstructorItem.propTypes = {
-    setModal: PropTypes.func.isRequired,
-    setIngredient: PropTypes.func.isRequired,
-    setWindowIngredient: PropTypes.func.isRequired,
-    setWindowFinish: PropTypes.func.isRequired,
+    setModal: PropTypes.func,
+    setIngredient: PropTypes.func,
+    setWindowIngredient: PropTypes.func,
+    setWindowFinish: PropTypes.func,
     isLocked: PropTypes.bool,
     type: PropTypes.string,
     text: PropTypes.string,

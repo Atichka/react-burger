@@ -25,7 +25,11 @@ export default function BurgerIngredients(props) {
                             <h2 className={css.text}>Булки</h2>
                                 <div className={css.cards}>
                                     {props.ingredients.map(item => (
-                                        <Card key={item._id} image={item.image} price={item.price} name={item.name} />
+                                        <Card key={item._id} image={item.image} price={item.price} name={item.name} id={item._id}
+                                              setModal={props.setModal}
+                                              setIngredient={props.setIngredient}
+                                              setWindowIngredient={props.setWindowIngredient}
+                                              setWindowFinish={props.setWindowFinish}/>
                                     ))}
                                 </div>
                         </div>
@@ -33,7 +37,11 @@ export default function BurgerIngredients(props) {
                             <h2 className={css.text}>Соусы</h2>
                             <div className={css.cards}>
                                 {props.ingredients.map(item => (
-                                    <Card key={item._id} image={item.image} price={item.price} name={item.name} counter={item.counter} />
+                                    <Card key={item._id} image={item.image} price={item.price} name={item.name} counter={item.counter} id={item._id}
+                                          setModal={props.setModal}
+                                          setIngredient={props.setIngredient}
+                                          setWindowIngredient={props.setWindowIngredient}
+                                          setWindowFinish={props.setWindowFinish} />
                                 ))}
                             </div>
                         </div>

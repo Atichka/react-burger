@@ -28,11 +28,13 @@ export default function App() {
         <div className={app.block}>
             <h1 className={app.title}>Соберите бургер</h1>
             {ingredients?.ingredients?.length &&  (<div className={app.box}>
-                <BurgerIngredients ingredients={ingredients.ingredients} />
-                <BurgerConstructor setModal={setModal}
+                <BurgerIngredients setModal={setModal}
                                    setIngredient={setIngredient}
                                    ingredients={ingredients.ingredients}
                                    setWindowIngredient={setWindowIngredient}
+                                   setWindowFinish={setWindowFinish} />
+                <BurgerConstructor setModal={setModal}
+                                   ingredients={ingredients.ingredients}
                                    setWindowFinish={setWindowFinish}/>
             </div>)
             }
