@@ -27,7 +27,7 @@ export default function App() {
       <AppHeader />
         <div className={css.block}>
             <h1 className={css.title}>Соберите бургер</h1>
-            {ingredients?.ingredients?.length &&  (<div className={app.box}>
+            {ingredients?.ingredients?.length &&  (<div className={css.box}>
                 <BurgerIngredients setModal={setModal}
                                    setIngredient={setIngredient}
                                    ingredients={ingredients.ingredients}
