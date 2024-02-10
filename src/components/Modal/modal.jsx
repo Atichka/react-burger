@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import modal from './modal.module.css'
+import css from './modal.module.css'
 import ModalOverlay from '../ModalOverlay/ModalOverlay'
 import PropTypes from "prop-types";
 
@@ -20,7 +20,7 @@ export default function Modal({setModal, children}) {
         }
     });
     return ReactDOM.createPortal(
-        <div className={modal.modal}>
+        <div className={css.modal}>
             <ModalOverlay setModal={() => {
                 setModal(false)
             }}/>

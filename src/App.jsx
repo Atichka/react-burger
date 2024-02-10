@@ -6,7 +6,7 @@ import BurgerConstructor from './components/BurgerConstructor/burgerConstructor'
 import Modal from './components/Modal/modal'
 import getData from "./functions";
 
-import app from './App.module.css';
+import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
 import OrderDetails from "./components/OrderDetails/orderDetails";
 
@@ -25,8 +25,8 @@ export default function App() {
   return (
     <div className="App">
       <AppHeader />
-        <div className={app.block}>
-            <h1 className={app.title}>Соберите бургер</h1>
+        <div className={css.block}>
+            <h1 className={css.title}>Соберите бургер</h1>
             {ingredients?.ingredients?.length &&  (<div className={app.box}>
                 <BurgerIngredients setModal={setModal}
                                    setIngredient={setIngredient}
