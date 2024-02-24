@@ -5,8 +5,10 @@ import css from './burgerIngredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../../components/Card/card'
 import PropTypes from "prop-types";
+// import {useSelector} from "react-redux";
 
 export default function BurgerIngredients(props) {
+    // const data = useSelector(state => state.ingredients)
         return (
                 <div className={css.container}>
                     <div className={css.tabs}>

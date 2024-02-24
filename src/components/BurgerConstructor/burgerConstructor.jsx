@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
+// import {useSelector} from "react-redux";
 
 export default function BurgerConstructor(props) {
+    // const addedIngredients = useSelector(state => state.addedIngredients);
         return (
             <div >
                 <div className={css.box}>

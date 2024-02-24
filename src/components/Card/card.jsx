@@ -4,15 +4,22 @@ import css from './card.module.css'
 
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
+// import {ADD_INGREDIENT} from "../../services/actions/ingredients";
+// import {useDispatch} from "react-redux";
 
 export default function Card(props) {
+    // const dispatch = useDispatch();
+
+    const onAdd = (ingredient) => {
+        props.setModal(true);
+        props.setIngredient(props);
+        props.setWindowIngredient(true);
+        props.setWindowFinish(false);
+
+        // dispatch({ type: ADD_INGREDIENT, payload: ingredient })
+    }
         return (
-            <div className={css.card} onClick={() => {
-                props.setModal(true);
-                props.setIngredient(props);
-                props.setWindowIngredient(true);
-                props.setWindowFinish(false);
-            }}>
+            <div className={css.card} onClick={onAdd}>
                 <img src={props.image} alt={'картинка ингредиента ' + props.name} />
                 <div className={css.price}>
                     <p>{props.price}</p>
