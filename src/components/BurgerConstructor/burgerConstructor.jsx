@@ -4,20 +4,23 @@ import PropTypes from 'prop-types';
 import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
-// import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
+export const getIngredients = state => state.ingredients;
 
 export default function BurgerConstructor(props) {
-    // const addedIngredients = useSelector(state => state.addedIngredients);
+    const dispatch = useDispatch();
+    const data = useSelector(getIngredients)
         return (
             <div >
                 <div className={css.box}>
-                    {props.ingredients.map(item => (
+                    {!data.isLoading && (data.ingredients.map(item => (
                         <ConstructorItem key={item._id}
                                          image={item.image}
                                          text={item.name}
                                          price={item.price}
                                          isLocked={false} id={item._id}/>
-                    ))}
+                    )))}
                 </div>
                 <div className={css.total}>
                     <div className={css.price}>

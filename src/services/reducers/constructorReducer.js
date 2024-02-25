@@ -1,10 +1,10 @@
 // import {ADD_INGREDIENT} from "../actions/ingredients";
 
 const initialState = {
-    // ingredients: [],
-    // addedIngredients: [],
-    // isLoading: false,
-    // error: undefined,
+    ingredients: [],
+    addedIngredients: [],
+    isLoading: false,
+    error: undefined,
 }
 
 export const constructorReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ export const constructorReducer = (state = initialState, action) => {
     //         return {...state, addedIngredients: [...state.addedIngredients, action.payload]}
     //     }
     //     default: {
-    //         return state;
+            return state;
     //     }
     // }
 }
