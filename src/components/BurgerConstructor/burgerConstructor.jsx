@@ -6,11 +6,11 @@ import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 
-export const getIngredients = state => state.ingredients;
+export const getConstructor = state => state.ingredients;
 
 export default function BurgerConstructor(props) {
     const dispatch = useDispatch();
-    const data = useSelector(getIngredients)
+    const data = useSelector(getConstructor)
         return (
             <div >
                 <div className={css.box}>

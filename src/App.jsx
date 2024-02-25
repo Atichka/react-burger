@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import store from './services/store'
 
 import AppHeader from './components/AppHeader/appHeader';
 import BurgerIngredients from './components/BurgerIngredients/burgerIngredients'
 import BurgerConstructor from './components/BurgerConstructor/burgerConstructor'
 import Modal from './components/Modal/modal'
-// import getData from "./functions";
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
 import OrderDetails from "./components/OrderDetails/orderDetails";
 import {getIngredients} from "./services/actions/ingredientsAction";
 import {useDispatch} from "react-redux";
+import {getConstructor} from "./services/actions/constructorAction";
 
 export default function App() {
     const [isModal, setModal] = useState(false)
@@ -23,6 +22,7 @@ export default function App() {
 
         useEffect(() => {
             dispatch(getIngredients())
+            dispatch(getConstructor())
         }, [dispatch]);
   return (
     <div className="App">
