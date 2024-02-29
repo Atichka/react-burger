@@ -38,13 +38,12 @@ export default function App() {
                                    setWindowFinish={setWindowFinish}/>
             </div>
         </div>
-        {/*{isModal && windowIngredient &&*/}
-        {/*    (<Modal setModal={setModal}>*/}
-        {/*        <IngredientDetails setModal={setModal}*/}
-        {/*                           setWindowIngredient={setWindowIngredient}*/}
-        {/*                           ingredient={ingredients.ingredients.filter(x => x._id === ingredient.id)} />*/}
-        {/*    </Modal>)*/}
-        {/*}*/}
+        {isModal && windowIngredient &&
+            (<Modal setModal={setModal}>
+                <IngredientDetails setModal={setModal}
+                                   setWindowIngredient={setWindowIngredient}/>
+            </Modal>)
+        }
         {isModal && windowFinish &&
             (<Modal setModal={setModal}>
                 <OrderDetails setModal={setModal}

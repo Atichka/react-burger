@@ -1,19 +1,22 @@
-// import {ADD_INGREDIENT} from "../actions/ingredients";
+import {ADD_INGREDIENT, REMOVE_INGREDIENT} from "../actions/detailsAction";
 
 const initialState = {
     ingredients: [],
-    addedIngredients: [],
+    addedIngredient: null,
     isLoading: false,
     error: undefined,
 }
 
 export const currIngredientReducer = (state = initialState, action) => {
-    // switch (action.type) {
-    //     case (ADD_INGREDIENT): {
-    //         return {...state, addedIngredients: [...state.addedIngredients, action.payload]}
-    //     }
-    //     default: {
+    switch (action.type) {
+        case (ADD_INGREDIENT): {
+            return {...state, addedIngredient: action.payload}
+        }
+        case (REMOVE_INGREDIENT): {
+            return {...state, addedIngredient: null}
+        }
+        default: {
             return state;
-    //     }
-    // }
+        }
+    }
 }
