@@ -4,12 +4,16 @@ import ModalOverlay from '../ModalOverlay/ModalOverlay'
 import PropTypes from "prop-types";
 
 import ReactDOM from "react-dom";
+import {useDispatch} from "react-redux";
+import {REMOVE_INGREDIENT} from "../../services/actions/detailsAction";
 
 export default function Modal({setModal, children}) {
+    const dispatch = useDispatch();
     const modalRoot = document.querySelector('#modal')
 
     const closeEsc = useCallback((e) => {
         e.key === "Escape" && setModal(false)
+        dispatch({ type: REMOVE_INGREDIENT })
     }, [setModal]);
 
     useEffect(() => {
