@@ -1,26 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {useDrop} from "react-dnd";
 
 import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 
-export const getConstructor = state => state.ingredients;
-
 export default function BurgerConstructor(props) {
     const dispatch = useDispatch();
-    const data = useSelector(getConstructor)
+    const data = props.elements;
+
+    const [, dropRef] = useDrop({
+        accept: "ingredient",
+        drop(item) {
+            props.onDropHandler(item);
+        }
+    });
+
         return (
             <div >
-                <div className={css.box}>
-                    {!data.isLoading && (data.ingredients.map(item => (
-                        <ConstructorItem key={item._id}
-                                         image={item.image}
-                                         text={item.name}
-                                         price={item.price}
-                                         isLocked={false} id={item._id}/>
-                    )))}
+                <div className={css.box} ref={dropRef}>
+                    {/*{!data.isLoading && (data.ingredients.map(item => (*/}
+                    {/*    <ConstructorItem key={item._id}*/}
+                    {/*                     image={item.image}*/}
+                    {/*                     text={item.name}*/}
+                    {/*                     price={item.price}*/}
+                    {/*                     isLocked={false} id={item._id}/>*/}
+                    {/*)))}*/}
                 </div>
                 <div className={css.total}>
                     <div className={css.price}>
