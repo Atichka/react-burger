@@ -20,14 +20,15 @@ export default function BurgerConstructor(props) {
 
         return (
             <div >
-                <div className={css.box} ref={dropRef}>
-                    {/*{!data.isLoading && (data.ingredients.map(item => (*/}
-                    {/*    <ConstructorItem key={item._id}*/}
-                    {/*                     image={item.image}*/}
-                    {/*                     text={item.name}*/}
-                    {/*                     price={item.price}*/}
-                    {/*                     isLocked={false} id={item._id}/>*/}
-                    {/*)))}*/}
+                <div className={css.box} >
+                    {data.ingredients && !data.isLoading && (data.ingredients.map(item => (
+                        <ConstructorItem ref={dropRef}
+                                         key={item._id}
+                                         image={item.image}
+                                         text={item.name}
+                                         price={item.price}
+                                         isLocked={false} id={item._id}/>
+                    )))}
                 </div>
                 <div className={css.total}>
                     <div className={css.price}>
