@@ -13,33 +13,33 @@ import OrderDetails from "./components/OrderDetails/orderDetails";
 import {getIngredients} from "./services/actions/ingredientsAction";
 import {useDispatch, useSelector} from "react-redux";
 import {getConstructor} from "./services/actions/constructorAction";
-
-export const getElements = state => state.ingredients;
+import {CONSTRUCTOR_ADD} from "./services/actions/constructorAction";
 
 export default function App() {
     const [isModal, setModal] = useState(false)
     const [windowIngredient, setWindowIngredient] = useState(false)
     const [windowFinish, setWindowFinish] = useState(false)
 
-    const [elements, setElements] = useState([])
-    const [draggedElements, setDraggedElements] = useState([])
-
     const dispatch = useDispatch();
-    const data = useSelector(getElements);
 
     useEffect(() => {
         dispatch(getIngredients())
         dispatch(getConstructor())
     }, [dispatch]);
-    useEffect(() => {
-        setElements(data)
-    }, [data]);
 
 
 
     const onDropHandler = (item) => {
-        setDraggedElements([...draggedElements, item]);
-        setElements(elements.filter(elem => elem.id !== item.id));
+        const newItem = {...item};
+        delete newItem.onClick
+        delete newItem.setModal
+        delete newItem.setWindowIngredient
+        delete newItem.setWindowFinish
+        delete newItem.setIngredient
+        console.log('newItem', newItem);
+        dispatch({ type: CONSTRUCTOR_ADD, payload: newItem })
+        // setDraggedElements([...draggedElements, item]);
+        // setElements(elements.filter(elem => elem.id !== item.id));
     }
   return (
         <div className="App">
@@ -54,8 +54,7 @@ export default function App() {
                                                setWindowFinish={setWindowFinish} />
                             <BurgerConstructor onDropHandler={onDropHandler}
                                                setModal={setModal}
-                                               setWindowFinish={setWindowFinish}
-                                               elements={elements}/>
+                                               setWindowFinish={setWindowFinish}/>
                         </DndProvider>
                     </div>
                 </div>

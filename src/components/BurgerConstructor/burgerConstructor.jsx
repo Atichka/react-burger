@@ -9,20 +9,21 @@ import {useDispatch, useSelector} from "react-redux";
 
 export default function BurgerConstructor(props) {
     const dispatch = useDispatch();
-    const data = props.elements;
+    const data = [];
 
     const [, dropRef] = useDrop({
         accept: "ingredient",
         drop(item) {
+
             props.onDropHandler(item);
         }
     });
 
         return (
-            <div >
+            <div ref={dropRef}>
                 <div className={css.box} >
-                    {data.ingredients && !data.isLoading && (data.ingredients.map(item => (
-                        <ConstructorItem ref={dropRef}
+                    {data && (data.map(item => (
+                        <ConstructorItem
                                          key={item._id}
                                          image={item.image}
                                          text={item.name}
