@@ -20,7 +20,6 @@ export default function BurgerIngredients(props) {
         props.setWindowIngredient(true);
         props.setWindowFinish(false);
     }
-
         return (
 
                 <div className={css.container}>
@@ -46,7 +45,8 @@ export default function BurgerIngredients(props) {
                                               setModal={props.setModal}
                                               setIngredient={props.setIngredient}
                                               setWindowIngredient={props.setWindowIngredient}
-                                              setWindowFinish={props.setWindowFinish} />
+                                              setWindowFinish={props.setWindowFinish}
+                                              type={ingredient.type}/>
                                 ))}
                             </div>)}
                         </div>
@@ -59,7 +59,8 @@ export default function BurgerIngredients(props) {
                                               setModal={props.setModal}
                                               setIngredient={props.setIngredient}
                                               setWindowIngredient={props.setWindowIngredient}
-                                              setWindowFinish={props.setWindowFinish} />
+                                              setWindowFinish={props.setWindowFinish}
+                                              type={ingredient.type} />
                                 ))}
                             </div>)}
                         </div>

@@ -1,16 +1,21 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {useDrop} from "react-dnd";
+import {useDrop} from 'react-dnd';
 
 import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 
+export const getStuffings = state => state.currBurger.stuffings;
+export const getBun = state => state.currBurger.bun;
+
 export default function BurgerConstructor(props) {
     const dispatch = useDispatch();
-    const data = [];
-
+    const stuffings = useSelector(getStuffings);
+    const bun = useSelector(getBun);
+    console.log('stuffings', stuffings);
+    console.log('bun', bun);
     const [, dropRef] = useDrop({
         accept: "ingredient",
         drop(item) {
@@ -22,14 +27,22 @@ export default function BurgerConstructor(props) {
         return (
             <div ref={dropRef}>
                 <div className={css.box} >
-                    {data && (data.map(item => (
-                        <ConstructorItem
-                                         key={item._id}
+                    {stuffings && (stuffings.map((item, index) => (
+                        <ConstructorItem key={index}
                                          image={item.image}
                                          text={item.name}
                                          price={item.price}
-                                         isLocked={false} id={item._id}/>
+                                         type={item.type}
+                                         isLocked={false} id={item.id}/>
                     )))}
+                    {bun && (
+                        <ConstructorItem key={bun.id}
+                                         image={bun.image}
+                                         text={bun.name}
+                                         price={bun.price}
+                                         type={bun.type}
+                                         isLocked={false} id={bun.id}/>
+                    )}
                 </div>
                 <div className={css.total}>
                     <div className={css.price}>

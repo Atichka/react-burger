@@ -11,8 +11,7 @@ export default function ConstructorItem(props) {
             <div className={css.item}>
                 {!props.isLocked &&
                 <DragIcon type="primary" />}
-                <ConstructorElement type={props.type}
-                                    isLocked={props.isLocked}
+                <ConstructorElement isLocked={props.isLocked}
                                     text={props.text}
                                     price={props.price}
                                     thumbnail={props.image}/>
@@ -26,7 +25,6 @@ ConstructorItem.propTypes = {
     setWindowIngredient: PropTypes.func,
     setWindowFinish: PropTypes.func,
     isLocked: PropTypes.bool,
-    type: PropTypes.string,
     text: PropTypes.string,
     price: PropTypes.number
 };

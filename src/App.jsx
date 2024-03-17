@@ -11,7 +11,7 @@ import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
 import OrderDetails from "./components/OrderDetails/orderDetails";
 import {getIngredients} from "./services/actions/ingredientsAction";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {getConstructor} from "./services/actions/constructorAction";
 import {CONSTRUCTOR_ADD} from "./services/actions/constructorAction";
 
@@ -36,10 +36,7 @@ export default function App() {
         delete newItem.setWindowIngredient
         delete newItem.setWindowFinish
         delete newItem.setIngredient
-        console.log('newItem', newItem);
         dispatch({ type: CONSTRUCTOR_ADD, payload: newItem })
-        // setDraggedElements([...draggedElements, item]);
-        // setElements(elements.filter(elem => elem.id !== item.id));
     }
   return (
         <div className="App">
