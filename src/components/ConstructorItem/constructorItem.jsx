@@ -11,10 +11,18 @@ export default function ConstructorItem(props) {
             <div className={css.item}>
                 {!props.isLocked &&
                 <DragIcon type="primary" />}
-                <ConstructorElement isLocked={props.isLocked}
-                                    text={props.text}
-                                    price={props.price}
-                                    thumbnail={props.image}/>
+                {props.type === "top" || props.type === "bottom" ? (
+                    <ConstructorElement isLocked={true}
+                                        text={props.text}
+                                        price={props.price}
+                                        thumbnail={props.image}/>
+                    ) : (
+                    <ConstructorElement text={props.text}
+                                        price={props.price}
+                                        thumbnail={props.image}
+                                        handleClose={() =>
+                                            props.deleteIngredient(props.id)}/>)
+                }
             </div>
         );
 }

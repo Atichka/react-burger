@@ -12,8 +12,7 @@ import IngredientDetails from "./components/IngredientDetails/ingredientDetails"
 import OrderDetails from "./components/OrderDetails/orderDetails";
 import {getIngredients} from "./services/actions/ingredientsAction";
 import {useDispatch} from "react-redux";
-import {getConstructor} from "./services/actions/constructorAction";
-import {CONSTRUCTOR_ADD} from "./services/actions/constructorAction";
+import {getConstructor, addToConstructor} from "./services/actions/constructorAction";
 
 export default function App() {
     const [isModal, setModal] = useState(false)
@@ -31,12 +30,12 @@ export default function App() {
 
     const onDropHandler = (item) => {
         const newItem = {...item};
-        delete newItem.onClick
-        delete newItem.setModal
-        delete newItem.setWindowIngredient
-        delete newItem.setWindowFinish
-        delete newItem.setIngredient
-        dispatch({ type: CONSTRUCTOR_ADD, payload: newItem })
+        delete newItem.onClick;
+        delete newItem.setModal;
+        delete newItem.setWindowIngredient;
+        delete newItem.setWindowFinish;
+        delete newItem.setIngredient;
+        dispatch(addToConstructor(newItem));
     }
   return (
         <div className="App">

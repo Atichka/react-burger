@@ -1,5 +1,5 @@
 import {GET_CONSTRUCTOR_FAILURE, GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS} from "../actions/constructorAction";
-import {CONSTRUCTOR_ADD} from "../actions/constructorAction";
+import {INGREDIENT_ADD, INGREDIENT_DELETE} from "../actions/constructorAction";
 
 const initialState = {
     ingredients: [],
@@ -21,7 +21,7 @@ export const constructorReducer = (state = initialState, action) => {
         case (GET_CONSTRUCTOR_FAILURE): {
             return {...state, isLoading: false, error: action.payload}
         }
-        case (CONSTRUCTOR_ADD): {
+        case (INGREDIENT_ADD): {
             if (action.payload.type === "bun") {
                 return { ...state, bun: action.payload };
             }
@@ -29,6 +29,12 @@ export const constructorReducer = (state = initialState, action) => {
                 ...state,
                 stuffings: [...state.stuffings, action.payload],
             };
+        }
+        case (INGREDIENT_DELETE): {
+            return {
+                ...state,
+                stuffings: state.stuffings.filter((item) => item.id !== action.payload),
+            }
         }
         default: {
             return state;

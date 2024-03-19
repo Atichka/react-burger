@@ -1,10 +1,11 @@
 import * as constants from "../../const";
-import uuid from "react-uuid";
+import { nanoid } from 'nanoid'
 
 export const GET_CONSTRUCTOR_REQUEST = 'GET_CONSTRUCTOR_REQUEST';
 export const GET_CONSTRUCTOR_SUCCESS = 'GET_CONSTRUCTOR_SUCCESS';
 export const GET_CONSTRUCTOR_FAILURE = 'GET_CONSTRUCTOR_FAILURE';
-export const CONSTRUCTOR_ADD = 'CONSTRUCTOR_ADD';
+export const INGREDIENT_ADD = 'INGREDIENT_ADD';
+export const INGREDIENT_DELETE = 'INGREDIENT_DELETE';
 
 const url = constants.url;
 
@@ -24,8 +25,8 @@ export const getConstructor = () => (dispatch) => {
 
 export const addToConstructor = (ingredient) => {
     return {
-        type: CONSTRUCTOR_ADD,
-        payload: { ...ingredient, id: uuid() }
+        type: INGREDIENT_ADD,
+        payload: { ...ingredient, id: nanoid() }
     }
 }
 

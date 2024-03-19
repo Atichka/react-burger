@@ -6,6 +6,7 @@ import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
+import {INGREDIENT_DELETE, BUN_DELETE} from "../../services/actions/constructorAction";
 
 export const getStuffings = state => state.currBurger.stuffings;
 export const getBun = state => state.currBurger.bun;
@@ -19,29 +20,42 @@ export default function BurgerConstructor(props) {
     const [, dropRef] = useDrop({
         accept: "ingredient",
         drop(item) {
-
             props.onDropHandler(item);
         }
     });
 
+    const deleteIngredient = (id) => {
+        console.log('id', id);
+        dispatch({ type: INGREDIENT_DELETE, payload: id })
+    }
+
         return (
             <div ref={dropRef}>
                 <div className={css.box} >
-                    {stuffings && (stuffings.map((item, index) => (
-                        <ConstructorItem key={index}
+                    {bun && (
+                        <ConstructorItem key={bun.id + 'top'}
+                                         image={bun.image}
+                                         text={bun.name + " (верх)"}
+                                         price={bun.price}
+                                         type={'top'}
+                                         id={bun.id}/>
+                    )}
+                    {stuffings && (stuffings.map(item => (
+                        <ConstructorItem key={item.id}
                                          image={item.image}
                                          text={item.name}
                                          price={item.price}
                                          type={item.type}
-                                         isLocked={false} id={item.id}/>
+                                         id={item.id} deleteIngredient={deleteIngredient}/>
                     )))}
                     {bun && (
-                        <ConstructorItem key={bun.id}
+                        <ConstructorItem key={bun.id + 'bottom'}
+                                         isLocked={bun.isLocked}
                                          image={bun.image}
-                                         text={bun.name}
+                                         text={bun.name + " (низ)"}
                                          price={bun.price}
-                                         type={bun.type}
-                                         isLocked={false} id={bun.id}/>
+                                         type={'bottom'}
+                                         id={bun.id}/>
                     )}
                 </div>
                 <div className={css.total}>
