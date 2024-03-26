@@ -6,6 +6,7 @@ export const GET_CONSTRUCTOR_SUCCESS = 'GET_CONSTRUCTOR_SUCCESS';
 export const GET_CONSTRUCTOR_FAILURE = 'GET_CONSTRUCTOR_FAILURE';
 export const INGREDIENT_ADD = 'INGREDIENT_ADD';
 export const INGREDIENT_DELETE = 'INGREDIENT_DELETE';
+export const UPDATE_INGREDIENTS = 'UPDATE_INGREDIENTS';
 
 const url = constants.url;
 
@@ -29,4 +30,6 @@ export const addToConstructor = (ingredient) => {
         payload: { ...ingredient, id: nanoid() }
     }
 }
+
+export const updateIngredients = (ingredients) => ({ type: UPDATE_INGREDIENTS, ingredients });
 

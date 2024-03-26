@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {useDrop} from 'react-dnd';
+import {DndProvider, useDrop} from 'react-dnd';
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
-import {INGREDIENT_DELETE, BUN_DELETE} from "../../services/actions/constructorAction";
+import {addToConstructor, INGREDIENT_DELETE, updateIngredients} from "../../services/actions/constructorAction";
 
 export const getStuffings = state => state.currBurger.stuffings;
 export const getBun = state => state.currBurger.bun;
@@ -14,9 +15,16 @@ export const getBun = state => state.currBurger.bun;
 export default function BurgerConstructor(props) {
     const dispatch = useDispatch();
     const stuffings = useSelector(getStuffings);
+
+    const moveCard = (dragIndex, hoverIndex) => {
+        const dragCard = stuffings[dragIndex];
+        const newIngredients = [...stuffings];
+        newIngredients.splice(dragIndex, 1);
+        newIngredients.splice(hoverIndex, 0, dragCard);
+        dispatch(updateIngredients(newIngredients));
+    };
+
     const bun = useSelector(getBun);
-    console.log('stuffings', stuffings);
-    console.log('bun', bun);
     const [, dropRef] = useDrop({
         accept: "ingredient",
         drop(item) {
@@ -25,7 +33,6 @@ export default function BurgerConstructor(props) {
     });
 
     const deleteIngredient = (id) => {
-        console.log('id', id);
         dispatch({ type: INGREDIENT_DELETE, payload: id })
     }
 
@@ -40,14 +47,19 @@ export default function BurgerConstructor(props) {
                                          type={'top'}
                                          id={bun.id}/>
                     )}
-                    {stuffings && (stuffings.map(item => (
-                        <ConstructorItem key={item.id}
-                                         image={item.image}
-                                         text={item.name}
-                                         price={item.price}
-                                         type={item.type}
-                                         id={item.id} deleteIngredient={deleteIngredient}/>
-                    )))}
+                    <DndProvider backend={HTML5Backend}>
+                        {stuffings && (stuffings.map((item, index) => (
+                            <ConstructorItem key={item.id}
+                                             index={index}
+                                             image={item.image}
+                                             text={item.name}
+                                             price={item.price}
+                                             type={item.type}
+                                             id={item.id}
+                                             moveCard={moveCard}
+                                             deleteIngredient={deleteIngredient}/>
+                        )))}
+                    </DndProvider>
                     {bun && (
                         <ConstructorItem key={bun.id + 'bottom'}
                                          isLocked={bun.isLocked}

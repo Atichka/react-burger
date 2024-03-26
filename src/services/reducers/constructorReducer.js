@@ -1,5 +1,5 @@
 import {GET_CONSTRUCTOR_FAILURE, GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS} from "../actions/constructorAction";
-import {INGREDIENT_ADD, INGREDIENT_DELETE} from "../actions/constructorAction";
+import {INGREDIENT_ADD, INGREDIENT_DELETE, UPDATE_INGREDIENTS} from "../actions/constructorAction";
 
 const initialState = {
     ingredients: [],
@@ -30,6 +30,11 @@ export const constructorReducer = (state = initialState, action) => {
                 stuffings: [...state.stuffings, action.payload],
             };
         }
+        case UPDATE_INGREDIENTS:
+            return {
+                ...state,
+                stuffings: action.ingredients,
+            };
         case (INGREDIENT_DELETE): {
             return {
                 ...state,
