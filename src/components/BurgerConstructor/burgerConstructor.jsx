@@ -35,11 +35,13 @@ export default function BurgerConstructor(props) {
     const deleteIngredient = (id) => {
         dispatch({ type: INGREDIENT_DELETE, payload: id })
     }
+    let totalPrice = 0;
 
         return (
             <div ref={dropRef}>
                 <div className={css.box} >
                     {bun && (
+                        totalPrice += bun.price,
                         <ConstructorItem key={bun.id + 'top'}
                                          image={bun.image}
                                          text={bun.name + " (верх)"}
@@ -49,6 +51,7 @@ export default function BurgerConstructor(props) {
                     )}
                     <DndProvider backend={HTML5Backend}>
                         {stuffings && (stuffings.map((item, index) => (
+                            totalPrice += item.price,
                             <ConstructorItem key={item.id}
                                              index={index}
                                              image={item.image}
@@ -61,6 +64,7 @@ export default function BurgerConstructor(props) {
                         )))}
                     </DndProvider>
                     {bun && (
+                        totalPrice += bun.price,
                         <ConstructorItem key={bun.id + 'bottom'}
                                          isLocked={bun.isLocked}
                                          image={bun.image}
@@ -72,7 +76,7 @@ export default function BurgerConstructor(props) {
                 </div>
                 <div className={css.total}>
                     <div className={css.price}>
-                        <p className={css.title}>{600}</p>
+                        <p className={css.title}>{totalPrice}</p>
                         <CurrencyIcon type="primary" />
                     </div>
                     <Button onClick={() => {

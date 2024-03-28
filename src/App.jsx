@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {DndProvider, useDrop} from 'react-dnd';
+import { BurgerContext } from './burgerContext.js';
+import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from "react-dnd-html5-backend";
 
 import AppHeader from './components/AppHeader/appHeader';
@@ -38,7 +39,7 @@ export default function App() {
         dispatch(addToConstructor(newItem));
     }
   return (
-        <div className="App">
+        <BurgerContext.Provider className="App">
             <AppHeader />
 
                 <div className={css.block}>
@@ -68,6 +69,6 @@ export default function App() {
                                   setWindowFinish={setWindowFinish}/>
                 </Modal>)
             }
-        </div>
+        </BurgerContext.Provider>
   );
 }
