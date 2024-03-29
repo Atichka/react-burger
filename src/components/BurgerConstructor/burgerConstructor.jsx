@@ -7,7 +7,8 @@ import css from './burgerConstructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructorItem";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
-import {addToConstructor, INGREDIENT_DELETE, updateIngredients} from "../../services/actions/constructorAction";
+import {INGREDIENT_DELETE, updateIngredients} from "../../services/actions/constructorAction";
+import { sendOrder } from '../../services/actions/orderAction';
 
 export const getStuffings = state => state.currBurger.stuffings;
 export const getBun = state => state.currBurger.bun;
@@ -37,6 +38,13 @@ export default function BurgerConstructor(props) {
     }
     let totalPrice = 0;
 
+    const handleSubmit = () => {
+        props.setModal(true)
+        props.setWindowFinish(true)
+        const ingredientsId = [bun, ...stuffings, bun].map(item => item.id);
+        dispatch(sendOrder(ingredientsId));
+    }
+
         return (
             <div ref={dropRef}>
                 <div className={css.box} >
@@ -58,7 +66,7 @@ export default function BurgerConstructor(props) {
                                              text={item.name}
                                              price={item.price}
                                              type={item.type}
-                                             id={item.id}
+                                             id={item._id}
                                              moveCard={moveCard}
                                              deleteIngredient={deleteIngredient}/>
                         )))}
@@ -79,10 +87,11 @@ export default function BurgerConstructor(props) {
                         <p className={css.title}>{totalPrice}</p>
                         <CurrencyIcon type="primary" />
                     </div>
-                    <Button onClick={() => {
-                        props.setModal(true)
-                        props.setWindowFinish(true)
-                    }} htmlType="button" type="primary" size="small" extraClass="ml-2">
+                    <Button onClick={handleSubmit}
+                            htmlType="button"
+                            type="primary"
+                            size="small"
+                            extraClass="ml-2">
                         Оформить заказ
                     </Button>
                 </div>

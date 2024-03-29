@@ -7,6 +7,7 @@ import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components"
 import PropTypes from "prop-types";
 
 export default function OrderDetails(props) {
+    console.log('props.orderNumber', props.orderNumber);
     return (
         <div>
                     <div className={css.buttonClose}>
@@ -15,7 +16,7 @@ export default function OrderDetails(props) {
                             props.setWindowFinish(false)
                         }} />
                     </div>
-                    <h1 className={css.number}>034536</h1>
+                    <h1 className={css.number}>{props.orderNumber}</h1>
                     <p className={css.name}>Идентификатор заказа</p>
                     <div className={css.checkIcon}>
                         <CheckMarkIcon type="primary" />

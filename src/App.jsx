@@ -12,8 +12,10 @@ import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
 import OrderDetails from "./components/OrderDetails/orderDetails";
 import {getIngredients} from "./services/actions/ingredientsAction";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getConstructor, addToConstructor} from "./services/actions/constructorAction";
+
+export const getOrderNumber = state => state.order;
 
 export default function App() {
     const [isModal, setModal] = useState(false)
@@ -21,6 +23,7 @@ export default function App() {
     const [windowFinish, setWindowFinish] = useState(false)
 
     const dispatch = useDispatch();
+    const orderNumber = useSelector(getOrderNumber);
 
     useEffect(() => {
         dispatch(getIngredients())
@@ -66,7 +69,8 @@ export default function App() {
                 (<Modal setModal={setModal}>
                     <OrderDetails setModal={setModal}
                                   windowsFinish={windowFinish}
-                                  setWindowFinish={setWindowFinish}/>
+                                  setWindowFinish={setWindowFinish}
+                                  orderNumber={orderNumber}/>
                 </Modal>)
             }
         </BurgerContext.Provider>
