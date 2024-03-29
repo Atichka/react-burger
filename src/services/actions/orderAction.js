@@ -20,7 +20,7 @@ export const sendOrder = (ingredients) => (dispatch) => {
             return Promise.reject(res);
         })
         .then(({order}) => {
-            dispatch({type: SEND_ORDER_SUCCESS, order})
+            dispatch({type: SEND_ORDER_SUCCESS, payload: order})
         })
         .catch(err => dispatch({ type: SEND_ORDER_FAILED }));
 

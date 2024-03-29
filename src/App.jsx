@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { BurgerContext } from './burgerContext.js';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -15,7 +14,7 @@ import {getIngredients} from "./services/actions/ingredientsAction";
 import {useDispatch, useSelector} from "react-redux";
 import {getConstructor, addToConstructor} from "./services/actions/constructorAction";
 
-export const getOrderNumber = state => state.order;
+export const getOrderNumber = state => state.order.order;
 
 export default function App() {
     const [isModal, setModal] = useState(false)
@@ -42,7 +41,7 @@ export default function App() {
         dispatch(addToConstructor(newItem));
     }
   return (
-        <BurgerContext.Provider className="App">
+        <div className="App">
             <AppHeader />
 
                 <div className={css.block}>
@@ -73,6 +72,6 @@ export default function App() {
                                   orderNumber={orderNumber}/>
                 </Modal>)
             }
-        </BurgerContext.Provider>
+        </div>
   );
 }
