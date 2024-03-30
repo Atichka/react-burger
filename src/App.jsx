@@ -13,6 +13,7 @@ import OrderDetails from "./components/OrderDetails/orderDetails";
 import {getIngredients} from "./services/actions/ingredientsAction";
 import {useDispatch, useSelector} from "react-redux";
 import {getConstructor, addToConstructor} from "./services/actions/constructorAction";
+import {REMOVE_INGREDIENT} from "./services/actions/detailsAction";
 
 export const getOrderNumber = state => state.order.order;
 
@@ -29,7 +30,9 @@ export default function App() {
         dispatch(getConstructor())
     }, [dispatch]);
 
-
+    const onClose = () => {
+        dispatch({ type: REMOVE_INGREDIENT })
+    }
 
     const onDropHandler = (item) => {
         const newItem = {...item};
@@ -59,7 +62,7 @@ export default function App() {
                 </div>
 
             {isModal && windowIngredient &&
-                (<Modal setModal={setModal}>
+                (<Modal setModal={setModal} onClose={onClose}>
                     <IngredientDetails setModal={setModal}
                                        setWindowIngredient={setWindowIngredient}/>
                 </Modal>)
