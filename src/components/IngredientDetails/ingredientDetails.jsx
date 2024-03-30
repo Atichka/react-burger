@@ -18,9 +18,9 @@ export default function IngredientDetails(props) {
         <div>
                     <div className={css.header}>
                         <h1 className={css.title}>Детали ингредиента</h1>
-                        <img src={close} alt="" className={css.close} onClick = { onDel }/>
+                        <img src={close} alt="Закрыть" className={css.close} onClick = { onDel }/>
                     </div>
-                    <img src={data.image} alt="" className={css.pic} />
+                    <img src={data.image} alt="Картинка ингредиента" className={css.pic} />
                     <div className={css.box}>
                         <h2 className={css.name}>{data.name}</h2>
                         <div className={css.block}>

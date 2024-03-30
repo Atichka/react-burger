@@ -11,7 +11,7 @@ export default function OrderDetails(props) {
     return (
         <div>
                     <div className={css.buttonClose}>
-                        <img src={close} alt="" className={css.close} onClick={() => {
+                        <img src={close} alt="Закрыть" className={css.close} onClick={() => {
                             props.setModal(false);
                             props.setWindowFinish(false)
                         }} />
