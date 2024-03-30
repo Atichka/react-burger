@@ -41,7 +41,7 @@ export default function App() {
         dispatch(addToConstructor(newItem));
     }
   return (
-        <div className="App">
+        <main className="App">
             <AppHeader />
 
                 <div className={css.block}>
@@ -72,6 +72,6 @@ export default function App() {
                                   orderNumber={orderNumber}/>
                 </Modal>)
             }
-        </div>
+        </main>
   );
 }
