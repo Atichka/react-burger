@@ -1,6 +1,6 @@
-import * as constants from "../../const";
-
-import {request} from '../../utils/functions';
+import {BASE_URL} from "../../const";
+import {request} from "../../utils/functions";
+const url = BASE_URL;
 
 export const GET_CONSTRUCTOR_REQUEST = 'GET_CONSTRUCTOR_REQUEST';
 export const GET_CONSTRUCTOR_SUCCESS = 'GET_CONSTRUCTOR_SUCCESS';
@@ -9,11 +9,9 @@ export const INGREDIENT_ADD = 'INGREDIENT_ADD';
 export const INGREDIENT_DELETE = 'INGREDIENT_DELETE';
 export const UPDATE_INGREDIENTS = 'UPDATE_INGREDIENTS';
 
-const url = constants.url;
-
 export const getConstructor = () => (dispatch) => {
     dispatch({ type: GET_CONSTRUCTOR_REQUEST });
-    request(url)
+    request(url + '/ingredients')
         .then(res => dispatch({ type: GET_CONSTRUCTOR_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: GET_CONSTRUCTOR_FAILURE }));
 
