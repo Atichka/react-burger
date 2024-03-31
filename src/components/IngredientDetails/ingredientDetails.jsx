@@ -1,26 +1,26 @@
 import React from 'react';
 
 import css from './ingredientDetails.module.css'
-import close from '../../images/close.svg'
+// import close from '../../images/close.svg'
 import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
-import {REMOVE_INGREDIENT} from "../../services/actions/detailsAction";
+// import {REMOVE_INGREDIENT} from "../../services/actions/detailsAction";
 
 export default function IngredientDetails(props) {
     const dispatch = useDispatch();
     const data = useSelector(store => store.currIngredient).addedIngredient;
-    const onDel = () => {
-        dispatch({ type: REMOVE_INGREDIENT })
-        props.setModal(false);
-        props.setWindowIngredient(false)
-    }
+    // const onDel = () => {
+    //     dispatch({ type: REMOVE_INGREDIENT })
+    //     props.setModal(false);
+    //     props.setWindowIngredient(false)
+    // }
     return (
         <div>
-                    <div className={css.header}>
-                        <h1 className={css.title}>Детали ингредиента</h1>
-                        <img src={close} alt="Закрыть" className={css.close} onClick = { onDel }/>
-                    </div>
-                    <img src={data.image} alt="Картинка ингредиента" className={css.pic} />
+                    {/*<div className={css.header}>*/}
+                    {/*    <h1 className={css.title}>Детали ингредиента</h1>*/}
+                    {/*    <img src={close} alt="Закрыть" className={css.close} onClick = { onDel }/>*/}
+                    {/*</div>*/}
+            {data.image && (<img src={data.image} alt="Картинка ингредиента" className={css.pic} />)}
                     <div className={css.box}>
                         <h2 className={css.name}>{data.name}</h2>
                         <div className={css.block}>
@@ -48,7 +48,7 @@ export default function IngredientDetails(props) {
 
 IngredientDetails.propTypes = {
     setModal: PropTypes.func.isRequired,
-    setWindowIngredient: PropTypes.func.isRequired,
+    // setWindowIngredient: PropTypes.func.isRequired,
     name: PropTypes.string,
     calories: PropTypes.number,
     proteins: PropTypes.number,

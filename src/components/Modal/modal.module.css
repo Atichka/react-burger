@@ -1,3 +1,8 @@
+.buttonClose {
+    text-align: right;
+    margin: 40px;
+}
+
 .modal {
     position: fixed;
     top: 0;
@@ -16,4 +21,25 @@
     0 4px 8px 0 rgba(0, 0, 0, 0.04),
     0 16px 24px 0 rgba(0, 0, 0, 0.04),
     0 24px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: "JetBrainsMono", Arial, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    margin-left: 0;
+}
+
+.close {
+    width: 26px;
+    top: -26px;
+    right: -26px;
+    cursor: pointer;
 }

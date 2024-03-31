@@ -62,13 +62,14 @@ export default function App() {
                 </div>
 
             {isModal && windowIngredient &&
-                (<Modal setModal={setModal} onClose={onClose}>
-                    <IngredientDetails setModal={setModal}
-                                       setWindowIngredient={setWindowIngredient}/>
+                (<Modal setModal={setModal}
+                        onClose={onClose}
+                        windowIngredient={windowIngredient}>
+                    <IngredientDetails setModal={setModal}/>
                 </Modal>)
             }
             {isModal && windowFinish &&
-                (<Modal setModal={setModal}>
+                (<Modal setModal={setModal} onClose={onClose}>
                     <OrderDetails setModal={setModal}
                                   windowsFinish={windowFinish}
                                   setWindowFinish={setWindowFinish}
