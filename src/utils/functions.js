@@ -1,8 +1,8 @@
-import * as constants from "../const";
-const url = constants.url;
+import {BASE_URL} from "../const";
+const url = BASE_URL;
 
 export function getData() {
-        return request(url)
+        return request(url + '/ingredients')
             .then((data) => data)
             .catch((error) => console.log(error));
 
