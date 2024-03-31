@@ -34,7 +34,7 @@ export default function Modal({onClose, setModal, windowIngredient, children}) {
                 <div className={css.buttonClose}>
                     <img src={close} alt="Закрыть" className={css.close} onClick = { onDel }/>
                 </div>
-            </div> : 
+            </div> :
             <div className={css.buttonClose}>
                 <img src={close} alt="Закрыть" className={css.close} onClick={onDel} />
             </div>}

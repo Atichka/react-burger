@@ -66,7 +66,7 @@ export default function BurgerConstructor(props) {
                                              text={item.name}
                                              price={item.price}
                                              type={item.type}
-                                             id={item._id}
+                                             id={item.id}
                                              moveCard={moveCard}
                                              deleteIngredient={deleteIngredient}/>
                         )))}

@@ -45,7 +45,10 @@ export default function BurgerIngredients(props) {
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "bun").map(ingredient => (
                                         <Card onClick = { () => onAdd(ingredient) }
-                                              key={ingredient._id} image={ingredient.image} price={ingredient.price} name={ingredient.name}
+                                              key={ingredient._id}
+                                              image={ingredient.image}
+                                              price={ingredient.price}
+                                              name={ingredient.name}
                                               id={ingredient._id}
                                               setModal={props.setModal}
                                               setIngredient={props.setIngredient}
@@ -59,7 +62,11 @@ export default function BurgerIngredients(props) {
                             <h2 id="sauces" className={css.text}>Соусы</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "sauce").map(ingredient => (
-                                        <Card key={ingredient._id} image={ingredient.image} price={ingredient.price} name={ingredient.name}
+                                        <Card onClick = { () => onAdd(ingredient) }
+                                              key={ingredient._id}
+                                              image={ingredient.image}
+                                              price={ingredient.price}
+                                              name={ingredient.name}
                                               counter={ingredient.counter} id={ingredient._id}
                                               setModal={props.setModal}
                                               setIngredient={props.setIngredient}
@@ -73,7 +80,11 @@ export default function BurgerIngredients(props) {
                             <h2 id="mains" className={css.text}>Начинки</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "main").map(ingredient => (
-                                    <Card key={ingredient._id} image={ingredient.image} price={ingredient.price} name={ingredient.name}
+                                    <Card onClick = { () => onAdd(ingredient) }
+                                          key={ingredient._id}
+                                          image={ingredient.image}
+                                          price={ingredient.price}
+                                          name={ingredient.name}
                                           counter={ingredient.counter} id={ingredient._id}
                                           setModal={props.setModal}
                                           setIngredient={props.setIngredient}
