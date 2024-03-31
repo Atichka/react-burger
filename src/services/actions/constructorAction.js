@@ -1,5 +1,6 @@
 import {BASE_URL} from "../../const";
 import {request} from "../../utils/functions";
+import { nanoid } from 'nanoid';
 const url = BASE_URL;
 
 export const GET_CONSTRUCTOR_REQUEST = 'GET_CONSTRUCTOR_REQUEST';
@@ -20,7 +21,7 @@ export const getConstructor = () => (dispatch) => {
 export const addToConstructor = (ingredient) => {
     return {
         type: INGREDIENT_ADD,
-        payload: { ...ingredient, id: ingredient.id }
+        payload: { ...ingredient, id: ingredient.id, key: nanoid() }
     }
 }
 

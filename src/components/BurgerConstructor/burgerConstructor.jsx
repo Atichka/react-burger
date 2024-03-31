@@ -60,7 +60,7 @@ export default function BurgerConstructor(props) {
                     <DndProvider backend={HTML5Backend}>
                         {stuffings && (stuffings.map((item, index) => (
                             totalPrice += item.price,
-                            <ConstructorItem key={item.id}
+                            <ConstructorItem key={item.key}
                                              index={index}
                                              image={item.image}
                                              text={item.name}
