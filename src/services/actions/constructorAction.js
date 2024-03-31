@@ -1,6 +1,6 @@
 import * as constants from "../../const";
 
-import {checkResponse} from '../../utils/functions';
+import {request} from '../../utils/functions';
 
 export const GET_CONSTRUCTOR_REQUEST = 'GET_CONSTRUCTOR_REQUEST';
 export const GET_CONSTRUCTOR_SUCCESS = 'GET_CONSTRUCTOR_SUCCESS';
@@ -13,8 +13,7 @@ const url = constants.url;
 
 export const getConstructor = () => (dispatch) => {
     dispatch({ type: GET_CONSTRUCTOR_REQUEST });
-    fetch(url)
-        .then(checkResponse)
+    request(url)
         .then(res => dispatch({ type: GET_CONSTRUCTOR_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: GET_CONSTRUCTOR_FAILURE }));
 
