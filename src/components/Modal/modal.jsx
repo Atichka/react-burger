@@ -2,10 +2,9 @@ import React, {useCallback, useEffect} from 'react';
 import css from './modal.module.css'
 import ModalOverlay from '../ModalOverlay/ModalOverlay'
 import PropTypes from "prop-types";
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import ReactDOM from "react-dom";
-import close from "../../images/close.svg";
-// import {REMOVE_INGREDIENT} from "../../services/actions/detailsAction";
 
 export default function Modal({onClose, setModal, windowIngredient, children}) {
     const onDel = () => {
@@ -32,11 +31,11 @@ export default function Modal({onClose, setModal, windowIngredient, children}) {
             {windowIngredient ? <div className={css.header}>
                 <h1 className={css.title}>Детали ингредиента</h1>
                 <div className={css.buttonClose}>
-                    <img src={close} alt="Закрыть" className={css.close} onClick = { onDel }/>
+                    <CloseIcon type="primary" onClick = { onDel } />
                 </div>
             </div> :
             <div className={css.buttonClose}>
-                <img src={close} alt="Закрыть" className={css.close} onClick={onDel} />
+                <CloseIcon type="primary" onClick = { onDel } />
             </div>}
 
             <ModalOverlay setModal={() => {

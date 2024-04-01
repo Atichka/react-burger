@@ -44,10 +44,9 @@ export default function App() {
         dispatch(addToConstructor(newItem));
     }
   return (
-        <main className="App">
+        <div className="App">
             <AppHeader />
-
-                <div className={css.block}>
+                <main className={css.block}>
                     <h1 className={css.title}>Соберите бургер</h1>
                     <div className={css.box}>
                         <DndProvider backend={HTML5Backend}>
@@ -59,8 +58,7 @@ export default function App() {
                                                setWindowFinish={setWindowFinish}/>
                         </DndProvider>
                     </div>
-                </div>
-
+                </main>
             {isModal && windowIngredient &&
                 (<Modal setModal={setModal}
                         onClose={onClose}
@@ -73,6 +71,6 @@ export default function App() {
                     <OrderDetails orderNumber={orderNumber}/>
                 </Modal>)
             }
-        </main>
+        </div>
   );
 }
