@@ -36,10 +36,3 @@
     line-height: 40px;
     margin-left: 0;
 }
-
-.close {
-    width: 26px;
-    top: -26px;
-    right: -26px;
-    cursor: pointer;
-}
