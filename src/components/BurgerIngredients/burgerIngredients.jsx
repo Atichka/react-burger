@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import css from './burgerIngredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -14,10 +14,26 @@ export default function BurgerIngredients(props) {
     const data = useSelector(getIngredients);
     const [current, setCurrent] = React.useState('buns')
 
-    const setCurrentAndScroll = (tab) => {
-        setCurrent(tab);
-        document.querySelector(`#${tab}`)?.scrollIntoView({behavior: 'smooth'});
-    };
+    const bunsRef = useRef(null);
+    const saucesRef = useRef(null);
+    const mainsRef = useRef(null);
+
+    function handleScrollToBuns() {
+        bunsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function handleScrollToSauces() {
+        saucesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+    function handleScrollToMains() {
+        mainsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // const setCurrentAndScroll = (tab) => {
+    //     setCurrent(tab);
+    //     // document.querySelector(`#${tab}`)?.scrollIntoView({behavior: 'smooth'});
+    //     tab.current.scrollIntoView({ behavior: "smooth" });
+    // };
 
     const onAdd = (item) => {
         dispatch({ type: ADD_INGREDIENT, payload: item })
@@ -29,19 +45,19 @@ export default function BurgerIngredients(props) {
         return (
                 <div className={css.container}>
                     <div className={css.tabs}>
-                        <Tab value="buns" active={current === 'buns'} onClick={ () => setCurrentAndScroll("buns")}>
+                        <Tab value="buns" onClick={handleScrollToBuns}>
                             Булки
                         </Tab>
-                        <Tab value="sauces" active={current === 'sauces'} onClick={ () => setCurrentAndScroll("sauces")}>
+                        <Tab value="sauces" onClick={handleScrollToSauces}>
                             Соусы
                         </Tab>
-                        <Tab value="mains" active={current === 'mains'} onClick={ () => setCurrentAndScroll("mains")}>
+                        <Tab value="mains" onClick={handleScrollToMains}>
                             Начинки
                         </Tab>
                     </div>
                     <div className={css.content}>
                         <div>
-                            <h2 id="buns" className={css.text}>Булки</h2>
+                            <h2 ref={bunsRef} className={css.text}>Булки</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "bun").map(ingredient => (
                                         <Card onClick = { () => onAdd(ingredient) }
@@ -59,7 +75,7 @@ export default function BurgerIngredients(props) {
                             </div>)}
                         </div>
                         <div>
-                            <h2 id="sauces" className={css.text}>Соусы</h2>
+                            <h2 ref={saucesRef} className={css.text}>Соусы</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "sauce").map(ingredient => (
                                         <Card onClick = { () => onAdd(ingredient) }
@@ -77,7 +93,7 @@ export default function BurgerIngredients(props) {
                             </div>)}
                         </div>
                         <div>
-                            <h2 id="mains" className={css.text}>Начинки</h2>
+                            <h2 ref={mainsRef} className={css.text}>Начинки</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "main").map(ingredient => (
                                     <Card onClick = { () => onAdd(ingredient) }
