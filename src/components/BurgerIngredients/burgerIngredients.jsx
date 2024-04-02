@@ -67,7 +67,7 @@ export default function BurgerIngredients(props) {
                                               image={ingredient.image}
                                               price={ingredient.price}
                                               name={ingredient.name}
-                                              counter={ingredient.counter} id={ingredient._id}
+                                              id={ingredient._id}
                                               setModal={props.setModal}
                                               setIngredient={props.setIngredient}
                                               setWindowIngredient={props.setWindowIngredient}
@@ -85,7 +85,7 @@ export default function BurgerIngredients(props) {
                                           image={ingredient.image}
                                           price={ingredient.price}
                                           name={ingredient.name}
-                                          counter={ingredient.counter} id={ingredient._id}
+                                          id={ingredient._id}
                                           setModal={props.setModal}
                                           setIngredient={props.setIngredient}
                                           setWindowIngredient={props.setWindowIngredient}
