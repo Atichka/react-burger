@@ -12,7 +12,6 @@ export const getIngredients = state => state.ingredients;
 export default function BurgerIngredients(props) {
     const dispatch = useDispatch();
     const data = useSelector(getIngredients);
-    const [current, setCurrent] = React.useState('buns')
 
     const bunsRef = useRef(null);
     const saucesRef = useRef(null);
@@ -28,12 +27,6 @@ export default function BurgerIngredients(props) {
     function handleScrollToMains() {
         mainsRef.current.scrollIntoView({ behavior: "smooth" });
     }
-
-    // const setCurrentAndScroll = (tab) => {
-    //     setCurrent(tab);
-    //     // document.querySelector(`#${tab}`)?.scrollIntoView({behavior: 'smooth'});
-    //     tab.current.scrollIntoView({ behavior: "smooth" });
-    // };
 
     const onAdd = (item) => {
         dispatch({ type: ADD_INGREDIENT, payload: item })

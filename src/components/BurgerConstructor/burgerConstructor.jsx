@@ -16,7 +16,6 @@ export const getBun = state => state.currBurger.bun;
 export default function BurgerConstructor(props) {
     const dispatch = useDispatch();
     const stuffings = useSelector(getStuffings);
-    console.log('stuffings', stuffings);
 
     const moveCard = (dragIndex, hoverIndex) => {
         const dragCard = stuffings[dragIndex];
