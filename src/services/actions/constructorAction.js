@@ -21,7 +21,7 @@ export const getConstructor = () => (dispatch) => {
 export const addToConstructor = (ingredient) => {
     return {
         type: INGREDIENT_ADD,
-        payload: { ...ingredient, id: ingredient.id, key: nanoid() }
+        payload: { ...ingredient, id: ingredient.id, nanoid: nanoid() }
     }
 }
 

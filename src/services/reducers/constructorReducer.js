@@ -38,7 +38,7 @@ export const constructorReducer = (state = initialState, action) => {
         case (INGREDIENT_DELETE): {
             return {
                 ...state,
-                stuffings: state.stuffings.filter((item) => item.id !== action.payload),
+                stuffings: state.stuffings.filter((item) => item.nanoid !== action.payload),
             }
         }
         default: {

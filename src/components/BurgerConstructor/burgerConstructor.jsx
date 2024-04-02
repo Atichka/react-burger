@@ -16,6 +16,7 @@ export const getBun = state => state.currBurger.bun;
 export default function BurgerConstructor(props) {
     const dispatch = useDispatch();
     const stuffings = useSelector(getStuffings);
+    console.log('stuffings', stuffings);
 
     const moveCard = (dragIndex, hoverIndex) => {
         const dragCard = stuffings[dragIndex];
@@ -60,13 +61,13 @@ export default function BurgerConstructor(props) {
                     <DndProvider backend={HTML5Backend}>
                         {stuffings && (stuffings.map((item, index) => (
                             totalPrice += item.price,
-                            <ConstructorItem key={item.key}
+                            <ConstructorItem key={item.nanoid}
                                              index={index}
                                              image={item.image}
                                              text={item.name}
                                              price={item.price}
                                              type={item.type}
-                                             id={item.id}
+                                             id={item.nanoid}
                                              moveCard={moveCard}
                                              deleteIngredient={deleteIngredient}/>
                         )))}
