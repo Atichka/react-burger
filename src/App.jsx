@@ -62,7 +62,6 @@ export default function App() {
             {isModal && windowIngredient &&
                 (<Modal setModal={setModal}
                         onClose={onClose}
-                        windowIngredient={windowIngredient}
                         title='Детали ингредиента'>
                     <IngredientDetails />
                 </Modal>)
