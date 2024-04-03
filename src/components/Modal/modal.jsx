@@ -6,7 +6,7 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import ReactDOM from "react-dom";
 
-export default function Modal({onClose, setModal, windowIngredient, children, title}) {
+export default function Modal({onClose, setModal, children, title}) {
     const onDel = () => {
         onClose();
         setModal(false);
@@ -28,15 +28,12 @@ export default function Modal({onClose, setModal, windowIngredient, children, ti
     });
     return ReactDOM.createPortal(
         <div className={css.modal}>
-            {windowIngredient ? <div className={css.header}>
+            <div className={css.header}>
                 <h1 className={css.title}>{title}</h1>
                 <div className={css.buttonClose}>
                     <CloseIcon type="primary" onClick = { onDel } />
                 </div>
-            </div> :
-            <div className={css.buttonClose}>
-                <CloseIcon type="primary" onClick = { onDel } />
-            </div>}
+            </div>
 
             <ModalOverlay setModal={() => {
                 setModal(false)
