@@ -1,7 +1,6 @@
 import React from 'react';
 
-import css from './orderDetails.module.css'
-import close from '../../images/close.svg'
+import css from './orderDetails.module.css';
 
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
@@ -9,13 +8,7 @@ import PropTypes from "prop-types";
 export default function OrderDetails(props) {
     return (
         <div>
-                    <div className={css.buttonClose}>
-                        <img src={close} alt="" className={css.close} onClick={() => {
-                            props.setModal(false);
-                            props.setWindowFinish(false)
-                        }} />
-                    </div>
-                    <h1 className={css.number}>034536</h1>
+                    <h1 className={css.number}>{props.orderNumber}</h1>
                     <p className={css.name}>Идентификатор заказа</p>
                     <div className={css.checkIcon}>
                         <CheckMarkIcon type="primary" />
@@ -29,7 +22,6 @@ export default function OrderDetails(props) {
 }
 
 OrderDetails.propTypes = {
-    setModal: PropTypes.func.isRequired,
-    setWindowFinish: PropTypes.func.isRequired
+    orderNumber: PropTypes.number
 };
 
