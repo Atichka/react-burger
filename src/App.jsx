@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from "react-dnd-html5-backend";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import AppHeader from './components/AppHeader/appHeader';
 import BurgerIngredients from './components/BurgerIngredients/burgerIngredients'
 import BurgerConstructor from './components/BurgerConstructor/burgerConstructor'
 import Modal from './components/Modal/modal'
+import { LoginPage } from './pages/Login/login';
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
@@ -46,19 +48,24 @@ export default function App() {
   return (
         <div className="App">
             <AppHeader />
-                <main className={css.block}>
-                    <h1 className={css.title}>Соберите бургер</h1>
-                    <div className={css.box}>
-                        <DndProvider backend={HTML5Backend}>
-                            <BurgerIngredients setModal={setModal}
-                                               setWindowIngredient={setWindowIngredient}
-                                               setWindowFinish={setWindowFinish} />
-                            <BurgerConstructor onDropHandler={onDropHandler}
-                                               setModal={setModal}
-                                               setWindowFinish={setWindowFinish}/>
-                        </DndProvider>
-                    </div>
-                </main>
+            <main className={css.block}>
+                <Router>
+                    <Routes>
+                        <Route path="/login" element={(<LoginPage />)} />
+                        {/*<h1 className={css.title}>Соберите бургер</h1>*/}
+                        {/*<div className={css.box}>*/}
+                        {/*    <DndProvider backend={HTML5Backend}>*/}
+                        {/*        <BurgerIngredients setModal={setModal}*/}
+                        {/*                           setWindowIngredient={setWindowIngredient}*/}
+                        {/*                           setWindowFinish={setWindowFinish} />*/}
+                        {/*        <BurgerConstructor onDropHandler={onDropHandler}*/}
+                        {/*                           setModal={setModal}*/}
+                        {/*                           setWindowFinish={setWindowFinish}/>*/}
+                        {/*    </DndProvider>*/}
+                        {/*</div>*/}
+                    </Routes>
+                </Router>
+            </main>
             {isModal && windowIngredient &&
                 (<Modal setModal={setModal}
                         onClose={onClose}
