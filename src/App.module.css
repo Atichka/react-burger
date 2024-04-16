@@ -14,13 +14,6 @@
   }
 }
 
-.box {
-  display: flex;
-  text-align: center;
-  vertical-align: middle;
-  justify-content: center;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,14 +27,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.title {
-  font-family: "JetBrainsMono", Arial, sans-serif;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 40px;
 }
 
 .block {
