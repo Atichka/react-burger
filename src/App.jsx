@@ -7,6 +7,7 @@ import { LoginPage } from './pages/Login/login';
 import { MainPage } from './pages/Main/main';
 import { RegisterPage } from './pages/Register/register';
 import { ForgotPasswordPage } from './pages/ForgotPassword/forgotPassword';
+import { ResetPasswordPage } from './pages/ResetPassword/resetPassword';
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
@@ -48,6 +49,7 @@ export default function App() {
                             setWindowFinish={setWindowFinish} />)} />
                         <Route path="/register" element={(<RegisterPage />)} />
                         <Route path="/forgot-password" element={(<ForgotPasswordPage />)} />
+                        <Route path="/reset-password" element={(<ResetPasswordPage />)} />
                     </Routes>
                 </Router>
             </main>
