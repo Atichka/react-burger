@@ -5,6 +5,7 @@ import AppHeader from './components/AppHeader/appHeader';
 import Modal from './components/Modal/modal'
 import { LoginPage } from './pages/Login/login';
 import { MainPage } from './pages/Main/main';
+import { RegisterPage } from './pages/Register/register';
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
@@ -44,6 +45,7 @@ export default function App() {
                             setModal={setModal}
                             setWindowIngredient={setWindowIngredient}
                             setWindowFinish={setWindowFinish} />)} />
+                        <Route path="/register" element={(<RegisterPage />)} />
                     </Routes>
                 </Router>
             </main>
