@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import AppHeader from './components/AppHeader/appHeader';
 import Modal from './components/Modal/modal'
@@ -8,6 +8,7 @@ import { MainPage } from './pages/Main/main';
 import { RegisterPage } from './pages/Register/register';
 import { ForgotPasswordPage } from './pages/ForgotPassword/forgotPassword';
 import { ResetPasswordPage } from './pages/ResetPassword/resetPassword';
+import { ProfilePage} from "./pages/Profile/profile";
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
@@ -40,18 +41,17 @@ export default function App() {
         <div className="App">
             <AppHeader />
             <main className={css.block}>
-                <Router>
-                    <Routes>
-                        <Route path="/login" element={(<LoginPage />)} />
-                        <Route path="/" element={(<MainPage
-                            setModal={setModal}
-                            setWindowIngredient={setWindowIngredient}
-                            setWindowFinish={setWindowFinish} />)} />
-                        <Route path="/register" element={(<RegisterPage />)} />
-                        <Route path="/forgot-password" element={(<ForgotPasswordPage />)} />
-                        <Route path="/reset-password" element={(<ResetPasswordPage />)} />
-                    </Routes>
-                </Router>
+                <Routes>
+                    <Route path="/login" element={(<LoginPage />)} />
+                    <Route path="/" element={(<MainPage
+                        setModal={setModal}
+                        setWindowIngredient={setWindowIngredient}
+                        setWindowFinish={setWindowFinish} />)} />
+                    <Route path="/register" element={(<RegisterPage />)} />
+                    <Route path="/forgot-password" element={(<ForgotPasswordPage />)} />
+                    <Route path="/reset-password" element={(<ResetPasswordPage />)} />
+                    <Route path="/profile" element={(<ProfilePage />)} />
+                </Routes>
             </main>
             {isModal && windowIngredient &&
                 (<Modal setModal={setModal}

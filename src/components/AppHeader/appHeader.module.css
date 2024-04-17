@@ -13,17 +13,20 @@
     text-decoration: none;
 }
 
-.text {
+.linkWhite {
     font-family: "JetBrainsMono", Arial, sans-serif;
-    text-align: center;
+    background:none;
+    border:none;
+    text-decoration-line: none;
     color: white;
 }
 
-.button {
+.link {
     font-family: "JetBrainsMono", Arial, sans-serif;
     color: #8585AD;
     background:none;
     border:none;
+    text-decoration-line: none;
 }
 
 .header {
