@@ -2,6 +2,7 @@ import React from 'react';
 import css from './resetPassword.module.css';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from "react-router-dom";
+import {apiResetPassword} from "../../utils/api";
 
 export function ResetPasswordPage() {
     const [password, setPassword] = React.useState('Пароль')
@@ -11,9 +12,17 @@ export function ResetPasswordPage() {
         setTimeout(() => inputRef.current.focus(), 0)
         alert('Icon Click Callback')
     }
+    const sendData = async (e) => {
+        e.preventDefault();
+        try {
+            await apiResetPassword(password, code);
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className={css.wrapper}>
-            <form id="formresetpassword" className="form" name="formresetpassword">
+            <form id="formresetpassword" className="form" name="formresetpassword" onSubmit={sendData}>
                 <h1 className={css.heading}>Восстановление пароля</h1>
                 <div className={css.container}>
                     <Input

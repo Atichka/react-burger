@@ -1,10 +1,11 @@
 import React from 'react';
 import css from './forgotPassword.module.css';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { apiForgotPassword } from "../../utils/api";
 
 export function ForgotPasswordPage() {
+    const navigate = useNavigate();
     const [email, setEmail] = React.useState('E-mail')
     const inputRef = React.useRef(null)
     const onIconClick = () => {
@@ -15,6 +16,7 @@ export function ForgotPasswordPage() {
         e.preventDefault();
         try {
             await apiForgotPassword(email);
+            navigate("/reset-password", { replace: true });
         } catch (err) {
             console.log(err);
         }
