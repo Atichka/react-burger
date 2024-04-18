@@ -2,6 +2,7 @@ import React from 'react';
 import css from './forgotPassword.module.css';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from "react-router-dom";
+import { apiForgotPassword } from "../../utils/api";
 
 export function ForgotPasswordPage() {
     const [email, setEmail] = React.useState('E-mail')
@@ -10,9 +11,17 @@ export function ForgotPasswordPage() {
         setTimeout(() => inputRef.current.focus(), 0)
         alert('Icon Click Callback')
     }
+    const sendData = async (e) => {
+        e.preventDefault();
+        try {
+            await apiForgotPassword(email);
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className={css.wrapper}>
-            <form id="formforgotpassword" className="form" name="formforgotpassword">
+            <form id="formforgotpassword" className="form" name="formforgotpassword" onSubmit={sendData}>
                 <h1 className={css.heading}>Восстановление пароля</h1>
                 <div className={css.container}>
                     <Input
