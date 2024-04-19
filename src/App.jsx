@@ -8,7 +8,8 @@ import { MainPage } from './pages/Main/main';
 import { RegisterPage } from './pages/Register/register';
 import { ForgotPasswordPage } from './pages/ForgotPassword/forgotPassword';
 import { ResetPasswordPage } from './pages/ResetPassword/resetPassword';
-import { ProfilePage} from "./pages/Profile/profile";
+import { ProfilePage } from "./pages/Profile/profile";
+import {UserProfile} from "./components/UserProfile/userProfile"
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
@@ -50,7 +51,11 @@ export default function App() {
                     <Route path="/register" element={(<RegisterPage />)} />
                     <Route path="/forgot-password" element={(<ForgotPasswordPage />)} />
                     <Route path="/reset-password" element={(<ResetPasswordPage />)} />
-                    <Route path="/profile" element={(<ProfilePage />)} />
+                    <Route path={'profile'} element={<ProfilePage/>}>
+                        <Route index element={<UserProfile/>}/>
+                        <Route path={'orders'} element={<div>orders</div>}/>
+                        <Route path={'orders/:orderNumber'} element={<div>ordersNumber</div>}/>
+                    </Route>
                 </Routes>
             </main>
             {isModal && windowIngredient &&
