@@ -2,18 +2,27 @@ import React from 'react';
 import css from './login.module.css';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from "react-router-dom";
+import {logInUser} from "../../services/actions/userAction";
+import { useDispatch } from "react-redux";
 
 export function LoginPage() {
     const [email, setEmail] = React.useState('E-mail')
     const [password, setPassword] = React.useState('Пароль')
     const inputRef = React.useRef(null)
+    const dispatch = useDispatch();
     const onIconClick = () => {
         setTimeout(() => inputRef.current.focus(), 0)
         alert('Icon Click Callback')
     }
+
+    const sendData = async (e) => {
+        e.preventDefault();
+        dispatch(logInUser(email, password));
+    }
+
     return (
         <div className={css.wrapper}>
-            <form id="formlogin" className="form" name="formlogin">
+            <form id="formlogin" className="form" name="formlogin" onSubmit={sendData}>
                 <h1 className={css.heading}>Вход</h1>
                 <div className={css.container}>
                     <Input
