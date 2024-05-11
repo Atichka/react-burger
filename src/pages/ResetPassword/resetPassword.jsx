@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import {apiResetPassword} from "../../utils/api";
 
 export function ResetPasswordPage() {
-    const [password, setPassword] = React.useState('Пароль')
-    const [code, setCode] = React.useState('Код')
+    const [password, setPassword] = React.useState('')
+    const [code, setCode] = React.useState('')
     const inputRef = React.useRef(null)
     const onIconClick = () => {
         setTimeout(() => inputRef.current.focus(), 0)

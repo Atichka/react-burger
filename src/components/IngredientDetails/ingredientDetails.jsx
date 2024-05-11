@@ -8,7 +8,7 @@ export default function IngredientDetails(props) {
     const data = useSelector(store => store.currIngredient).addedIngredient;
     return (
         <div>
-            {data.image && (<img src={data.image} alt="Картинка ингредиента" className={css.pic} />)}
+            {data && (<img src={data.image} alt="Картинка ингредиента" className={css.pic} />)}
                     <div className={css.box}>
                         <h2 className={css.name}>{data.name}</h2>
                         <div className={css.block}>

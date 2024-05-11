@@ -1,42 +1,44 @@
 import React from 'react';
 import css from './profile.module.css';
 import { NavLink, useLocation, Outlet } from "react-router-dom";
-
-function getClassName(location, path) {
-    return location.pathname === path ? css.linkActive : css.linkNoActive
-}
+import { logOutUser } from '../../services/actions/userAction'
+import {useDispatch} from "react-redux";
 
 export const ProfilePage = () => {
+    const dispatch = useDispatch();
     const location = useLocation();
     const links = [
         {
-            to: "/profile",
+            to: "",
             text: "Профиль",
             description: "В этом разделе вы можете изменить свои персональные данные"
         },
         {
-            to: "/profile/orders",
+            to: "orders",
             text: "История заказов",
             description: "В этом разделе вы можете просмотреть свою историю заказов"
-        },
-        {
-            to: "/",
-            text: "Выход"
-        },
+        }
     ];
+    const onLogout = () => {
+        dispatch(logOutUser());
+    }
     return (
         <div className={css.wrapper}>
             <nav className={css.links}>
                 {links.map((link, index) => (
                     <NavLink
                         key={index}
+                        end
                         to={link.to}
                         onClick={link.onClick}
-                        className={getClassName(location, link.to)}
+                        className={({isActive}) => isActive ? css.linkActive : css.linkNoActive}
                     >
                         {link.text}
                     </NavLink>
                 ))}
+                <button className={css.button} onClick={onLogout}>
+                    Выход
+                </button>
                 {location.pathname === "/profile" && (
                     <p className={css.text}>
                         {links[0].description}

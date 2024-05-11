@@ -37,11 +37,30 @@ export const apiResetPassword = (password, code) => {
 
 // Запрос авторизации
 export const apiUserLogIn = (email, password) => {
-    fetch('https://norma.nomoreparties.space/api/auth/login', {
+    return fetch('https://norma.nomoreparties.space/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
             email: email,
+            password: password
+        })
+    })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        })
+}
+
+// Запрос регистрации
+export const apiUserRegIn = (email, name, password) => {
+    return fetch('https://norma.nomoreparties.space/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({
+            email: email,
+            name: name,
             password: password
         })
     })
@@ -53,3 +72,104 @@ export const apiUserLogIn = (email, password) => {
             return Promise.reject(`Что-то пошло не так: ${res.status}`);
         })
 }
+
+export const getUserApi = () => {
+    return fetch('https://norma.nomoreparties.space/api/auth/user', {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            Authorization: getToken(),
+        },
+    })
+        .then(res => {
+            console.log(res);
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        })
+};
+
+
+export const login = () =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({
+                accessToken: "test-token",
+                refreshToken: "test-refresh-token",
+                user: {},
+            });
+        }, 1000);
+    });
+
+export const apiUserLogOut = () => {
+    return fetch('https://norma.nomoreparties.space/api/auth/logout', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({
+            token: localStorage.getItem("refreshToken"),
+        }),
+    }).catch((error) => {
+        console.error('Произошла ошибка при выходе пользователя:', error);
+        return Promise.reject(error);
+    });
+}
+
+export const refreshToken = () => {
+    return fetch('https://norma.nomoreparties.space/api/auth/token', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+            token: localStorage.getItem("refreshToken"),
+        }),
+    }).then(checkResponse);
+};
+
+export const getToken = () => {
+    return localStorage.getItem("accessToken")
+};
+
+export const checkResponse = (res) => {
+    return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+};
+
+export const fetchWithRefresh = async (url, options) => {
+    try {
+        const res = await fetch(url, options);
+        return await checkResponse(res);
+    } catch (err) {
+        if (err.message === "jwt expired") {
+            const refreshData = await refreshToken(); //обновляем токен
+            if (!refreshData.success) {
+                return Promise.reject(refreshData);
+            }
+            localStorage.setItem("refreshToken", refreshData.refreshToken);
+            localStorage.setItem("accessToken", refreshData.accessToken);
+            options.headers.authorization = refreshData.accessToken;
+            const res = await fetch(url, options); //повторяем запрос
+            return await checkResponse(res);
+        } else {
+            return Promise.reject(err);
+        }
+    }
+};
+
+export const apiUpdateUser = (email, name, password) => {
+    return fetch('https://norma.nomoreparties.space/api/auth/user', {
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            Authorization: getToken(),
+        },
+        body: JSON.stringify({
+            email: email,
+            name: name,
+            password: password
+        }),
+    }).catch((error) => {
+        console.error('Произошла ошибка при обновлении информации о пользователе:', error);
+        return Promise.reject(error);
+    });
+};

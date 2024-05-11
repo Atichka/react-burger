@@ -1,5 +1,6 @@
 import {BASE_URL} from "../../const";
 import {request} from "../../utils/functions";
+import {checkResponse, fetchWithRefresh} from "../../utils/api";
 const url = BASE_URL;
 
 export const SEND_ORDER_REQUEST = 'SEND_ORDER_REQUEST';
@@ -14,10 +15,11 @@ export const sendOrder = (ingredients) => (dispatch) => {
             "ingredients": ingredients
         }),
         headers: {
-            "Content-Type": "application/json; charset=UTF-8"
+            "Content-Type": "application/json; charset=UTF-8",
+            authorization: localStorage.getItem("accessToken")
         }
     }
-    request(url + '/orders', options)
+    fetchWithRefresh(url + '/orders', options).then(checkResponse)
         .then(({order}) => {
             dispatch({type: SEND_ORDER_SUCCESS, payload: order})
         })

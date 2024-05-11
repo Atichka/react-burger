@@ -6,7 +6,7 @@ import { apiForgotPassword } from "../../utils/api";
 
 export function ForgotPasswordPage() {
     const navigate = useNavigate();
-    const [email, setEmail] = React.useState('E-mail')
+    const [email, setEmail] = React.useState('')
     const inputRef = React.useRef(null)
     const onIconClick = () => {
         setTimeout(() => inputRef.current.focus(), 0)

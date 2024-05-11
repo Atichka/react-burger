@@ -6,6 +6,7 @@ import Card from '../../components/Card/card'
 import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {ADD_INGREDIENT} from "../../services/actions/detailsAction";
+import {Link} from "react-router-dom";
 
 export const getIngredients = state => state.ingredients;
 
@@ -53,17 +54,27 @@ export default function BurgerIngredients(props) {
                             <h2 ref={bunsRef} className={css.text}>Булки</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "bun").map(ingredient => (
-                                        <Card onClick = { () => onAdd(ingredient) }
-                                              key={ingredient._id}
-                                              image={ingredient.image}
-                                              price={ingredient.price}
-                                              name={ingredient.name}
-                                              id={ingredient._id}
-                                              setModal={props.setModal}
-                                              setIngredient={props.setIngredient}
-                                              setWindowIngredient={props.setWindowIngredient}
-                                              setWindowFinish={props.setWindowFinish}
-                                              type={ingredient.type}/>
+                                    <Link
+                                        to={{
+                                            pathname: `/ingredients/${ingredient._id}`,
+                                        }}
+                                        className={css.link}
+                                        key={ingredient._id}
+                                    >
+                                        <ul className={css.list }>
+                                            <Card onClick = { () => onAdd(ingredient) }
+                                                  key={ingredient._id}
+                                                  image={ingredient.image}
+                                                  price={ingredient.price}
+                                                  name={ingredient.name}
+                                                  id={ingredient._id}
+                                                  setModal={props.setModal}
+                                                  setIngredient={props.setIngredient}
+                                                  setWindowIngredient={props.setWindowIngredient}
+                                                  setWindowFinish={props.setWindowFinish}
+                                                  type={ingredient.type}/>
+                                        </ul>
+                                    </Link>
                                 ))}
                             </div>)}
                         </div>
@@ -71,17 +82,27 @@ export default function BurgerIngredients(props) {
                             <h2 ref={saucesRef} className={css.text}>Соусы</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "sauce").map(ingredient => (
-                                        <Card onClick = { () => onAdd(ingredient) }
-                                              key={ingredient._id}
-                                              image={ingredient.image}
-                                              price={ingredient.price}
-                                              name={ingredient.name}
-                                              id={ingredient._id}
-                                              setModal={props.setModal}
-                                              setIngredient={props.setIngredient}
-                                              setWindowIngredient={props.setWindowIngredient}
-                                              setWindowFinish={props.setWindowFinish}
-                                              type={ingredient.type} />
+                                    <Link
+                                        to={{
+                                            pathname: `/ingredients/${ingredient._id}`,
+                                        }}
+                                        className={css.link}
+                                        key={ingredient._id}
+                                    >
+                                        <ul className={css.list }>
+                                            <Card onClick = { () => onAdd(ingredient) }
+                                                  key={ingredient._id}
+                                                  image={ingredient.image}
+                                                  price={ingredient.price}
+                                                  name={ingredient.name}
+                                                  id={ingredient._id}
+                                                  setModal={props.setModal}
+                                                  setIngredient={props.setIngredient}
+                                                  setWindowIngredient={props.setWindowIngredient}
+                                                  setWindowFinish={props.setWindowFinish}
+                                                  type={ingredient.type}/>
+                                        </ul>
+                                    </Link>
                                 ))}
                             </div>)}
                         </div>
@@ -89,17 +110,27 @@ export default function BurgerIngredients(props) {
                             <h2 ref={mainsRef} className={css.text}>Начинки</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "main").map(ingredient => (
-                                    <Card onClick = { () => onAdd(ingredient) }
-                                          key={ingredient._id}
-                                          image={ingredient.image}
-                                          price={ingredient.price}
-                                          name={ingredient.name}
-                                          id={ingredient._id}
-                                          setModal={props.setModal}
-                                          setIngredient={props.setIngredient}
-                                          setWindowIngredient={props.setWindowIngredient}
-                                          setWindowFinish={props.setWindowFinish}
-                                          type={ingredient.type} />
+                                    <Link
+                                        to={{
+                                            pathname: `/ingredients/${ingredient._id}`,
+                                        }}
+                                        className={css.link}
+                                        key={ingredient._id}
+                                    >
+                                        <ul className={css.list }>
+                                            <Card onClick = { () => onAdd(ingredient) }
+                                                  key={ingredient._id}
+                                                  image={ingredient.image}
+                                                  price={ingredient.price}
+                                                  name={ingredient.name}
+                                                  id={ingredient._id}
+                                                  setModal={props.setModal}
+                                                  setIngredient={props.setIngredient}
+                                                  setWindowIngredient={props.setWindowIngredient}
+                                                  setWindowFinish={props.setWindowFinish}
+                                                  type={ingredient.type}/>
+                                        </ul>
+                                    </Link>
                                 ))}
                             </div>)}
                         </div>

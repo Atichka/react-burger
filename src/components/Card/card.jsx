@@ -30,7 +30,7 @@ export default function Card(props) {
     });
     return (
             !isDrag && (
-                <div ref={dragRef} className={css.card} onClick={props.onClick}>
+                <li ref={dragRef} className={css.card} onClick={props.onClick}>
                     <img src={props.image} alt={'картинка ингредиента ' + props.name} />
                     <div className={css.price}>
                         <p>{props.price}</p>
@@ -39,7 +39,7 @@ export default function Card(props) {
                         <Counter count={counter} size="default"/>}
                     </div>
                     <p className={css.cardName}>{props.name}</p>
-                </div>
+                </li>
             )
         );
 };

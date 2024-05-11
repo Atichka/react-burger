@@ -8,7 +8,13 @@ export const GET_INGREDIENTS_FAILURE = 'GET_INGREDIENTS_FAILURE';
 
 export const getIngredients = () => (dispatch) => {
     dispatch({ type: GET_INGREDIENTS_REQUEST });
-    request(url + '/ingredients')
+    const options = {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+        }
+    }
+    request(url + '/ingredients', options)
         .then(res => dispatch({ type: GET_INGREDIENTS_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: GET_INGREDIENTS_FAILURE }));
 

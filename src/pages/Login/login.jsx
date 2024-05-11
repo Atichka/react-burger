@@ -6,8 +6,8 @@ import {logInUser} from "../../services/actions/userAction";
 import { useDispatch } from "react-redux";
 
 export function LoginPage() {
-    const [email, setEmail] = React.useState('E-mail')
-    const [password, setPassword] = React.useState('Пароль')
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
     const inputRef = React.useRef(null)
     const dispatch = useDispatch();
     const onIconClick = () => {

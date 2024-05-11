@@ -39,6 +39,22 @@
     color: #8585AD;
 }
 
+.button {
+    font-family: "JetBrainsMono", Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #8585AD;
+}
+
+.button:hover {
+    color: white;
+}
+
 .text {
     font-family: "JetBrainsMono", Arial, sans-serif;
     font-size: 16px;
@@ -48,7 +64,3 @@
     color: #8585AD;
 }
 
-.container {
-    display: grid;
-    gap: 24px;
-}

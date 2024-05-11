@@ -1,17 +1,33 @@
 import React from 'react';
-// import css from './userProfile.module.css';
-import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import css from './userProfile.module.css';
+import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
+import {useDispatch, useSelector} from "react-redux";
+import {setUserData} from "../../services/actions/userAction";
+
+export const getUser = state => state.userData.user;
+
 export const UserProfile = () => {
-    const [name, setName] = React.useState('Имя')
-    const [email, setEmail] = React.useState('E-mail')
-    const [password, setPassword] = React.useState('Пароль')
+    const dispatch = useDispatch();
+    const data = useSelector(getUser);
+
+    const [name, setName] = React.useState(data.name)
+    const [email, setEmail] = React.useState(data.email)
+    const [password, setPassword] = React.useState('')
     const inputRef = React.useRef(null)
     const onIconClick = () => {
         setTimeout(() => inputRef.current.focus(), 0)
         alert('Icon Click Callback')
     }
+    const onClickReset = () => {
+        setName(data.name);
+        setEmail(data.email);
+        setPassword('');
+    };
+    const onClickSave = () => {
+        dispatch(setUserData(email, name, password));
+    }
     return (
-            <div>
+            <div className={css.container}>
                 <Input
                     type={'text'}
                     placeholder={'Имя'}
@@ -53,6 +69,26 @@ export const UserProfile = () => {
                     size={'default'}
                     extraClass="ml-1"
                 />
+                <div>
+                    <Button
+                        extraClass="mt-2"
+                        htmlType="button"
+                        type="primary"
+                        size="medium"
+                        onClick={onClickReset}
+                    >
+                        Отменить
+                    </Button>
+                    <Button
+                        extraClass="mt-4"
+                        htmlType="submit"
+                        type="primary"
+                        size="medium"
+                        onClick={onClickSave}
+                    >
+                        Сохранить
+                    </Button>
+                </div>
             </div>
     );
 }
