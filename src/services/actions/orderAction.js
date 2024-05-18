@@ -19,7 +19,7 @@ export const sendOrder = (ingredients) => (dispatch) => {
             authorization: localStorage.getItem("accessToken")
         }
     }
-    fetchWithRefresh(url + '/orders', options).then(checkResponse)
+    fetchWithRefresh(url + '/orders', options)
         .then(({order}) => {
             dispatch({type: SEND_ORDER_SUCCESS, payload: order})
         })
