@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
+import ReactLoading from "react-loading";
 
 import AppHeader from './components/AppHeader/appHeader';
 import Modal from './components/Modal/modal'
@@ -26,7 +27,9 @@ export default function App() {
     const [isModal, setModal] = useState(false)
     const [windowIngredient, setWindowIngredient] = useState(false)
     const [windowFinish, setWindowFinish] = useState(false)
+    const location = useLocation();
     const navigate = useNavigate();
+    const background = location.state && location.state.background;
 
     const dispatch = useDispatch();
 
@@ -48,7 +51,7 @@ export default function App() {
         <div className="App">
             <AppHeader />
             <main className={css.block}>
-                <Routes>
+                <Routes location={background || location}>
                     <Route path="/login" element={<OnlyUnAuth component={<LoginPage />} />} />
                     <Route path="/" element={(<MainPage
                         setModal={setModal}
@@ -63,7 +66,9 @@ export default function App() {
                         <Route path={'orders'} element={<OnlyAuth component={<div>orders</div>} />} />
                         <Route path={'orders/:orderNumber'} element={<OnlyAuth component={<div>ordersNumber</div>} />} />
                     </Route>
+                    <Route path="/ingredients/:id" element={<IngredientDetails />}></Route>
                 </Routes>
+                {background && (
                     <Routes>
                         <Route
                             path="/ingredients/:id"
@@ -75,7 +80,8 @@ export default function App() {
                                 <IngredientDetails />
                             </Modal>)
                         }></Route>
-                </Routes>
+                    </Routes>
+                )}
             </main>
                 {isModal && windowFinish &&
                     (<Modal setModal={setModal} onClose={onClose}>
