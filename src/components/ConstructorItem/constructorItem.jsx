@@ -52,12 +52,17 @@ export default function ConstructorItem(props) {
             <div>
                 {props.type === "top" || props.type === "bottom" ? (
                     <div className={css.item}>
-                        {!props.isLocked &&
-                            <div />}
-                            <ConstructorElement isLocked={true}
-                                                text={props.text}
-                                                price={props.price}
-                                                thumbnail={props.image}/>
+                            <div />
+                        {props.type === "top" && (<ConstructorElement isLocked={true}
+                                             text={props.text}
+                                             price={props.price}
+                                             thumbnail={props.image}
+                                             type="top" />)}
+                        {props.type === "bottom" && (<ConstructorElement isLocked={true}
+                                                                      text={props.text}
+                                                                      price={props.price}
+                                                                      thumbnail={props.image}
+                                                                      type="bottom" />)}
                     </div>) : (
                         <div ref={ref} className={css.item} style={{opacity}}>
                             {!props.isLocked &&
