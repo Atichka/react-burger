@@ -53,7 +53,7 @@ export default function ConstructorItem(props) {
                 {props.type === "top" || props.type === "bottom" ? (
                     <div className={css.item}>
                         {!props.isLocked &&
-                            <DragIcon type="primary" />}
+                            <div />}
                             <ConstructorElement isLocked={true}
                                                 text={props.text}
                                                 price={props.price}
