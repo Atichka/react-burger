@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import {DndProvider, useDrop} from 'react-dnd';
 import {HTML5Backend} from "react-dnd-html5-backend";
 
-import css from './burgerConstructor.module.css'
-import ConstructorItem from "../ConstructorItem/constructorItem";
+import css from './burger-constructor.module.css'
+import ConstructorItem from "../ConstructorItem/constructor-item";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {INGREDIENT_DELETE, updateIngredients} from "../../services/actions/constructorAction";
-import { sendOrder } from '../../services/actions/orderAction';
 import {useLocation, useNavigate} from "react-router-dom";
 
 export const getStuffings = state => state.currBurger.stuffings;
@@ -50,8 +49,6 @@ export default function BurgerConstructor(props) {
         }
         props.setModal(true)
         props.setWindowFinish(true)
-        // const ingredientsId = [bun, ...stuffings, bun].map(item => item.id);
-        // dispatch(sendOrder(ingredientsId));
     }
 
         return (

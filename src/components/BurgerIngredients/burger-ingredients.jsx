@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import css from './burgerIngredients.module.css';
+import css from './burger-ingredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../../components/Card/card'

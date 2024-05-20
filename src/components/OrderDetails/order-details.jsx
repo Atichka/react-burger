@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import css from './orderDetails.module.css';
+import css from './order-details.module.css';
 
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";

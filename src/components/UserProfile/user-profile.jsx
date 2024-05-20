@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './userProfile.module.css';
+import css from './user-profile.module.css';
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 import {useDispatch, useSelector} from "react-redux";
 import {setUserData} from "../../services/actions/userAction";

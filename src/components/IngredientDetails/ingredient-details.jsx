@@ -1,6 +1,6 @@
 import React from 'react';
 
-import css from './ingredientDetails.module.css'
+import css from './ingredient-details.module.css'
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";

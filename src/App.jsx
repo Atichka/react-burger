@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
-import AppHeader from './components/AppHeader/appHeader';
+import AppHeader from './components/AppHeader/app-header';
 import Modal from './components/Modal/modal'
 import { LoginPage } from './pages/Login/login';
 import { MainPage } from './pages/Main/main';
@@ -9,14 +9,14 @@ import { RegisterPage } from './pages/Register/register';
 import { ForgotPasswordPage } from './pages/ForgotPassword/forgotPassword';
 import { ResetPasswordPage } from './pages/ResetPassword/resetPassword';
 import { ProfilePage } from "./pages/Profile/profile";
-import {UserProfile} from "./components/UserProfile/userProfile"
+import {UserProfile} from "./components/UserProfile/user-profile"
 
 import css from './App.module.css';
-import IngredientDetails from "./components/IngredientDetails/ingredientDetails";
-import OrderDetails from "./components/OrderDetails/orderDetails";
+import IngredientDetails from "./components/IngredientDetails/ingredient-details";
+import OrderDetails from "./components/OrderDetails/order-details";
 import {getIngredients} from "./services/actions/ingredientsAction";
 import {useDispatch, useSelector} from "react-redux";
-import { OnlyAuth, OnlyUnAuth } from "./components/ProtectedRoute/protectedRoute";
+import { OnlyAuth, OnlyUnAuth } from "./components/ProtectedRoute/protected-route";
 import {checkUserAuth} from "./services/actions/userAction";
 
 export const ingredients = state => state.ingredients;

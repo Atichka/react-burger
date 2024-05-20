@@ -1,6 +1,6 @@
 import React from 'react';
 
-import css from './ModalOverlay.module.css'
+import css from './modal-overlay.module.css'
 
 export default function ModalOverlay(props) {
     return (
