@@ -27,7 +27,7 @@ export default function App() {
     const [windowFinish, setWindowFinish] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
-    const background = location.state && location.state.background;
+    const background = location.state && location.state?.background;
     const data = useSelector(ingredients);
 
     const dispatch = useDispatch();

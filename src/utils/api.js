@@ -10,13 +10,7 @@ export const apiForgotPassword = (email) => {
             email: email
         })
     })
-        .then(res => {
-            console.log(res);
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Что-то пошло не так: ${res.status}`);
-        })
+        .then(checkResponse)
 };
 
 // Запрос восстановления пароля
@@ -29,13 +23,7 @@ export const apiResetPassword = (password, code) => {
             token: code
         })
     })
-        .then(res => {
-            console.log(res);
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Что-то пошло не так: ${res.status}`);
-        })
+        .then(checkResponse)
 };
 
 // Запрос авторизации
@@ -48,12 +36,7 @@ export const apiUserLogIn = (email, password) => {
             password: password
         })
     })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Что-то пошло не так: ${res.status}`);
-        })
+        .then(checkResponse)
 }
 
 // Запрос регистрации
@@ -67,13 +50,7 @@ export const apiUserRegIn = (email, name, password) => {
             password: password
         })
     })
-        .then(res => {
-            console.log(res);
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Что-то пошло не так: ${res.status}`);
-        })
+        .then(checkResponse)
 }
 
 export const getUserApi = () => {
@@ -84,12 +61,7 @@ export const getUserApi = () => {
             Authorization: getToken(),
         },
     })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Что-то пошло не так: ${res.status}`);
-        })
+        .then(checkResponse)
 };
 
 
