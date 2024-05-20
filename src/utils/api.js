@@ -1,6 +1,8 @@
+import {BASE_URL} from "../const";
+
 // Запрос на сброс пароля
 export const apiForgotPassword = (email) => {
-    return fetch('https://norma.nomoreparties.space/api/password-reset', {
+    return fetch(BASE_URL + '/password-reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
@@ -18,7 +20,7 @@ export const apiForgotPassword = (email) => {
 
 // Запрос восстановления пароля
 export const apiResetPassword = (password, code) => {
-    return fetch('https://norma.nomoreparties.space/api/password-reset/reset', {
+    return fetch(BASE_URL + '/password-reset/reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
@@ -37,7 +39,7 @@ export const apiResetPassword = (password, code) => {
 
 // Запрос авторизации
 export const apiUserLogIn = (email, password) => {
-    return fetch('https://norma.nomoreparties.space/api/auth/login', {
+    return fetch(BASE_URL + '/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
@@ -55,7 +57,7 @@ export const apiUserLogIn = (email, password) => {
 
 // Запрос регистрации
 export const apiUserRegIn = (email, name, password) => {
-    return fetch('https://norma.nomoreparties.space/api/auth/register', {
+    return fetch(BASE_URL + '/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
@@ -74,7 +76,7 @@ export const apiUserRegIn = (email, name, password) => {
 }
 
 export const getUserApi = () => {
-    return fetch('https://norma.nomoreparties.space/api/auth/user', {
+    return fetch(BASE_URL + '/auth/user', {
         method: "GET",
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -102,7 +104,7 @@ export const login = () =>
     });
 
 export const apiUserLogOut = () => {
-    return fetch('https://norma.nomoreparties.space/api/auth/logout', {
+    return fetch(BASE_URL + '/api/auth/logout', {
         method: "POST",
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
@@ -115,7 +117,7 @@ export const apiUserLogOut = () => {
 }
 
 export const refreshToken = () => {
-    return fetch('https://norma.nomoreparties.space/api/auth/token', {
+    return fetch(BASE_URL + '/api/auth/token', {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
@@ -156,7 +158,7 @@ export const fetchWithRefresh = async (url, options) => {
 };
 
 export const apiUpdateUser = (email, name, password) => {
-    return fetch('https://norma.nomoreparties.space/api/auth/user', {
+    return fetch(BASE_URL + '/api/auth/user', {
         method: "PATCH",
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
