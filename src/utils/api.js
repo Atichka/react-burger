@@ -1,4 +1,5 @@
 import {BASE_URL} from "../const";
+import {checkResponse} from "./functions";
 
 // Запрос на сброс пароля
 export const apiForgotPassword = (email) => {
@@ -130,10 +131,6 @@ export const refreshToken = () => {
 
 export const getToken = () => {
     return localStorage.getItem("accessToken")
-};
-
-export const checkResponse = (res) => {
-    return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
 export const fetchWithRefresh = async (url, options) => {
