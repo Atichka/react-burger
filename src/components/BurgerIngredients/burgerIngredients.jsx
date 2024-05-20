@@ -4,7 +4,7 @@ import css from './burgerIngredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../../components/Card/card'
 import PropTypes from "prop-types";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Link, useLocation} from "react-router-dom";
 
 export const getIngredients = state => state.ingredients;
