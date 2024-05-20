@@ -2,7 +2,7 @@ import {GET_INGREDIENTS_FAILURE, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCES
 
 const initialState = {
     ingredients: [],
-    addedIngredients: [],
+    // addedIngredients: [],
     isLoading: false,
     error: undefined,
 }

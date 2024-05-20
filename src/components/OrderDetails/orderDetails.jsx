@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {sendOrder} from "../../services/actions/orderAction";
 import ReactLoading from "react-loading";
-import {isLoading} from "../../App";
 
 export const getStuffings = state => state.currBurger.stuffings;
 export const getBun = state => state.currBurger.bun;
@@ -25,7 +24,6 @@ export default function OrderDetails(props) {
         dispatch(sendOrder(ingredientsId));
     }, []);
     const {orderNumber} = useSelector(store => ({orderNumber: store.order.order}), shallowEqual);
-    console.log('orderNumber', orderNumber);
     return (
         <div>
             {!isLoading ?
@@ -40,8 +38,10 @@ export default function OrderDetails(props) {
                         </div>
                 </div>
 
-                ) : (<ReactLoading type="spin" color="white"
-                                                    height={100} width={50} />)
+                ) : (<div className={css.box}>
+                    <ReactLoading type="spin" color="white"
+                                  height={100} width={50} />
+                </div>)
             }
 
 

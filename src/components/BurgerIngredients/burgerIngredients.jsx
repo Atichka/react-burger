@@ -5,14 +5,12 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../../components/Card/card'
 import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
-import {ADD_INGREDIENT} from "../../services/actions/detailsAction";
 import {Link, useLocation} from "react-router-dom";
 
 export const getIngredients = state => state.ingredients;
 
 export default function BurgerIngredients(props) {
     const location = useLocation();
-    const dispatch = useDispatch();
     const data = useSelector(getIngredients);
 
     const bunsRef = useRef(null);
@@ -31,7 +29,6 @@ export default function BurgerIngredients(props) {
     }
 
     const onAdd = (item) => {
-        dispatch({ type: ADD_INGREDIENT, payload: item })
         props.setModal(true);
         props.setWindowIngredient(true);
         props.setWindowFinish(false);
@@ -83,11 +80,10 @@ export default function BurgerIngredients(props) {
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "sauce").map(ingredient => (
                                     <Link
-                                        to={{
-                                            pathname: `/ingredients/${ingredient._id}`,
-                                        }}
+                                        to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
+                                        state={{ background: location }}
                                     >
                                         <ul className={css.list }>
                                             <Card onClick = { () => onAdd(ingredient) }
@@ -111,11 +107,10 @@ export default function BurgerIngredients(props) {
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "main").map(ingredient => (
                                     <Link
-                                        to={{
-                                            pathname: `/ingredients/${ingredient._id}`,
-                                        }}
+                                        to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
+                                        state={{ background: location }}
                                     >
                                         <ul className={css.list }>
                                             <Card onClick = { () => onAdd(ingredient) }

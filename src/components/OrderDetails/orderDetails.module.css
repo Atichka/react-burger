@@ -1,7 +1,9 @@
-/*.buttonClose {*/
-/*    text-align: right;*/
-/*    margin: 40px;*/
-/*}*/
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100px;
+}
 
 .close {
     width: 26px;

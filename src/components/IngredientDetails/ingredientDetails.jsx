@@ -3,14 +3,17 @@ import React from 'react';
 import css from './ingredientDetails.module.css'
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {useParams} from "react-router-dom";
 
 export default function IngredientDetails(props) {
-    const data = useSelector(store => store.currIngredient).addedIngredient;
+    const { id } = useParams();
+    const data = useSelector((store) => store.ingredients.ingredients);
+    const ingredient = data.find((item) => item._id === id);
     return (
-        <div>
-            {data && (<img src={data.image} alt="Картинка ингредиента" className={css.pic} />)}
+        <div className={css.container}>
+            {ingredient && (<img src={ingredient.image} alt="Картинка ингредиента" className={css.pic} />)}
                     <div className={css.box}>
-                        <h2 className={css.name}>{data.name}</h2>
+                        <h2 className={css.name}>{ingredient.name}</h2>
                         <div className={css.block}>
                             <div>
                                 <h3 className={css.text}>Калории, ккал</h3>
