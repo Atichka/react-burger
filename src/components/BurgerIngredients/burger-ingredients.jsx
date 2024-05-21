@@ -58,7 +58,6 @@ export default function BurgerIngredients(props) {
                                         key={ingredient._id}
                                         state={{ background: location }}
                                     >
-                                        <ul className={css.list }>
                                             <Card onClick = { () => onAdd(ingredient) }
                                                   key={ingredient._id}
                                                   image={ingredient.image}
@@ -70,7 +69,6 @@ export default function BurgerIngredients(props) {
                                                   setWindowIngredient={props.setWindowIngredient}
                                                   setWindowFinish={props.setWindowFinish}
                                                   type={ingredient.type}/>
-                                        </ul>
                                     </Link>
                                 ))}
                             </div>)}
@@ -85,7 +83,6 @@ export default function BurgerIngredients(props) {
                                         key={ingredient._id}
                                         state={{ background: location }}
                                     >
-                                        <ul className={css.list }>
                                             <Card onClick = { () => onAdd(ingredient) }
                                                   key={ingredient._id}
                                                   image={ingredient.image}
@@ -97,7 +94,6 @@ export default function BurgerIngredients(props) {
                                                   setWindowIngredient={props.setWindowIngredient}
                                                   setWindowFinish={props.setWindowFinish}
                                                   type={ingredient.type}/>
-                                        </ul>
                                     </Link>
                                 ))}
                             </div>)}
@@ -112,7 +108,6 @@ export default function BurgerIngredients(props) {
                                         key={ingredient._id}
                                         state={{ background: location }}
                                     >
-                                        <ul className={css.list }>
                                             <Card onClick = { () => onAdd(ingredient) }
                                                   key={ingredient._id}
                                                   image={ingredient.image}
@@ -124,7 +119,6 @@ export default function BurgerIngredients(props) {
                                                   setWindowIngredient={props.setWindowIngredient}
                                                   setWindowFinish={props.setWindowFinish}
                                                   type={ingredient.type}/>
-                                        </ul>
                                     </Link>
                                 ))}
                             </div>)}
