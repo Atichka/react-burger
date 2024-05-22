@@ -4,20 +4,23 @@ import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-component
 import { Link } from "react-router-dom";
 import {logInUser} from "../../services/actions/userAction";
 import { useDispatch } from "react-redux";
+import {useForm} from "../../hooks/useForm";
 
 export function LoginPage() {
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
     const inputRef = React.useRef(null)
     const dispatch = useDispatch();
     const onIconClick = () => {
         setTimeout(() => inputRef.current.focus(), 0)
         alert('Icon Click Callback')
     }
+    const { values, handleChange } = useForm({
+        login: "",
+        password: "",
+    });
 
-    const sendData = async (e) => {
+    const sendData = (e) => {
         e.preventDefault();
-        dispatch(logInUser(email, password));
+        dispatch(logInUser(values.login, values.password));
     }
 
     return (
@@ -26,31 +29,21 @@ export function LoginPage() {
                 <h1 className={css.heading}>Вход</h1>
                 <div className={css.container}>
                     <Input
-                        type={'text'}
-                        placeholder={'E-mail'}
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
-                        name={'name'}
-                        error={false}
-                        ref={inputRef}
-                        errorText={'Ошибка'}
-                        size={'default'}
-                        extraClass="ml-1"
-                    />
+                        onChange={(e) => handleChange(e)}
+                        type="email"
+                        value={values.login}
+                        name="login"
+                        placeholder="E-mail"
+                    ></Input>
                     <Input
+                        onChange={(e) => handleChange(e)}
                         type={'text'}
-                        placeholder={'Пароль'}
-                        onChange={e => setPassword(e.target.value)}
+                        value={values.password}
+                        name="password"
                         icon={'ShowIcon'}
-                        value={password}
-                        name={'name'}
-                        error={false}
-                        ref={inputRef}
+                        placeholder="Пароль"
                         onIconClick={onIconClick}
-                        errorText={'Ошибка'}
-                        size={'default'}
-                        extraClass="ml-1"
-                    />
+                    ></Input>
                     <div className={css.box}>
                         <Button htmlType="submit" type="primary" size="large">
                             Войти

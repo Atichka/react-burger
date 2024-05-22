@@ -4,12 +4,10 @@ import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-component
 import {Link, useNavigate} from "react-router-dom";
 import {regInUser} from "../../services/actions/userAction";
 import { useDispatch } from "react-redux";
+import {useForm} from "../../hooks/useForm";
 
 export function RegisterPage() {
     const navigate = useNavigate();
-    const [email, setEmail] = React.useState('')
-    const [name, setName] = React.useState('')
-    const [password, setPassword] = React.useState('')
     const inputRef = React.useRef(null)
     const dispatch = useDispatch();
     const onIconClick = () => {
@@ -17,10 +15,16 @@ export function RegisterPage() {
         alert('Icon Click Callback')
     }
 
-    const sendData = async (e) => {
+    const { values, handleChange, setValues } = useForm({
+        login: "",
+        name: "",
+        password: "",
+    });
+
+    const sendData = (e) => {
         e.preventDefault();
         try {
-            dispatch(regInUser(email, name, password));
+            dispatch(regInUser(values.login, values.name, values.password));
             navigate("/", { replace: true });
         } catch (err) {
             console.log(err);
@@ -33,42 +37,26 @@ export function RegisterPage() {
                 <h1 className={css.heading}>Регистрация</h1>
                 <div className={css.container}>
                     <Input
-                        type={'text'}
-                        placeholder={'Имя'}
-                        onChange={e => setName(e.target.value)}
-                        value={name}
-                        name={'name'}
-                        error={false}
-                        ref={inputRef}
-                        errorText={'Ошибка'}
-                        size={'default'}
-                        extraClass="ml-1"
+                        onChange={handleChange}
+                        name="name"
+                        type="text"
+                        value={values.name}
+                        placeholder="Имя"
+                    ></Input>
+                    <Input
+                        onChange={handleChange}
+                        name="login"
+                        type="email"
+                        value={values.login}
+                        placeholder="E-mail"
                     />
                     <Input
-                        type={'text'}
-                        placeholder={'E-mail'}
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
-                        name={'name'}
-                        error={false}
-                        ref={inputRef}
-                        errorText={'Ошибка'}
-                        size={'default'}
-                        extraClass="ml-1"
-                    />
-                    <Input
-                        type={'text'}
-                        placeholder={'Пароль'}
-                        onChange={e => setPassword(e.target.value)}
-                        icon={'ShowIcon'}
-                        value={password}
-                        name={'name'}
-                        error={false}
-                        ref={inputRef}
+                        onChange={handleChange}
+                        name="password"
                         onIconClick={onIconClick}
-                        errorText={'Ошибка'}
-                        size={'default'}
-                        extraClass="ml-1"
+                        type="password"
+                        value={values.password}
+                        placeholder="Пароль"
                     />
                     <div className={css.box}>
                         <Button htmlType="submit" type="primary" size="large">
