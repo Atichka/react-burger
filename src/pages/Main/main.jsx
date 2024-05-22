@@ -14,7 +14,6 @@ export function MainPage(props) {
     const onDropHandler = (item) => {
         const newItem = {...item};
         delete newItem.onClick;
-        delete newItem.setModal;
         delete newItem.setWindowIngredient;
         delete newItem.setWindowFinish;
         delete newItem.setIngredient;
@@ -25,11 +24,10 @@ export function MainPage(props) {
             <h1 className={css.title}>Соберите бургер</h1>
             <div className={css.box}>
                 <DndProvider backend={HTML5Backend}>
-                    <BurgerIngredients setModal={props.setModal}
+                    <BurgerIngredients
                                        setWindowIngredient={props.setWindowIngredient}
                                        setWindowFinish={props.setWindowFinish} />
                     <BurgerConstructor onDropHandler={onDropHandler}
-                                       setModal={props.setModal}
                                        setWindowFinish={props.setWindowFinish}/>
                 </DndProvider>
             </div>

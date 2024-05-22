@@ -22,7 +22,6 @@ import {checkUserAuth} from "./services/actions/userAction";
 export const ingredients = state => state.ingredients;
 
 export default function App() {
-    const [isModal, setModal] = useState(false)
     const [windowIngredient, setWindowIngredient] = useState(false)
     const [windowFinish, setWindowFinish] = useState(false)
     const location = useLocation();
@@ -55,7 +54,6 @@ export default function App() {
                             <Routes location={background || location}>
                                 <Route path="/login" element={<OnlyUnAuth component={<LoginPage />} />} />
                                 <Route path="/" element={(<MainPage
-                                    setModal={setModal}
                                     setWindowIngredient={setWindowIngredient}
                                     setWindowFinish={setWindowFinish} />)} />
                                 <Route path="/register" element={<OnlyUnAuth component={<RegisterPage />} />} />
@@ -74,7 +72,6 @@ export default function App() {
                                     <Route
                                         path="/ingredients/:id"
                                         element={<Modal
-                                                setModal={setModal}
                                                 onClose={onClose}
                                                 title='Детали ингредиента'>
                                                 <IngredientDetails />
@@ -83,8 +80,8 @@ export default function App() {
                                 </Routes>
                             )}
                         </main>
-                        {isModal && windowFinish &&
-                            (<Modal setModal={setModal} onClose={onClose}>
+                        {windowFinish &&
+                            (<Modal onClose={onClose}>
                                 <OrderDetails />
                             </Modal>)
                         }

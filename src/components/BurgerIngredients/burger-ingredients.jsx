@@ -29,7 +29,6 @@ export default function BurgerIngredients(props) {
     }
 
     const onAdd = (item) => {
-        props.setModal(true);
         props.setWindowIngredient(true);
         props.setWindowFinish(false);
     }
@@ -64,7 +63,7 @@ export default function BurgerIngredients(props) {
                                                   price={ingredient.price}
                                                   name={ingredient.name}
                                                   id={ingredient._id}
-                                                  setModal={props.setModal}
+
                                                   setIngredient={props.setIngredient}
                                                   setWindowIngredient={props.setWindowIngredient}
                                                   setWindowFinish={props.setWindowFinish}
@@ -89,7 +88,7 @@ export default function BurgerIngredients(props) {
                                                   price={ingredient.price}
                                                   name={ingredient.name}
                                                   id={ingredient._id}
-                                                  setModal={props.setModal}
+
                                                   setIngredient={props.setIngredient}
                                                   setWindowIngredient={props.setWindowIngredient}
                                                   setWindowFinish={props.setWindowFinish}
@@ -114,7 +113,7 @@ export default function BurgerIngredients(props) {
                                                   price={ingredient.price}
                                                   name={ingredient.name}
                                                   id={ingredient._id}
-                                                  setModal={props.setModal}
+
                                                   setIngredient={props.setIngredient}
                                                   setWindowIngredient={props.setWindowIngredient}
                                                   setWindowFinish={props.setWindowFinish}

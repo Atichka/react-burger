@@ -17,7 +17,6 @@ export default function OrderDetails(props) {
     const stuffings = useSelector(getStuffings);
     const bun = useSelector(getBun);
     const isLoading = useSelector(getLoading);
-    console.log('isLoading', isLoading);
 
     useEffect(() => {
         const ingredientsId = [bun, ...stuffings, bun].map(item => item.id);

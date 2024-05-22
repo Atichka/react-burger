@@ -47,7 +47,6 @@ export default function BurgerConstructor(props) {
             navigate('/login', { state: {from: location}});
             return
         }
-        props.setModal(true)
         props.setWindowFinish(true)
     }
 
@@ -109,7 +108,6 @@ BurgerConstructor.propTypes = {
     text: PropTypes.string,
     price: PropTypes.number,
     isLocked: PropTypes.bool,
-    setModal: PropTypes.func,
     setIngredient: PropTypes.func,
     setWindowIngredient: PropTypes.func,
     key: PropTypes.number

@@ -79,7 +79,6 @@ export default function ConstructorItem(props) {
 }
 
 ConstructorItem.propTypes = {
-    setModal: PropTypes.func,
     setIngredient: PropTypes.func,
     setWindowIngredient: PropTypes.func,
     setWindowFinish: PropTypes.func,
