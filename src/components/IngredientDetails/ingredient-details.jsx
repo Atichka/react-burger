@@ -37,11 +37,3 @@ export default function IngredientDetails(props) {
     );
 }
 
-IngredientDetails.propTypes = {
-    name: PropTypes.string,
-    calories: PropTypes.number,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number
-};
-
