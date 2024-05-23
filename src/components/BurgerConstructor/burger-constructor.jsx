@@ -47,6 +47,7 @@ export default function BurgerConstructor(props) {
             navigate('/login', { state: {from: location}});
             return
         }
+        props.setModal(true)
         props.setWindowFinish(true)
     }
 
