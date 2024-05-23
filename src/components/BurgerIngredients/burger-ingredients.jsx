@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import css from './burger-ingredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -6,27 +6,35 @@ import Card from '../../components/Card/card'
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 import {Link, useLocation} from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 export const getIngredients = state => state.ingredients;
 
 export default function BurgerIngredients(props) {
     const location = useLocation();
     const data = useSelector(getIngredients);
+    const [current, setCurrent] = React.useState("Булки");
 
-    const bunsRef = useRef(null);
-    const saucesRef = useRef(null);
-    const mainsRef = useRef(null);
+    const setTab = (tab) => {
+        console.log('tab', tab);
+        setCurrent(tab);
+        const element = document.getElementById(tab);
+        if (element) element.scrollIntoView({ behavior: "smooth" });
+    };
 
-    function handleScrollToBuns() {
-        bunsRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    const [bunsRef, bunsInView] = useInView({ threshold: 0.3 });
+    const [saucesRef, sausesInView] = useInView({ threshold: 0.3 });
+    const [mainsRef, mainInView] = useInView({ threshold: 0.3 });
 
-    function handleScrollToSauces() {
-        saucesRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-    function handleScrollToMains() {
-        mainsRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    useEffect(() => {
+        if (bunsInView) {
+            setCurrent("Булки");
+        } else if (sausesInView) {
+            setCurrent("Соусы");
+        } else if (mainInView) {
+            setCurrent("Начинки");
+        }
+    }, [bunsInView, sausesInView, mainInView]);
 
     const onAdd = (item) => {
         props.setModal(true);
@@ -37,19 +45,19 @@ export default function BurgerIngredients(props) {
         return (
                 <div className={css.container}>
                     <div className={css.tabs}>
-                        <Tab value="buns" onClick={handleScrollToBuns}>
+                        <Tab value="buns" active={current === "Булки"} onClick={setTab}>
                             Булки
                         </Tab>
-                        <Tab value="sauces" onClick={handleScrollToSauces}>
+                        <Tab value="sauces" active={current === "Соусы"} onClick={setTab}>
                             Соусы
                         </Tab>
-                        <Tab value="mains" onClick={handleScrollToMains}>
+                        <Tab value="mains" active={current === "Начинки"} onClick={setTab}>
                             Начинки
                         </Tab>
                     </div>
                     <div className={css.content}>
                         <div>
-                            <h2 ref={bunsRef} className={css.text}>Булки</h2>
+                            <h2 id="buns" ref={bunsRef} className={css.text}>Булки</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "bun").map(ingredient => (
                                     <Link
@@ -74,7 +82,7 @@ export default function BurgerIngredients(props) {
                             </div>)}
                         </div>
                         <div>
-                            <h2 ref={saucesRef} className={css.text}>Соусы</h2>
+                            <h2 id="sauces" ref={saucesRef} className={css.text}>Соусы</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "sauce").map(ingredient => (
                                     <Link
@@ -99,7 +107,7 @@ export default function BurgerIngredients(props) {
                             </div>)}
                         </div>
                         <div>
-                            <h2 ref={mainsRef} className={css.text}>Начинки</h2>
+                            <h2 id="mains" ref={mainsRef} className={css.text}>Начинки</h2>
                             {!data.isLoading && (<div className={css.cards}>
                                 {data.ingredients.filter(ingredient => ingredient.type === "main").map(ingredient => (
                                     <Link
