@@ -29,14 +29,14 @@ export function LoginPage() {
                 <h1 className={css.heading}>Вход</h1>
                 <div className={css.container}>
                     <Input
-                        onChange={(e) => handleChange(e)}
+                        onChange={handleChange}
                         type="email"
                         value={values.login}
                         name="login"
                         placeholder="E-mail"
                     ></Input>
                     <Input
-                        onChange={(e) => handleChange(e)}
+                        onChange={handleChange}
                         type={'text'}
                         value={values.password}
                         name="password"
