@@ -16,25 +16,24 @@ export default function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState("Булки");
 
     const setTab = (tab) => {
-        console.log('tab', tab);
         setCurrent(tab);
         const element = document.getElementById(tab);
         if (element) element.scrollIntoView({ behavior: "smooth" });
     };
 
     const [bunsRef, bunsInView] = useInView({ threshold: 0.3 });
-    const [saucesRef, sausesInView] = useInView({ threshold: 0.3 });
+    const [saucesRef, saucesInView] = useInView({ threshold: 0.3 });
     const [mainsRef, mainInView] = useInView({ threshold: 0.3 });
 
     useEffect(() => {
         if (bunsInView) {
             setCurrent("Булки");
-        } else if (sausesInView) {
+        } else if (saucesInView) {
             setCurrent("Соусы");
         } else if (mainInView) {
             setCurrent("Начинки");
         }
-    }, [bunsInView, sausesInView, mainInView]);
+    }, [bunsInView, saucesInView, mainInView]);
 
     const onAdd = (item) => {
         props.setModal(true);
@@ -64,6 +63,7 @@ export default function BurgerIngredients(props) {
                                         to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
+                                        setModal={props.setModal}
                                         state={{ background: location }}
                                     >
                                             <Card onClick = { () => onAdd(ingredient) }
@@ -89,6 +89,7 @@ export default function BurgerIngredients(props) {
                                         to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
+                                        setModal={props.setModal}
                                         state={{ background: location }}
                                     >
                                             <Card onClick = { () => onAdd(ingredient) }
@@ -114,6 +115,7 @@ export default function BurgerIngredients(props) {
                                         to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
+                                        setModal={props.setModal}
                                         state={{ background: location }}
                                     >
                                             <Card onClick = { () => onAdd(ingredient) }
@@ -122,7 +124,7 @@ export default function BurgerIngredients(props) {
                                                   price={ingredient.price}
                                                   name={ingredient.name}
                                                   id={ingredient._id}
-
+                                                  setModal={props.setModal}
                                                   setIngredient={props.setIngredient}
                                                   setWindowIngredient={props.setWindowIngredient}
                                                   setWindowFinish={props.setWindowFinish}

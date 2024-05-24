@@ -74,9 +74,10 @@ export default function App() {
                                     <Route
                                         path="/ingredients/:id"
                                         element={<Modal
+                                                setModal={setModal}
                                                 onClose={onClose}
                                                 title='Детали ингредиента'>
-                                                <IngredientDetails />
+                                                <IngredientDetails setModal={setModal}/>
                                             </Modal>
                                         }></Route>
                                 </Routes>
@@ -84,7 +85,7 @@ export default function App() {
                         </main>
                         {isModal && windowFinish &&
                             (<Modal onClose={() => setModal(false)}>
-                                <OrderDetails />
+                                <OrderDetails setModal={setModal}/>
                             </Modal>)
                         }
                     </>

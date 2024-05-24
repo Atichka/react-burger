@@ -109,6 +109,7 @@ BurgerConstructor.propTypes = {
     text: PropTypes.string,
     price: PropTypes.number,
     isLocked: PropTypes.bool,
+    setModal: PropTypes.func,
     setIngredient: PropTypes.func,
     setWindowIngredient: PropTypes.func,
     key: PropTypes.number

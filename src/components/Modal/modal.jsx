@@ -6,18 +6,18 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import ReactDOM from "react-dom";
 
-export default function Modal({onClose, children, title}) {
+export default function Modal({onClose, setModal, children, title}) {
     const onDel = () => {
         onClose();
+        setModal(false);
     }
 
     const modalRoot = document.querySelector('#modal')
 
     const closeEsc = useCallback((e) => {
-        if(e.key === "Escape") {
-            onClose();
-        }
-    }, []);
+        e.key === "Escape" && setModal(false)
+        onClose();
+    }, [setModal]);
 
     useEffect(() => {
         document.addEventListener('keydown', closeEsc);
@@ -35,7 +35,9 @@ export default function Modal({onClose, children, title}) {
                 </div>
             </div>
 
-            <ModalOverlay />
+            <ModalOverlay setModal={() => {
+                setModal(false)
+            }}/>
             {children}
         </div>,
             modalRoot
@@ -44,6 +46,7 @@ export default function Modal({onClose, children, title}) {
 }
 
 Modal.propTypes = {
+    setModal: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired
 };
 
