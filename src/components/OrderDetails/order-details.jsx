@@ -48,7 +48,3 @@ export default function OrderDetails(props) {
     );
 }
 
-OrderDetails.propTypes = {
-    orderNumber: PropTypes.number
-};
-

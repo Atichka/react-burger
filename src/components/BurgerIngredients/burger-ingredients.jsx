@@ -63,7 +63,6 @@ export default function BurgerIngredients(props) {
                                         to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
-                                        setModal={props.setModal}
                                         state={{ background: location }}
                                     >
                                             <Card onClick = { () => onAdd(ingredient) }
@@ -89,7 +88,6 @@ export default function BurgerIngredients(props) {
                                         to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
-                                        setModal={props.setModal}
                                         state={{ background: location }}
                                     >
                                             <Card onClick = { () => onAdd(ingredient) }
@@ -115,7 +113,6 @@ export default function BurgerIngredients(props) {
                                         to={`/ingredients/${ingredient._id}`}
                                         className={css.link}
                                         key={ingredient._id}
-                                        setModal={props.setModal}
                                         state={{ background: location }}
                                     >
                                             <Card onClick = { () => onAdd(ingredient) }
