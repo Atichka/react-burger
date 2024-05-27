@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDrag, useDrop} from 'react-dnd';
-import css from './constructorItem.module.css'
+import css from './constructor-item.module.css'
 
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
@@ -52,12 +52,17 @@ export default function ConstructorItem(props) {
             <div>
                 {props.type === "top" || props.type === "bottom" ? (
                     <div className={css.item}>
-                        {!props.isLocked &&
-                            <DragIcon type="primary" />}
-                            <ConstructorElement isLocked={true}
-                                                text={props.text}
-                                                price={props.price}
-                                                thumbnail={props.image}/>
+                            <div />
+                        {props.type === "top" && (<ConstructorElement isLocked={true}
+                                             text={props.text}
+                                             price={props.price}
+                                             thumbnail={props.image}
+                                             type="top" />)}
+                        {props.type === "bottom" && (<ConstructorElement isLocked={true}
+                                                                      text={props.text}
+                                                                      price={props.price}
+                                                                      thumbnail={props.image}
+                                                                      type="bottom" />)}
                     </div>) : (
                         <div ref={ref} className={css.item} style={{opacity}}>
                             {!props.isLocked &&
@@ -74,7 +79,6 @@ export default function ConstructorItem(props) {
 }
 
 ConstructorItem.propTypes = {
-    setModal: PropTypes.func,
     setIngredient: PropTypes.func,
     setWindowIngredient: PropTypes.func,
     setWindowFinish: PropTypes.func,

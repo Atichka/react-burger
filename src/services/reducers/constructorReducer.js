@@ -3,7 +3,6 @@ import {INGREDIENT_ADD, INGREDIENT_DELETE, UPDATE_INGREDIENTS} from "../actions/
 
 const initialState = {
     ingredients: [],
-    addedIngredients: [],
     stuffings: [],
     bun: null,
     isLoading: false,
