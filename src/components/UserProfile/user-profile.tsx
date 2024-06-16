@@ -3,8 +3,9 @@ import css from './user-profile.module.css';
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 import {useDispatch, useSelector} from "react-redux";
 import {setUserData} from "../../services/actions/userAction";
+import {RootState} from "../../App";
 
-export const getUser = state => state.userData.user;
+export const getUser = (state: RootState) => state.userData.user;
 
 export const UserProfile = () => {
     const dispatch = useDispatch();
@@ -14,21 +15,20 @@ export const UserProfile = () => {
     const [email, setEmail] = React.useState(data.email)
     const [password, setPassword] = React.useState('')
     const inputRef = React.useRef(null)
-    const onIconClick = () => {
-        setTimeout(() => inputRef.current.focus(), 0)
-        alert('Icon Click Callback')
-    }
     const onClickReset = () => {
         setName(data.name);
         setEmail(data.email);
         setPassword('');
     };
     const onClickSave = () => {
+        // @ts-ignore
         dispatch(setUserData(email, name, password));
     }
     return (
             <div className={css.container}>
                 <Input
+                    onPointerEnterCapture={((event: PointerEvent): void => {})}
+                    onPointerLeaveCapture={((event: PointerEvent): void => {})}
                     type={'text'}
                     placeholder={'Имя'}
                     onChange={e => setName(e.target.value)}
@@ -37,12 +37,13 @@ export const UserProfile = () => {
                     name={'name'}
                     error={false}
                     ref={inputRef}
-                    onIconClick={onIconClick}
                     errorText={'Ошибка'}
                     size={'default'}
                     extraClass="ml-1"
                 />
                 <Input
+                    onPointerEnterCapture={((event: PointerEvent): void => {})}
+                    onPointerLeaveCapture={((event: PointerEvent): void => {})}
                     type={'text'}
                     placeholder={'E-mail'}
                     onChange={e => setEmail(e.target.value)}
@@ -56,6 +57,8 @@ export const UserProfile = () => {
                     extraClass="ml-1"
                 />
                 <Input
+                    onPointerEnterCapture={((event: PointerEvent): void => {})}
+                    onPointerLeaveCapture={((event: PointerEvent): void => {})}
                     type={'text'}
                     placeholder={'Введите новый пароль'}
                     onChange={e => setPassword(e.target.value)}
@@ -64,7 +67,6 @@ export const UserProfile = () => {
                     name={'name'}
                     error={false}
                     ref={inputRef}
-                    onIconClick={onIconClick}
                     errorText={'Ошибка'}
                     size={'default'}
                     extraClass="ml-1"

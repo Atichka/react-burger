@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {DndProvider, useDrop} from 'react-dnd';
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -9,19 +8,27 @@ import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-comp
 import {useDispatch, useSelector} from "react-redux";
 import {INGREDIENT_DELETE, updateIngredients} from "../../services/actions/constructorAction";
 import {useLocation, useNavigate} from "react-router-dom";
+import {RootState} from "../../App";
+import {TIngredient} from '../../utils/types';
 
-export const getStuffings = state => state.currBurger.stuffings;
-export const getBun = state => state.currBurger.bun;
-export const getUser = state => state.userData.user;
+export const getStuffings = (state: RootState) => state.currBurger.stuffings;
+export const getBun = (state: RootState) => state.currBurger.bun;
+export const getUser = (state: RootState) => state.userData.user;
+export type TBurgerConstructor = {
+    onDropHandler: (item: TIngredient) => void;
+    isModal: boolean;
+    uuid?: string;
+    nanoid?: string;
+}
 
-export default function BurgerConstructor(props) {
+export default function BurgerConstructor(props: TBurgerConstructor): React.JSX.Element {
     const dispatch = useDispatch();
     const stuffings = useSelector(getStuffings);
     const navigate = useNavigate();
     const location = useLocation();
     const user = useSelector(getUser);
 
-    const moveCard = (dragIndex, hoverIndex) => {
+    const moveCard = (dragIndex: number, hoverIndex: number) => {
         const dragCard = stuffings[dragIndex];
         const newIngredients = [...stuffings];
         newIngredients.splice(dragIndex, 1);
@@ -32,12 +39,12 @@ export default function BurgerConstructor(props) {
     const bun = useSelector(getBun);
     const [, dropRef] = useDrop({
         accept: "ingredient",
-        drop(item) {
+        drop(item: TIngredient) {
             props.onDropHandler(item);
         }
     });
 
-    const deleteIngredient = (id) => {
+    const deleteIngredient = (id: string) => {
         dispatch({ type: INGREDIENT_DELETE, payload: id })
     }
     let totalPrice = 0;
@@ -47,8 +54,7 @@ export default function BurgerConstructor(props) {
             navigate('/login', { state: {from: location}});
             return
         }
-        props.setModal(true)
-        props.setWindowFinish(true)
+        props.isModal = true;
     }
 
         return (
@@ -61,20 +67,21 @@ export default function BurgerConstructor(props) {
                                          text={bun.name + " (верх)"}
                                          price={bun.price}
                                          type={'top'}
-                                         id={bun.id}/>
+                                         id={bun.id} isLocked/>
                     )}
                     <DndProvider backend={HTML5Backend}>
-                        {stuffings && (stuffings.map((item, index) => (
-                            totalPrice += item.price,
+                        {stuffings && (stuffings.map((item: TIngredient, index: number) => (
+                            item.nanoid ? (
+                                totalPrice += item.price,
                             <ConstructorItem key={item.nanoid}
-                                             index={index}
-                                             image={item.image}
-                                             text={item.name}
-                                             price={item.price}
-                                             type={item.type}
-                                             id={item.nanoid}
-                                             moveCard={moveCard}
-                                             deleteIngredient={deleteIngredient}/>
+                                index={index}
+                                image={item.image}
+                                text={item.name}
+                                price={item.price}
+                                type={item.type}
+                                id={item.nanoid}
+                                moveCard={moveCard}
+                                deleteIngredient={deleteIngredient} isLocked/>): <></>
                         )))}
                     </DndProvider>
                     {bun && (
@@ -104,13 +111,3 @@ export default function BurgerConstructor(props) {
             </div>
         );
 }
-
-BurgerConstructor.propTypes = {
-    text: PropTypes.string,
-    price: PropTypes.number,
-    isLocked: PropTypes.bool,
-    setModal: PropTypes.func,
-    setIngredient: PropTypes.func,
-    setWindowIngredient: PropTypes.func,
-    key: PropTypes.number
-};

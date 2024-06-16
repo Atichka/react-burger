@@ -1,25 +1,26 @@
 import React from 'react';
 import css from './login.module.css';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from "react-router-dom";
 import {logInUser} from "../../services/actions/userAction";
 import { useDispatch } from "react-redux";
 import {useForm} from "../../hooks/useForm";
 
-export function LoginPage() {
-    const inputRef = React.useRef(null)
+type LoginFormData = {
+    login: string;
+    password: string;
+}
+
+export function LoginPage(): React.JSX.Element {
     const dispatch = useDispatch();
-    const onIconClick = () => {
-        setTimeout(() => inputRef.current.focus(), 0)
-        alert('Icon Click Callback')
-    }
-    const { values, handleChange } = useForm({
+    const { values, handleChange } = useForm<LoginFormData>({
         login: "",
         password: "",
     });
 
-    const sendData = (e) => {
+    const sendData = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        // @ts-ignore
         dispatch(logInUser(values.login, values.password));
     }
 
@@ -28,22 +29,16 @@ export function LoginPage() {
             <form id="formlogin" className="form" name="formlogin" onSubmit={sendData}>
                 <h1 className={css.heading}>Вход</h1>
                 <div className={css.container}>
-                    <Input
+                    <EmailInput
                         onChange={handleChange}
-                        type="email"
                         value={values.login}
                         name="login"
-                        placeholder="E-mail"
-                    ></Input>
-                    <Input
+                    ></EmailInput>
+                    <PasswordInput
                         onChange={handleChange}
-                        type={'text'}
                         value={values.password}
                         name="password"
-                        icon={'ShowIcon'}
-                        placeholder="Пароль"
-                        onIconClick={onIconClick}
-                    ></Input>
+                    ></PasswordInput>
                     <div className={css.box}>
                         <Button htmlType="submit" type="primary" size="large">
                             Войти

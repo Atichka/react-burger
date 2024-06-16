@@ -3,16 +3,16 @@ import React, {useEffect} from 'react';
 import css from './order-details.module.css';
 
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {sendOrder} from "../../services/actions/orderAction";
 import ReactLoading from "react-loading";
+import {RootState} from "../../App";
 
-export const getStuffings = state => state.currBurger.stuffings;
-export const getBun = state => state.currBurger.bun;
-export const getLoading = state => state.order.isLoading;
+export const getStuffings = (state: RootState) => state.currBurger.stuffings;
+export const getBun = (state: RootState) => state.currBurger.bun;
+export const getLoading = (state: RootState) => state.order.isLoading;
 
-export default function OrderDetails(props) {
+export default function OrderDetails(): React.JSX.Element {
     const dispatch = useDispatch();
     const stuffings = useSelector(getStuffings);
     const bun = useSelector(getBun);
@@ -20,8 +20,10 @@ export default function OrderDetails(props) {
 
     useEffect(() => {
         const ingredientsId = [bun, ...stuffings, bun].map(item => item.id);
+        // @ts-ignore
         dispatch(sendOrder(ingredientsId));
     }, []);
+    // @ts-ignore
     const {orderNumber} = useSelector(store => ({orderNumber: store.order.order}), shallowEqual);
     return (
         <div>

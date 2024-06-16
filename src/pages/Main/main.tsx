@@ -7,17 +7,18 @@ import css from './main.module.css';
 import React from "react";
 import {addToConstructor} from "../../services/actions/constructorAction";
 import {useDispatch} from "react-redux";
+import {TIngredient} from "../../utils/types";
 
-export function MainPage(props) {
+type TMain = {
+    isModal: boolean;
+}
+
+export function MainPage(props: TMain): React.JSX.Element {
     const dispatch = useDispatch();
 
-    const onDropHandler = (item) => {
+    const onDropHandler = (item: TIngredient) => {
         const newItem = {...item};
         delete newItem.onClick;
-        delete newItem.setModal;
-        delete newItem.setWindowIngredient;
-        delete newItem.setWindowFinish;
-        delete newItem.setIngredient;
         dispatch(addToConstructor(newItem));
     }
     return (
@@ -25,12 +26,8 @@ export function MainPage(props) {
             <h1 className={css.title}>Соберите бургер</h1>
             <div className={css.box}>
                 <DndProvider backend={HTML5Backend}>
-                    <BurgerIngredients setModal={props.setModal}
-                                       setWindowIngredient={props.setWindowIngredient}
-                                       setWindowFinish={props.setWindowFinish} />
-                    <BurgerConstructor onDropHandler={onDropHandler}
-                                       setModal={props.setModal}
-                                       setWindowFinish={props.setWindowFinish}/>
+                    <BurgerIngredients />
+                    <BurgerConstructor onDropHandler={onDropHandler} isModal={props.isModal} />
                 </DndProvider>
             </div>
         </div>

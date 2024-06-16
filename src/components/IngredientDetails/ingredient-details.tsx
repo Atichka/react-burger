@@ -1,14 +1,14 @@
 import React from 'react';
 
 import css from './ingredient-details.module.css'
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
+import {RootState} from "../../App";
 
-export default function IngredientDetails(props) {
+export default function IngredientDetails(): React.JSX.Element {
     const { id } = useParams();
-    const data = useSelector((store) => store.ingredients.ingredients);
-    const ingredient = data.find((item) => item._id === id);
+    const data = useSelector((store: RootState) => store.ingredients.ingredients);
+    const ingredient = data.find((item: { _id: string | undefined; }) => item._id === id);
     return (
         <div className={css.container}>
             {ingredient && (<img src={ingredient.image} alt="Картинка ингредиента" className={css.pic} />)}

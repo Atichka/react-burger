@@ -3,26 +3,47 @@ import {useDrag, useDrop} from 'react-dnd';
 import css from './constructor-item.module.css'
 
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from "prop-types";
 import {useRef} from "react";
 
-export default function ConstructorItem(props) {
+type TConstructorItem = {
+    id: string;
+    moveCard?: (dragIndex: number, hoverIndex: number) => void;
+    index?: number;
+    type: string;
+    text: string;
+    price: number;
+    image: string;
+    isLocked: boolean;
+    deleteIngredient?: (id: string) => void;
+}
+
+export default function ConstructorItem(props: TConstructorItem): React.JSX.Element {
     const id = props.id;
     const moveCard = props.moveCard;
     const index = props.index;
-    const ref = useRef(null);
+    const ref = useRef<HTMLInputElement>(null);
     const [, drop] = useDrop({
         accept: 'card',
-        hover: (item, monitor) => {
+        hover: (item: any, monitor) => {
             const dragIndex = item.index;
             const hoverIndex = index;
             if (dragIndex === hoverIndex) {
                 return;
             }
             const hoverBoundingRect = ref.current?.getBoundingClientRect();
+            if (!hoverBoundingRect) {
+                return;
+            }
             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
             const clientOffset = monitor.getClientOffset();
+            if (!clientOffset) {
+                return;
+            }
             const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+            if(!hoverIndex) {
+                return;
+            }
 
             if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
                 return;
@@ -31,7 +52,9 @@ export default function ConstructorItem(props) {
                 return;
             }
 
-            moveCard(dragIndex, hoverIndex);
+            if (moveCard) {
+                moveCard(dragIndex, hoverIndex);
+            }
             item.index = hoverIndex;
         }
     });
@@ -65,25 +88,17 @@ export default function ConstructorItem(props) {
                                                                       type="bottom" />)}
                     </div>) : (
                         <div ref={ref} className={css.item} style={{opacity}}>
+                            <div />
                             {!props.isLocked &&
                                 <DragIcon type="primary" />}
                                 <ConstructorElement text={props.text}
                                                     price={props.price}
                                                     thumbnail={props.image}
                                                     handleClose={() =>
-                                                        props.deleteIngredient(props.id)}/>
+                                                        props.deleteIngredient && props.deleteIngredient(props.id)}/>
                         </div>
                     )}
             </div>
         );
 }
-
-ConstructorItem.propTypes = {
-    setIngredient: PropTypes.func,
-    setWindowIngredient: PropTypes.func,
-    setWindowFinish: PropTypes.func,
-    isLocked: PropTypes.bool,
-    text: PropTypes.string,
-    price: PropTypes.number
-};
 
