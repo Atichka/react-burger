@@ -1,29 +1,31 @@
 import React from 'react';
 import css from './register.module.css';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import {Input, Button, EmailInput, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Link, useNavigate} from "react-router-dom";
 import {regInUser} from "../../services/actions/userAction";
 import { useDispatch } from "react-redux";
 import {useForm} from "../../hooks/useForm";
 
-export function RegisterPage() {
-    const navigate = useNavigate();
-    const inputRef = React.useRef(null)
-    const dispatch = useDispatch();
-    const onIconClick = () => {
-        setTimeout(() => inputRef.current.focus(), 0)
-        alert('Icon Click Callback')
-    }
+type RegisterFormData = {
+    login: string;
+    name: string;
+    password: string;
+}
 
-    const { values, handleChange, setValues } = useForm({
+export function RegisterPage(): React.JSX.Element {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { values, handleChange } = useForm<RegisterFormData>({
         login: "",
         name: "",
         password: "",
     });
 
-    const sendData = (e) => {
+    const sendData = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
+            // @ts-ignore
             dispatch(regInUser(values.login, values.name, values.password));
             navigate("/", { replace: true });
         } catch (err) {
@@ -37,27 +39,25 @@ export function RegisterPage() {
                 <h1 className={css.heading}>Регистрация</h1>
                 <div className={css.container}>
                     <Input
+                        onPointerEnterCapture={((event: PointerEvent): void => {})}
+                        onPointerLeaveCapture={((event: PointerEvent): void => {})}
+                        placeholder={"Имя"}
                         onChange={handleChange}
-                        name="name"
-                        type="text"
+                        type={"text"}
                         value={values.name}
-                        placeholder="Имя"
-                    ></Input>
-                    <Input
+                        name={"name"}
+                        size={"default"}
+                    />
+                    <EmailInput
                         onChange={handleChange}
-                        name="login"
-                        type="email"
                         value={values.login}
-                        placeholder="E-mail"
-                    />
-                    <Input
+                        name="login"
+                    ></EmailInput>
+                    <PasswordInput
                         onChange={handleChange}
-                        name="password"
-                        onIconClick={onIconClick}
-                        type="password"
                         value={values.password}
-                        placeholder="Пароль"
-                    />
+                        name="password"
+                    ></PasswordInput>
                     <div className={css.box}>
                         <Button htmlType="submit" type="primary" size="large">
                             Зарегистрироваться

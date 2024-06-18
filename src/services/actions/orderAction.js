@@ -1,11 +1,15 @@
 import {BASE_URL} from "../../const";
-import {request} from "../../utils/functions";
-import {checkResponse, fetchWithRefresh} from "../../utils/api";
+import {fetchWithRefresh} from "../../utils/api";
 const url = BASE_URL;
 
 export const SEND_ORDER_REQUEST = 'SEND_ORDER_REQUEST';
 export const SEND_ORDER_SUCCESS = 'SEND_ORDER_SUCCESS';
 export const SEND_ORDER_FAILED = 'SEND_ORDER_FAILED';
+export const RESET_ORDER = 'RESET_ORDER';
+
+export const resetOrder = () => ({
+    type: RESET_ORDER
+});
 
 export const sendOrder = (ingredients) => (dispatch) => {
     dispatch({ type: SEND_ORDER_REQUEST });

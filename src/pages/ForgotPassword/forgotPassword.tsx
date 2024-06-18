@@ -1,26 +1,25 @@
 import React from 'react';
 import css from './forgotPassword.module.css';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import {Button, EmailInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, useNavigate } from "react-router-dom";
 import { apiForgotPassword } from "../../utils/api";
 import {useForm} from "../../hooks/useForm";
 
-export function ForgotPasswordPage() {
-    const navigate = useNavigate();
-    const inputRef = React.useRef(null)
-    const onIconClick = () => {
-        setTimeout(() => inputRef.current.focus(), 0)
-        alert('Icon Click Callback')
-    }
+type ForgotPasswordFormData = {
+    login: string;
+}
 
-    const { values, handleChange } = useForm({
-        email: "",
+export function ForgotPasswordPage(): React.JSX.Element {
+    const navigate = useNavigate();
+
+    const { values, handleChange } = useForm<ForgotPasswordFormData>({
+        login: "",
     });
 
-    const sendData = async (e) => {
+    const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await apiForgotPassword(values.email);
+            await apiForgotPassword(values.login);
             navigate("/reset-password", { replace: true });
         } catch (err) {
             console.log(err);
@@ -31,14 +30,11 @@ export function ForgotPasswordPage() {
             <form id="formforgotpassword" className="form" name="formforgotpassword" onSubmit={sendData}>
                 <h1 className={css.heading}>Восстановление пароля</h1>
                 <div className={css.container}>
-                    <Input
-                        placeholder={'E-mail'}
+                    <EmailInput
                         onChange={handleChange}
-                        type="email"
-                        onIconClick={onIconClick}
-                        value={values.email}
-                        name="email"
-                    />
+                        value={values.login}
+                        name="login"
+                    ></EmailInput>
                     <div className={css.box}>
                         <Button htmlType="submit" type="primary" size="large">
                             Восстановить

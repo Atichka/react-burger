@@ -4,7 +4,7 @@ import css from './app-header.module.css';
 
 import { BurgerIcon, ListIcon, ProfileIcon, Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 
-export default function AppHeader() {
+export default function AppHeader(): React.JSX.Element {
         return (
             <header className={css.header}>
                 <div className={css.container}>

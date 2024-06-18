@@ -18,13 +18,14 @@ import {getIngredients} from "./services/actions/ingredientsAction";
 import {useDispatch, useSelector} from "react-redux";
 import { OnlyAuth, OnlyUnAuth } from "./components/ProtectedRoute/protected-route";
 import {checkUserAuth} from "./services/actions/userAction";
+import { combineReducers } from '@reduxjs/toolkit'
+const rootReducer = combineReducers({})
+export type RootState = ReturnType<typeof rootReducer>
 
-export const ingredients = state => state.ingredients;
+export const ingredients = (state: RootState) => state.ingredients;
 
-export default function App() {
+export default function App(): React.JSX.Element {
     const [isModal, setModal] = useState(false)
-    const [windowIngredient, setWindowIngredient] = useState(false)
-    const [windowFinish, setWindowFinish] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state?.background;
@@ -33,10 +34,12 @@ export default function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        // @ts-ignore
         dispatch(getIngredients())
     }, [dispatch]);
 
     useEffect(() => {
+        // @ts-ignore
         dispatch(checkUserAuth());
     }, []);
 
@@ -46,7 +49,6 @@ export default function App() {
 
     return (
         <div className="App">
-
             <>
                 <AppHeader />
                 {!data.isLoading && data.ingredients.length > 0 ? (
@@ -54,10 +56,7 @@ export default function App() {
                         <main className={css.block}>
                             <Routes location={background || location}>
                                 <Route path="/login" element={<OnlyUnAuth component={<LoginPage />} />} />
-                                <Route path="/" element={(<MainPage
-                                    setModal={setModal}
-                                    setWindowIngredient={setWindowIngredient}
-                                    setWindowFinish={setWindowFinish} />)} />
+                                <Route path="/" element={(<MainPage />)} />
                                 <Route path="/register" element={<OnlyUnAuth component={<RegisterPage />} />} />
                                 <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPasswordPage />}/>} />
                                 <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPasswordPage />} />
@@ -76,15 +75,15 @@ export default function App() {
                                         element={<Modal
                                             onClose={onClose}
                                             title='Детали ингредиента'>
-                                            <IngredientDetails setModal={setModal}/>
+                                            <IngredientDetails />
                                         </Modal>
                                         }></Route>
                                 </Routes>
                             )}
                         </main>
-                        {isModal && windowFinish &&
+                        {isModal &&
                             (<Modal onClose={() => setModal(false)}>
-                                <OrderDetails setModal={setModal}/>
+                                <OrderDetails />
                             </Modal>)
                         }
                     </>

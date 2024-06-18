@@ -4,10 +4,16 @@ import { NavLink, useLocation, Outlet } from "react-router-dom";
 import { logOutUser } from '../../services/actions/userAction'
 import {useDispatch} from "react-redux";
 
-export const ProfilePage = () => {
+type TLinks = {
+    to: string;
+    text: string;
+    description: string;
+}
+
+export const ProfilePage = (): React.JSX.Element => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const links = [
+    const links: Array<TLinks> = [
         {
             to: "",
             text: "Профиль",
@@ -20,6 +26,7 @@ export const ProfilePage = () => {
         }
     ];
     const onLogout = () => {
+        // @ts-ignore
         dispatch(logOutUser());
     }
     return (
@@ -30,7 +37,6 @@ export const ProfilePage = () => {
                         key={index}
                         end
                         to={link.to}
-                        onClick={link.onClick}
                         className={({isActive}) => isActive ? css.linkActive : css.linkNoActive}
                     >
                         {link.text}
@@ -54,5 +60,5 @@ export const ProfilePage = () => {
                 <Outlet />
             </main>
         </div>
-            );
+    );
 }

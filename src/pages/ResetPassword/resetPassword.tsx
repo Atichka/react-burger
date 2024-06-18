@@ -1,23 +1,22 @@
 import React from 'react';
 import css from './resetPassword.module.css';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import {Input, Button, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from "react-router-dom";
 import {apiResetPassword} from "../../utils/api";
 import {useForm} from "../../hooks/useForm";
 
-export function ResetPasswordPage() {
-    const inputRef = React.useRef(null)
-    const onIconClick = () => {
-        setTimeout(() => inputRef.current.focus(), 0)
-        alert('Icon Click Callback')
-    }
+type ResetPasswordFormData = {
+    password: string;
+    code: string;
+}
 
-    const { values, handleChange } = useForm({
+export function ResetPasswordPage(): React.JSX.Element {
+    const { values, handleChange } = useForm<ResetPasswordFormData>({
         password: "",
         code: ""
     });
 
-    const sendData = async (e) => {
+    const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             await apiResetPassword(values.password, values.code);
@@ -30,15 +29,14 @@ export function ResetPasswordPage() {
             <form id="formresetpassword" className="form" name="formresetpassword" onSubmit={sendData}>
                 <h1 className={css.heading}>Восстановление пароля</h1>
                 <div className={css.container}>
-                    <Input
+                    <PasswordInput
                         onChange={handleChange}
-                        name="password"
-                        onIconClick={onIconClick}
-                        type="password"
                         value={values.password}
-                        placeholder="Пароль"
-                    />
+                        name="password"
+                    ></PasswordInput>
                     <Input
+                        onPointerEnterCapture={((event: PointerEvent): void => {})}
+                        onPointerLeaveCapture={((event: PointerEvent): void => {})}
                         onChange={handleChange}
                         type="text"
                         value={values.code}
