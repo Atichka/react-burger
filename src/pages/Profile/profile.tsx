@@ -60,5 +60,5 @@ export const ProfilePage = (): React.JSX.Element => {
                 <Outlet />
             </main>
         </div>
-            );
+    );
 }

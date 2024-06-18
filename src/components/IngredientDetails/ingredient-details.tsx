@@ -12,28 +12,28 @@ export default function IngredientDetails(): React.JSX.Element {
     return (
         <div className={css.container}>
             {ingredient && (<img src={ingredient.image} alt="Картинка ингредиента" className={css.pic} />)}
-                    <div className={css.box}>
-                        <h2 className={css.name}>{ingredient.name}</h2>
-                        <div className={css.block}>
-                            <div>
-                                <h3 className={css.text}>Калории, ккал</h3>
-                                <p className={css.paragraph}>{data.calories}</p>
-                            </div>
-                            <div>
-                                <h3 className={css.text}>Белки, г</h3>
-                                <p className={css.paragraph}>{data.proteins}</p>
-                            </div>
-                            <div>
-                                <h3 className={css.text}>Жиры, г</h3>
-                                <p className={css.paragraph}>{data.fat}</p>
-                            </div>
-                            <div>
-                                <h3 className={css.text}>Углеводы, г</h3>
-                                <p className={css.paragraph}>{data.carbohydrates}</p>
-                            </div>
-                        </div>
+            <div className={css.box}>
+                <h2 className={css.name}>{ingredient.name}</h2>
+                <div className={css.block}>
+                    <div>
+                        <h3 className={css.text}>Калории, ккал</h3>
+                        <p className={css.paragraph}>{data.calories}</p>
+                    </div>
+                    <div>
+                        <h3 className={css.text}>Белки, г</h3>
+                        <p className={css.paragraph}>{data.proteins}</p>
+                    </div>
+                    <div>
+                        <h3 className={css.text}>Жиры, г</h3>
+                        <p className={css.paragraph}>{data.fat}</p>
+                    </div>
+                    <div>
+                        <h3 className={css.text}>Углеводы, г</h3>
+                        <p className={css.paragraph}>{data.carbohydrates}</p>
                     </div>
                 </div>
+            </div>
+        </div>
     );
 }
 

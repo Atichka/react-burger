@@ -6,17 +6,10 @@ import css from './card.module.css'
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {useSelector} from "react-redux";
 import {RootState} from "../../App";
+import {TCard} from "../../utils/types";
 
 export const stuffings = (state: RootState) => state.currBurger.stuffings;
 export const bun = (state: RootState) => state.currBurger.bun;
-
-type TCard = {
-    image: string;
-    price: number;
-    name: string;
-    id: string;
-    type: string;
-}
 
 export default function Card(props: TCard): React.JSX.Element {
     let counter = 0;

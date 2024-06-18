@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from "prop-types";
-
 import css from './modal-overlay.module.css'
 import {TModalOverlay} from "../../utils/types";
 

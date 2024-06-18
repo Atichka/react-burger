@@ -1,4 +1,4 @@
-import {SEND_ORDER_FAILED, SEND_ORDER_REQUEST, SEND_ORDER_SUCCESS} from "../actions/orderAction";
+import {RESET_ORDER, SEND_ORDER_FAILED, SEND_ORDER_REQUEST, SEND_ORDER_SUCCESS} from "../actions/orderAction";
 
 const initialState = {
     order: null,
@@ -16,6 +16,9 @@ export const orderReducer = (state = initialState, action) => {
         }
         case (SEND_ORDER_FAILED): {
             return {...state, isLoading: false, error: action.payload}
+        }
+        case RESET_ORDER: {
+            return initialState;
         }
         default: {
             return state;

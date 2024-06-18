@@ -26,8 +26,6 @@ export const ingredients = (state: RootState) => state.ingredients;
 
 export default function App(): React.JSX.Element {
     const [isModal, setModal] = useState(false)
-    const [windowIngredient, setWindowIngredient] = useState(false)
-    const [windowFinish, setWindowFinish] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state?.background;
@@ -58,7 +56,7 @@ export default function App(): React.JSX.Element {
                         <main className={css.block}>
                             <Routes location={background || location}>
                                 <Route path="/login" element={<OnlyUnAuth component={<LoginPage />} />} />
-                                <Route path="/" element={(<MainPage isModal={isModal} />)} />
+                                <Route path="/" element={(<MainPage />)} />
                                 <Route path="/register" element={<OnlyUnAuth component={<RegisterPage />} />} />
                                 <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPasswordPage />}/>} />
                                 <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPasswordPage />} />

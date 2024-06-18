@@ -4,18 +4,7 @@ import css from './constructor-item.module.css'
 
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {useRef} from "react";
-
-type TConstructorItem = {
-    id: string;
-    moveCard?: (dragIndex: number, hoverIndex: number) => void;
-    index?: number;
-    type: string;
-    text: string;
-    price: number;
-    image: string;
-    isLocked: boolean;
-    deleteIngredient?: (id: string) => void;
-}
+import { TConstructorItem } from '../../utils/types';
 
 export default function ConstructorItem(props: TConstructorItem): React.JSX.Element {
     const id = props.id;
@@ -24,7 +13,7 @@ export default function ConstructorItem(props: TConstructorItem): React.JSX.Elem
     const ref = useRef<HTMLInputElement>(null);
     const [, drop] = useDrop({
         accept: 'card',
-        hover: (item: any, monitor) => {
+        hover: (item: { index: number; type: string; id: string }, monitor) => {
             const dragIndex = item.index;
             const hoverIndex = index;
             if (dragIndex === hoverIndex) {
@@ -71,34 +60,34 @@ export default function ConstructorItem(props: TConstructorItem): React.JSX.Elem
     const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
 
-        return (
-            <div>
-                {props.type === "top" || props.type === "bottom" ? (
-                    <div className={css.item}>
-                            <div />
-                        {props.type === "top" && (<ConstructorElement isLocked={true}
-                                             text={props.text}
-                                             price={props.price}
-                                             thumbnail={props.image}
-                                             type="top" />)}
-                        {props.type === "bottom" && (<ConstructorElement isLocked={true}
-                                                                      text={props.text}
-                                                                      price={props.price}
-                                                                      thumbnail={props.image}
-                                                                      type="bottom" />)}
-                    </div>) : (
-                        <div ref={ref} className={css.item} style={{opacity}}>
-                            <div />
-                            {!props.isLocked &&
-                                <DragIcon type="primary" />}
-                                <ConstructorElement text={props.text}
-                                                    price={props.price}
-                                                    thumbnail={props.image}
-                                                    handleClose={() =>
-                                                        props.deleteIngredient && props.deleteIngredient(props.id)}/>
-                        </div>
-                    )}
-            </div>
-        );
+    return (
+        <div>
+            {props.type === "top" || props.type === "bottom" ? (
+                <div className={css.item}>
+                    <div />
+                    {props.type === "top" && (<ConstructorElement isLocked={true}
+                                                                  text={props.text}
+                                                                  price={props.price}
+                                                                  thumbnail={props.image}
+                                                                  type="top" />)}
+                    {props.type === "bottom" && (<ConstructorElement isLocked={true}
+                                                                     text={props.text}
+                                                                     price={props.price}
+                                                                     thumbnail={props.image}
+                                                                     type="bottom" />)}
+                </div>) : (
+                <div ref={ref} className={css.item} style={{opacity}}>
+                    <div />
+                    {!props.isLocked &&
+                        <DragIcon type="primary" />}
+                    <ConstructorElement text={props.text}
+                                        price={props.price}
+                                        thumbnail={props.image}
+                                        handleClose={() =>
+                                            props.deleteIngredient && props.deleteIngredient(props.id)}/>
+                </div>
+            )}
+        </div>
+    );
 }
 
