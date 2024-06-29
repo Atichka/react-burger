@@ -5,6 +5,8 @@ import {
     getUserApi,
     apiUpdateUser
 } from "../../utils/api";
+import {TUser} from "../../utils/types";
+import {AppDispatch, AppThunk} from "../store";
 
 export const SET_AUTH_CHECKED = "SET_AUTH_CHECKED";
 export const SET_USER = "SET_USER";
@@ -25,7 +27,80 @@ export const POST_USER_DATA_REQUEST = "POST_USER_DATA_REQUEST";
 export const POST_USER_DATA_FAILED = "POST_USER_DATA_FAILED";
 export const POST_USER_DATA_SUCCESS = "POST_USER_DATA_SUCCESS";
 
-export const logInUser = (email, password) => {
+export interface ISetAuthCheckedAction {
+    readonly type: typeof SET_AUTH_CHECKED;
+    readonly payload: boolean
+}
+
+export interface ISetUserAction {
+    readonly type: typeof SET_USER;
+    readonly payload: Omit<TUser, 'password'> | null
+}
+
+export interface ILogInUserAction {
+    readonly type: typeof LOG_IN_USER_REQUEST;
+}
+export interface ILogInUserFailedAction {
+    readonly type: typeof LOG_IN_USER_FAILED;
+}
+
+export interface ILogInUserSuccessAction {
+    readonly type: typeof LOG_IN_USER_SUCCESS;
+    readonly payload: Omit<TUser, 'password'>;
+}
+
+export interface IRegInUserAction {
+    readonly type: typeof REG_IN_USER_REQUEST;
+}
+export interface IRegInUserFailedAction {
+    readonly type: typeof REG_IN_USER_FAILED;
+}
+
+export interface IRegInUserSuccessAction {
+    readonly type: typeof REG_IN_USER_SUCCESS;
+    readonly payload: Omit<TUser, 'password'>;
+}
+
+export interface ILogOutUserAction {
+    readonly type: typeof LOG_OUT_USER_REQUEST;
+}
+export interface ILogOutUserFailedAction {
+    readonly type: typeof LOG_OUT_USER_FAILED;
+}
+
+export interface ILogOutUserSuccessAction {
+    readonly type: typeof LOG_OUT_USER_SUCCESS;
+}
+
+export interface IPostUserDataAction {
+    readonly type: typeof POST_USER_DATA_REQUEST;
+}
+export interface IPostUserDataFailedAction {
+    readonly type: typeof POST_USER_DATA_FAILED;
+}
+
+export interface IPostUserDataSuccessAction {
+    readonly type: typeof POST_USER_DATA_SUCCESS;
+    readonly userData: Omit<TUser, 'password'>;
+}
+
+export type TUserActions =
+    | ISetAuthCheckedAction
+    | ISetUserAction
+    | ILogInUserAction
+    | ILogInUserFailedAction
+    | ILogInUserSuccessAction
+    | IRegInUserAction
+    | IRegInUserFailedAction
+    | IRegInUserSuccessAction
+    | ILogOutUserAction
+    | ILogOutUserFailedAction
+    | ILogOutUserSuccessAction
+    | IPostUserDataAction
+    | IPostUserDataFailedAction
+    | IPostUserDataSuccessAction;
+
+export const logInUser = (email: string, password: string): AppThunk => {
     return function (dispatch) {
         dispatch({ type: LOG_IN_USER_REQUEST });
         apiUserLogIn(email, password)
@@ -37,7 +112,7 @@ export const logInUser = (email, password) => {
                     dispatch(setAuthChecked(true));
                     dispatch({
                         type: LOG_IN_USER_SUCCESS,
-                        userDataLogIn: res,
+                        payload: res.user,
                     });
                 } else {
                     dispatch({ type: LOG_IN_USER_FAILED });
@@ -49,11 +124,11 @@ export const logInUser = (email, password) => {
     };
 };
 
-export const regInUser = (email, name, password) => {
+export const regInUser = (email: string, name: string, password: string): AppThunk => {
     return  function (dispatch) {
         dispatch({ type: REG_IN_USER_REQUEST });
         apiUserRegIn(email, name, password)
-                .then((res) => {
+            .then((res) => {
                 if (res && res.success) {
                     localStorage.setItem("accessToken", res.accessToken);
                     localStorage.setItem("refreshToken", res.refreshToken);
@@ -61,7 +136,7 @@ export const regInUser = (email, name, password) => {
                     dispatch(setAuthChecked(true));
                     dispatch({
                         type: REG_IN_USER_SUCCESS,
-                        userDataRegIn: res,
+                        payload: res.user,
                     });
                 } else {
                     dispatch({ type: REG_IN_USER_FAILED });
@@ -73,28 +148,20 @@ export const regInUser = (email, name, password) => {
     };
 }
 
-export const getUser = () => {
-    return (dispatch) => {
-        return getUserApi().then((res) => {
-            dispatch(setUser(res.user));
-        });
-    };
-};
-
-export const setUser = (user) => ({
+export const setUser = (user: Omit<TUser, 'password'> | null): ISetUserAction => ({
     type: SET_USER,
     payload: user,
 });
 
-export const setAuthChecked = (value) => ({
+export const setAuthChecked = (value: boolean): ISetAuthCheckedAction => ({
     type: SET_AUTH_CHECKED,
     payload: value,
 });
 
-export const checkUserAuth = () => {
+export const checkUserAuth = (): AppThunk => {
     return (dispatch) => {
         if (localStorage.getItem("accessToken")) {
-            dispatch(getUser())
+            getUserApi()
                 .catch(() => {
                     localStorage.removeItem("accessToken");
                     localStorage.removeItem("refreshToken");
@@ -107,7 +174,7 @@ export const checkUserAuth = () => {
     };
 };
 
-export const logOutUser = () => {
+export const logOutUser = (): AppThunk => {
     return function (dispatch) {
         dispatch({ type: LOG_OUT_USER_REQUEST });
         apiUserLogOut()
@@ -127,7 +194,7 @@ export const logOutUser = () => {
     };
 };
 
-export const setUserData = (email, name, password) => {
+export const setUserData = (email: string, name: string, password: string): AppThunk => {
     return function (dispatch) {
         dispatch({ type: POST_USER_DATA_REQUEST });
         apiUpdateUser(email, name, password)
@@ -135,7 +202,7 @@ export const setUserData = (email, name, password) => {
                 if (res && res.success) {
                     dispatch({
                         type: POST_USER_DATA_SUCCESS,
-                        userData: res,
+                        userData: res.user,
                     });
                 } else {
                     dispatch({

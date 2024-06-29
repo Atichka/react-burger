@@ -1,13 +1,24 @@
-import {GET_INGREDIENTS_FAILURE, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS} from "../actions/ingredientsAction";
+import {
+    GET_INGREDIENTS_FAILURE,
+    GET_INGREDIENTS_REQUEST,
+    GET_INGREDIENTS_SUCCESS,
+    TIngredientsActions
+} from "../actions/ingredientsAction";
+import {TBurgerConstructor} from "../../utils/types";
+
+export type TIngredientState = {
+    ingredients: Array<TBurgerConstructor>,
+    isLoading: boolean,
+    error: string | undefined,
+}
 
 const initialState = {
     ingredients: [],
-    // addedIngredients: [],
     isLoading: false,
     error: undefined,
 }
 
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action: TIngredientsActions): TIngredientState => {
     switch (action.type) {
         case (GET_INGREDIENTS_REQUEST): {
             return {...state, isLoading: true}

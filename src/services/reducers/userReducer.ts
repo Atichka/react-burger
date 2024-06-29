@@ -12,8 +12,27 @@ import {
     SET_USER,
     POST_USER_DATA_REQUEST,
     POST_USER_DATA_FAILED,
-    POST_USER_DATA_SUCCESS
+    POST_USER_DATA_SUCCESS,
+    TUserActions
 } from "../actions/userAction";
+import {TUser} from "../../utils/types";
+
+export type TUserState = {
+    logInUserRequest: boolean,
+    logInUserSuccess: boolean,
+    logInUserFailed: boolean,
+    regInUserRequest: boolean,
+    regInUserSuccess: boolean,
+    regInUserFailed: boolean,
+    logOutUserRequest: boolean,
+    logOutUserSuccess: boolean,
+    logOutUserFailed: boolean,
+    user: Omit<TUser, 'password'> | null,
+    isAuthChecked: boolean,
+    postUserDataRequest: boolean,
+    postUserDataSuccess: boolean,
+    postUserDataFailed: boolean
+}
 
 const initialState = {
     logInUserRequest: false,
@@ -32,7 +51,7 @@ const initialState = {
     postUserDataFailed: false
 }
 
-export const userReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action: TUserActions): TUserState => {
     switch (action.type) {
         case (LOG_IN_USER_REQUEST): {
             return {...state, logInUserRequest: true}
@@ -67,10 +86,6 @@ export const userReducer = (state = initialState, action) => {
                 logInUserRequest: false,
                 logInUserSuccess: false,
                 logInUserFailed: false,
-                getUserDataRequest: false,
-                getUserDataSuccess: false,
-                getUserDataFailed: false,
-                isAuthenticated: false,
                 logOutUserRequest: false,
                 logOutUserSuccess: true,
                 logOutUserFailed: false,
@@ -78,6 +93,7 @@ export const userReducer = (state = initialState, action) => {
         }
         case LOG_OUT_USER_FAILED: {
             return {
+                ...state,
                 logOutUserFailed: true,
                 logOutUserRequest: false,
             };
@@ -105,7 +121,7 @@ export const userReducer = (state = initialState, action) => {
                 postUserDataRequest: false,
                 postUserDataSuccess: true,
                 postUserDataFailed: false,
-                userData: action.userData,
+                user: action.userData,
             }
         }
         case POST_USER_DATA_FAILED: {

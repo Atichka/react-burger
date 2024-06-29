@@ -1,4 +1,16 @@
-import {RESET_ORDER, SEND_ORDER_FAILED, SEND_ORDER_REQUEST, SEND_ORDER_SUCCESS} from "../actions/orderAction";
+import {
+    RESET_ORDER,
+    SEND_ORDER_FAILED,
+    SEND_ORDER_REQUEST,
+    SEND_ORDER_SUCCESS,
+    TOrderActions
+} from "../actions/orderAction";
+
+export type TOrderState = {
+    order: number | null,
+    isLoading: boolean,
+    error: string | undefined,
+}
 
 const initialState = {
     order: null,
@@ -6,7 +18,7 @@ const initialState = {
     error: undefined,
 }
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action: TOrderActions): TOrderState => {
     switch (action.type) {
         case (SEND_ORDER_REQUEST): {
             return {...state, isLoading: true}

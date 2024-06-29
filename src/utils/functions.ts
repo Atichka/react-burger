@@ -8,13 +8,14 @@ export function getData() {
 
 }
 
-export function checkResponse(res) {
+export function checkResponse<T>(res: Response): Promise<T> {
+    console.log(res);
     if (res.ok) {
         return res.json();
     }
     return Promise.reject(`Ошибка ${res.status}`);
 }
 
-export function request(url, options) {
-    return fetch(url, options).then(checkResponse)
+export function request<T>(url: string, options?: RequestInit): Promise<T> {
+    return fetch(url, options).then(checkResponse<T>)
 }

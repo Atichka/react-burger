@@ -5,21 +5,18 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 import css from './burger-constructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructor-item";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, shallowEqual, useSelector} from "react-redux";
+import {shallowEqual} from "react-redux";
 import {addToConstructor, INGREDIENT_DELETE, updateIngredients} from "../../services/actions/constructorAction";
 import {useLocation, useNavigate} from "react-router-dom";
 import {TBurgerConstructor} from "../../utils/types";
-import {RootState} from "../../App";
 import { resetOrder, sendOrder } from '../../services/actions/orderAction';
 import OrderDetails from '../OrderDetails/order-details';
 import Modal from '../Modal/modal';
 import ReactLoading from 'react-loading';
 import { getOrderNumber } from '../../services/selectors/order';
-
-export const getStuffings = (state: RootState) => state.currBurger.stuffings;
-export const getBun = (state: RootState) => state.currBurger.bun;
-export const getUser = (state: RootState) => state.userData.user;
-export const getLoading = (state: RootState) => state.order.isLoading;
+import { useDispatch, useSelector } from '../../services/store';
+import { getBun, getLoading, getStuffings } from '../../services/selectors/constructor';
+import { getUser } from '../../services/selectors/user';
 
 export default function BurgerConstructor(): React.JSX.Element {
     const dispatch = useDispatch();
@@ -57,8 +54,15 @@ export default function BurgerConstructor(): React.JSX.Element {
             return;
         }
 
-        const ingredientsId = [bun, ...stuffings, bun].map((item) => item.id);
-        // @ts-ignore
+        if (!bun) {
+            return;
+        }
+
+        console.log("bun", bun);
+        console.log("stuffings", stuffings);
+
+        const ingredientsId = [bun, ...stuffings, bun].map((item) => item.id!);
+        console.log(ingredientsId)
         dispatch(sendOrder(ingredientsId));
     };
 
@@ -78,7 +82,7 @@ export default function BurgerConstructor(): React.JSX.Element {
                                 text={bun.name + " (верх)"}
                                 price={bun.price}
                                 type={"top"}
-                                id={bun.id}
+                                id={bun.id!}
                                 isLocked
                             />
                         ))}
@@ -111,12 +115,12 @@ export default function BurgerConstructor(): React.JSX.Element {
                         (
                             <ConstructorItem
                                 key={bun.id + "bottom"}
-                                isLocked={bun.isLocked}
+                                isLocked
                                 image={bun.image}
                                 text={bun.name + " (низ)"}
                                 price={bun.price}
                                 type={"bottom"}
-                                id={bun.id}
+                                id={bun.id!}
                             />
                         ))}
             </div>

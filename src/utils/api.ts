@@ -1,8 +1,9 @@
 import {BASE_URL} from "../const";
 import {checkResponse} from "./functions";
+import {AuthResponse, Credentials, TUser} from "./types";
 
 // Запрос на сброс пароля
-export const apiForgotPassword = (email) => {
+export const apiForgotPassword = (email: string): Promise<void> => {
     return fetch(BASE_URL + '/password-reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -10,11 +11,11 @@ export const apiForgotPassword = (email) => {
             email: email
         })
     })
-        .then(checkResponse)
+        .then(checkResponse<void>)
 };
 
 // Запрос восстановления пароля
-export const apiResetPassword = (password, code) => {
+export const apiResetPassword = (password: string, code: string): Promise<void> => {
     return fetch(BASE_URL + '/password-reset/reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -23,11 +24,11 @@ export const apiResetPassword = (password, code) => {
             token: code
         })
     })
-        .then(checkResponse)
+        .then(checkResponse<void>)
 };
 
 // Запрос авторизации
-export const apiUserLogIn = (email, password) => {
+export const apiUserLogIn = (email: string, password: string): Promise<{success: boolean} & AuthResponse> => {
     return fetch(BASE_URL + '/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -36,11 +37,11 @@ export const apiUserLogIn = (email, password) => {
             password: password
         })
     })
-        .then(checkResponse)
-}
+        .then(checkResponse<{success: boolean} & AuthResponse>)
+};
 
 // Запрос регистрации
-export const apiUserRegIn = (email, name, password) => {
+export const apiUserRegIn = (email: string, name: string, password: string):Promise<{success: boolean} & AuthResponse> => {
     return fetch(BASE_URL + '/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -50,46 +51,32 @@ export const apiUserRegIn = (email, name, password) => {
             password: password
         })
     })
-        .then(checkResponse)
+        .then(checkResponse<{success: boolean} & AuthResponse>)
 }
 
-export const getUserApi = () => {
+export const getUserApi = (): Promise<{success: boolean, user: Omit<TUser, 'password'>}> => {
     return fetch(BASE_URL + '/auth/user', {
         method: "GET",
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             Authorization: getToken(),
-        },
+        } as HeadersInit,
     })
-        .then(checkResponse)
+        .then(checkResponse<{success: boolean, user: Omit<TUser, 'password'>}>)
 };
 
-
-export const login = () =>
-    new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve({
-                accessToken: "test-token",
-                refreshToken: "test-refresh-token",
-                user: {},
-            });
-        }, 1000);
-    });
-
-export const apiUserLogOut = () => {
+export const apiUserLogOut = (): Promise<{success: boolean}> => {
     return fetch(BASE_URL + '/api/auth/logout', {
         method: "POST",
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
             token: localStorage.getItem("refreshToken"),
         }),
-    }).catch((error) => {
-        console.error('Произошла ошибка при выходе пользователя:', error);
-        return Promise.reject(error);
-    });
+    })
+        .then(checkResponse<{success: boolean}>)
 }
 
-export const refreshToken = () => {
+export const refreshToken = (): Promise<Credentials & { success: boolean}> => {
     return fetch(BASE_URL + '/api/auth/token', {
         method: "POST",
         headers: {
@@ -98,26 +85,26 @@ export const refreshToken = () => {
         body: JSON.stringify({
             token: localStorage.getItem("refreshToken"),
         }),
-    }).then(checkResponse);
+    }).then(checkResponse<Credentials & { success: boolean}>);
 };
 
-export const getToken = () => {
+export const getToken = (): string | null => {
     return localStorage.getItem("accessToken")
 };
 
-export const fetchWithRefresh = async (url, options) => {
+export const fetchWithRefresh = async <T>(url: string, options: RequestInit): Promise<T> => {
     try {
         const res = await fetch(url, options);
         return await checkResponse(res);
     } catch (err) {
-        if (err.message === "jwt expired") {
+        if ((err as {message: string}).message === "jwt expired") {
             const refreshData = await refreshToken(); //обновляем токен
             if (!refreshData.success) {
                 return Promise.reject(refreshData);
             }
             localStorage.setItem("refreshToken", refreshData.refreshToken);
             localStorage.setItem("accessToken", refreshData.accessToken);
-            options.headers.authorization = refreshData.accessToken;
+            (options.headers as {[key: string]: string}).authorization = refreshData.accessToken;
             const res = await fetch(url, options); //повторяем запрос
             return await checkResponse(res);
         } else {
@@ -126,20 +113,18 @@ export const fetchWithRefresh = async (url, options) => {
     }
 };
 
-export const apiUpdateUser = (email, name, password) => {
+export const apiUpdateUser = (email: string, name: string, password: string): Promise<{success: boolean, user: Omit<TUser, 'password'>}> => {
     return fetch(BASE_URL + '/api/auth/user', {
         method: "PATCH",
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             Authorization: getToken(),
-        },
+        } as HeadersInit,
         body: JSON.stringify({
             email: email,
             name: name,
             password: password
         }),
-    }).catch((error) => {
-        console.error('Произошла ошибка при обновлении информации о пользователе:', error);
-        return Promise.reject(error);
-    });
+    })
+        .then(checkResponse<{success: boolean, user: Omit<TUser, 'password'>}>)
 };

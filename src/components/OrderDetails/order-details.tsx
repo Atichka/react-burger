@@ -4,12 +4,8 @@ import css from "./order-details.module.css";
 
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { shallowEqual, useSelector } from "react-redux";
-import { RootState } from "../../App";
 import { getOrderNumber } from "../../services/selectors/order";
 
-export const getStuffings = (state: RootState) => state.currBurger.stuffings;
-export const getBun = (state: RootState) => state.currBurger.bun;
-export const getLoading = (state: RootState) => state.order.isLoading;
 
 export default function OrderDetails(): React.JSX.Element {
     const { orderNumber } = useSelector(getOrderNumber, shallowEqual);

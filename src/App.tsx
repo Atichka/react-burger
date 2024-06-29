@@ -15,31 +15,26 @@ import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredient-details";
 import OrderDetails from "./components/OrderDetails/order-details";
 import {getIngredients} from "./services/actions/ingredientsAction";
-import {useDispatch, useSelector} from "react-redux";
 import { OnlyAuth, OnlyUnAuth } from "./components/ProtectedRoute/protected-route";
 import {checkUserAuth} from "./services/actions/userAction";
-import { combineReducers } from '@reduxjs/toolkit'
-const rootReducer = combineReducers({})
-export type RootState = ReturnType<typeof rootReducer>
-
-export const ingredients = (state: RootState) => state.ingredients;
+import { getIngredientsLoading, getIngredients as ingredients } from "./services/selectors/ingredients";
+import { useDispatch, useSelector } from './services/store';
 
 export default function App(): React.JSX.Element {
     const [isModal, setModal] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state?.background;
-    const data = useSelector(ingredients);
+    const allIngredients = useSelector(ingredients);
+    const isLoading = useSelector(getIngredientsLoading);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // @ts-ignore
         dispatch(getIngredients())
     }, [dispatch]);
 
     useEffect(() => {
-        // @ts-ignore
         dispatch(checkUserAuth());
     }, []);
 
@@ -51,7 +46,7 @@ export default function App(): React.JSX.Element {
         <div className="App">
             <>
                 <AppHeader />
-                {!data.isLoading && data.ingredients.length > 0 ? (
+                {!isLoading && allIngredients.length > 0 ? (
                     <>
                         <main className={css.block}>
                             <Routes location={background || location}>
@@ -67,6 +62,9 @@ export default function App(): React.JSX.Element {
                                     <Route path={'orders/:orderNumber'} element={<OnlyAuth component={<div>ordersNumber</div>} />} />
                                 </Route>
                                 <Route path="/ingredients/:id" element={<IngredientDetails />}></Route>
+                                <Route path="/feed" element={<div>feed</div>}>
+                                    <Route path={'feed/:number'} element={<div>feed number</div>} />
+                                </Route>
                             </Routes>
                             {background && (
                                 <Routes>
