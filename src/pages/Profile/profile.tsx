@@ -3,9 +3,8 @@ import css from './profile.module.css';
 import { NavLink, useLocation, Outlet } from "react-router-dom";
 import { logOutUser } from '../../services/actions/userAction'
 import {useDispatch, useSelector} from "react-redux";
-import {getOrderTable, getWebSocketStatus} from "../../services/order-table/slice";
-import {WebSocketStatus} from "../../types/order-table";
-import {wsConnect, wsDisconnect} from "../../services/order-table/actions";
+import {WebSocketStatus} from "../../types/feed-orders";
+import {wsConnect, wsDisconnect} from "../../services/actions/orderFeedAction";
 
 type TLinks = {
     to: string;
@@ -13,10 +12,10 @@ type TLinks = {
     description: string;
 }
 
-const ORDER_TABLE_SERVER_URL = "ws://localhost:3000";
+const ORDERS_SERVER_URL = "ws://localhost:3000";
 
 export const ProfilePage = (): React.JSX.Element => {
-    // const table = useSelector(getOrderTable);
+    // const orders = useSelector(getOrderOrders);
     // const status = useSelector(getWebSocketStatus);
     // const isDisconnected = status !== WebSocketStatus.ONLINE;
 

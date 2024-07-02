@@ -19,3 +19,16 @@ export function checkResponse<T>(res: Response): Promise<T> {
 export function request<T>(url: string, options?: RequestInit): Promise<T> {
     return fetch(url, options).then(checkResponse<T>)
 }
+
+export const getStatus = (status: string): string => {
+    switch (status) {
+        case "done":
+            return "Выполнен";
+        case "created":
+            return "Создан";
+        case "pending":
+            return "Готовится";
+        default:
+            return "Отменен";
+    }
+};

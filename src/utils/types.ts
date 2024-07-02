@@ -80,3 +80,19 @@ export type TOrder = {
     number: number;
     ingredients: string[];
 };
+
+export type TOrderCard = {
+    order: TOrder;
+};
+
+export type TImages = {
+    image: string;
+    name: string;
+};
+
+export type TOrders = {
+    orders: TOrder[];
+    success: boolean;
+    total: number;
+    totalToday: number;
+};

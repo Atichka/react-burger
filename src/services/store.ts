@@ -1,16 +1,6 @@
-import {combineReducers} from "redux";
-import {
-    orderTableSlice,
-    TInternalActions,
-    wsClose,
-    wsConnecting,
-    wsError,
-    wsMessage,
-    wsOpen
-} from "./order-table/slice";
 import {configureStore} from "@reduxjs/toolkit";
 import {socketMiddleware} from "./middleware/socket-middleware";
-import {TExternalActions, wsConnect, wsDisconnect} from "./order-table/actions";
+import {TOrderFeedActions, wsConnect, wsDisconnect} from "./actions/orderFeedAction";
 import {
     useDispatch as dispatchHook,
     useSelector as selectorHook
@@ -22,14 +12,22 @@ import { TOrderActions } from "./actions/orderAction";
 import { TUserActions } from "./actions/userAction";
 import { rootReducer } from "./reducers/rootReducer";
 
-const orderTableMiddleware = socketMiddleware({
-    connect: wsConnect,
-    disconnect: wsDisconnect,
-    onConnecting: wsConnecting,
-    onOpen: wsOpen,
-    onError: wsError,
-    onClose: wsClose,
-    onMessage: wsMessage,
+export const WS_ORDER_CONNECT = 'WS_ORDER_CONNECT';
+export const WS_ORDER_DISCONNECT = 'WS_ORDER_DISCONNECT';
+export const WS_ORDER_CONNECTING = 'WS_ORDER_CONNECTING';
+export const WS_ORDER_OPEN = 'WS_ORDER_OPEN';
+export const WS_ORDER_CLOSE = 'WS_ORDER_CLOSE';
+export const WS_ORDER_MESSAGE = 'WS_ORDER_MESSAGE';
+export const WS_ORDER_ERROR = 'WS_ORDER_ERROR';
+
+const feedOrdersMiddleware = socketMiddleware({
+    wsConnect: WS_ORDER_CONNECT,
+    wsDisconnect: WS_ORDER_DISCONNECT,
+    wsConnecting: WS_ORDER_CONNECTING,
+    onOpen: WS_ORDER_OPEN,
+    onClose: WS_ORDER_CLOSE,
+    onMessage: WS_ORDER_MESSAGE,
+    onError: WS_ORDER_ERROR,
 });
 
 // const orderTableMiddlewareProfile = socketMiddleware({
@@ -45,12 +43,11 @@ const orderTableMiddleware = socketMiddleware({
 export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(orderTableMiddleware/*, orderTableMiddlewareProfile*/);
+        return getDefaultMiddleware().concat(feedOrdersMiddleware/*, orderOrdersMiddlewareProfile*/);
     }
 });
 
-type TApplicationActions = TExternalActions
-    | TInternalActions
+type TApplicationActions = TOrderFeedActions
     | TConstructorActions
     | TIngredientsActions
     | TOrderActions

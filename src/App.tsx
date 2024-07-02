@@ -19,6 +19,7 @@ import { OnlyAuth, OnlyUnAuth } from "./components/ProtectedRoute/protected-rout
 import {checkUserAuth} from "./services/actions/userAction";
 import { getIngredientsLoading, getIngredients as ingredients } from "./services/selectors/ingredients";
 import { useDispatch, useSelector } from './services/store';
+import { FeedPage } from './pages/Feed/feed';
 
 export default function App(): React.JSX.Element {
     const [isModal, setModal] = useState(false)
@@ -62,7 +63,7 @@ export default function App(): React.JSX.Element {
                                     <Route path={'orders/:orderNumber'} element={<OnlyAuth component={<div>ordersNumber</div>} />} />
                                 </Route>
                                 <Route path="/ingredients/:id" element={<IngredientDetails />}></Route>
-                                <Route path="/feed" element={<div>feed</div>}>
+                                <Route path="/feed" element={<FeedPage />}>
                                     <Route path={'feed/:number'} element={<div>feed number</div>} />
                                 </Route>
                             </Routes>
