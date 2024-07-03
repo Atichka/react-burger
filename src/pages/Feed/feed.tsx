@@ -40,7 +40,7 @@ export const FeedPage = (): React.JSX.Element => {
                 <div className={css.orders}>
                     {orders && orders.map((order: any) => (
                         <Link
-                            to={`/orders/${order._id}`}
+                            to={`/feed/${order._id}`}
                             className={css.link}
                             key={order._id}
                             state={{ background: location }}

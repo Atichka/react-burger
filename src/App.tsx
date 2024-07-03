@@ -13,6 +13,7 @@ import {UserProfile} from "./components/UserProfile/user-profile"
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredient-details";
+import FeedDetails from "./components/FeedDetails/feed-details";
 import OrderDetails from "./components/OrderDetails/order-details";
 import {getIngredients} from "./services/actions/ingredientsAction";
 import { OnlyAuth, OnlyUnAuth } from "./components/ProtectedRoute/protected-route";
@@ -75,6 +76,17 @@ export default function App(): React.JSX.Element {
                                             onClose={onClose}
                                             title='Детали ингредиента'>
                                             <IngredientDetails />
+                                        </Modal>
+                                        }></Route>
+                                </Routes>
+                            )}
+                            {background && (
+                                <Routes>
+                                    <Route
+                                        path="/feed/:id"
+                                        element={<Modal
+                                            onClose={onClose}>
+                                            <FeedDetails />
                                         </Modal>
                                         }></Route>
                                 </Routes>
