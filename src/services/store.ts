@@ -11,6 +11,7 @@ import { TIngredientsActions } from "./actions/ingredientsAction";
 import { TOrderActions } from "./actions/orderAction";
 import { TUserActions } from "./actions/userAction";
 import { rootReducer } from "./reducers/rootReducer";
+import {TOrderProfileActions} from "./actions/orderProfileAction";
 
 export const WS_ORDER_CONNECT = 'WS_ORDER_CONNECT';
 export const WS_ORDER_DISCONNECT = 'WS_ORDER_DISCONNECT';
@@ -19,6 +20,14 @@ export const WS_ORDER_OPEN = 'WS_ORDER_OPEN';
 export const WS_ORDER_CLOSE = 'WS_ORDER_CLOSE';
 export const WS_ORDER_MESSAGE = 'WS_ORDER_MESSAGE';
 export const WS_ORDER_ERROR = 'WS_ORDER_ERROR';
+
+export const WS_ORDER_PROFILE_CONNECT = 'WS_ORDER_PROFILE_CONNECT';
+export const WS_ORDER_PROFILE_DISCONNECT = 'WS_ORDER_PROFILE_DISCONNECT';
+export const WS_ORDER_PROFILE_CONNECTING = 'WS_ORDER_PROFILE_CONNECTING';
+export const WS_ORDER_PROFILE_OPEN = 'WS_ORDER_PROFILE_OPEN';
+export const WS_ORDER_PROFILE_CLOSE = 'WS_ORDER_PROFILE_CLOSE';
+export const WS_ORDER_PROFILE_MESSAGE = 'WS_ORDER_PROFILE_MESSAGE';
+export const WS_ORDER_PROFILE_ERROR = 'WS_ORDER_PROFILE_ERROR';
 
 const feedOrdersMiddleware = socketMiddleware({
     wsConnect: WS_ORDER_CONNECT,
@@ -30,24 +39,25 @@ const feedOrdersMiddleware = socketMiddleware({
     onError: WS_ORDER_ERROR,
 });
 
-// const orderTableMiddlewareProfile = socketMiddleware({
-//     // connect: wsConnectProfile,
-//     // disconnect: wsDisconnectProfile,
-//     // onConnecting: wsConnecting,
-//     // onOpen: wsOpen,
-//     // onError: wsError,
-//     // onClose: wsClose,
-//     // onMessage: wsMessage,
-// });
+const orderMiddlewareProfile = socketMiddleware({
+    wsConnect: WS_ORDER_PROFILE_CONNECT,
+    wsDisconnect: WS_ORDER_PROFILE_DISCONNECT,
+    wsConnecting: WS_ORDER_PROFILE_CONNECTING,
+    onOpen: WS_ORDER_PROFILE_OPEN,
+    onClose: WS_ORDER_PROFILE_CLOSE,
+    onMessage: WS_ORDER_PROFILE_MESSAGE,
+    onError: WS_ORDER_PROFILE_ERROR,
+});
 
 export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(feedOrdersMiddleware/*, orderOrdersMiddlewareProfile*/);
+        return getDefaultMiddleware().concat(feedOrdersMiddleware, orderMiddlewareProfile);
     }
 });
 
 type TApplicationActions = TOrderFeedActions
+    | TOrderProfileActions
     | TConstructorActions
     | TIngredientsActions
     | TOrderActions

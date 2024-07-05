@@ -21,6 +21,7 @@ import {checkUserAuth} from "./services/actions/userAction";
 import { getIngredientsLoading, getIngredients as ingredients } from "./services/selectors/ingredients";
 import { useDispatch, useSelector } from './services/store';
 import { FeedPage } from './pages/Feed/feed';
+import {ProfileOrders} from "./components/ProfileOrders/profile-orders";
 
 export default function App(): React.JSX.Element {
     const [isModal, setModal] = useState(false)
@@ -60,7 +61,7 @@ export default function App(): React.JSX.Element {
                                 } />
                                 <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />}>
                                     <Route index element={<OnlyAuth component={<UserProfile />} />}/>
-                                    <Route path={'orders'} element={<OnlyAuth component={<div>orders</div>} />} />
+                                    <Route path={'orders'} element={<OnlyAuth component={<ProfileOrders />} />} />
                                     <Route path={'orders/:orderNumber'} element={<OnlyAuth component={<div>ordersNumber</div>} />} />
                                 </Route>
                                 <Route path="/ingredients/:id" element={<IngredientDetails />}></Route>
@@ -78,12 +79,15 @@ export default function App(): React.JSX.Element {
                                             <IngredientDetails />
                                         </Modal>
                                         }></Route>
-                                </Routes>
-                            )}
-                            {background && (
-                                <Routes>
                                     <Route
                                         path="/feed/:id"
+                                        element={<Modal
+                                            onClose={onClose}>
+                                            <FeedDetails />
+                                        </Modal>
+                                        }></Route>
+                                    <Route
+                                        path="/profile/orders/:id"
                                         element={<Modal
                                             onClose={onClose}>
                                             <FeedDetails />

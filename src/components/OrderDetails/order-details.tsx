@@ -3,8 +3,9 @@ import React from "react";
 import css from "./order-details.module.css";
 
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { shallowEqual, useSelector } from "react-redux";
-import { getOrderNumber } from "../../services/selectors/order";
+import { useSelector} from "../../services/store";
+import {getOrderNumber} from "../../services/selectors/order";
+import {shallowEqual} from "react-redux";
 
 
 export default function OrderDetails(): React.JSX.Element {

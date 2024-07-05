@@ -11,4 +11,5 @@ export const rootReducer = combineReducers({
     currBurger: constructorReducer,
     userData: userReducer,
     feedOrders: feedOrdersReducer,
+    ordersProfile: feedOrdersReducer,
 });

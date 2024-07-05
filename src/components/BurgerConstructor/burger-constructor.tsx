@@ -58,11 +58,7 @@ export default function BurgerConstructor(): React.JSX.Element {
             return;
         }
 
-        console.log("bun", bun);
-        console.log("stuffings", stuffings);
-
         const ingredientsId = [bun, ...stuffings, bun].map((item) => item.id!);
-        console.log(ingredientsId)
         dispatch(sendOrder(ingredientsId));
     };
 

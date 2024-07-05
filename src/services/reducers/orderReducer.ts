@@ -5,15 +5,28 @@ import {
     SEND_ORDER_SUCCESS,
     TOrderActions
 } from "../actions/orderAction";
+import {TOrder, TOrderNumber} from "../../utils/types";
 
 export type TOrderState = {
     order: number | null,
+    orderData: TOrder;
     isLoading: boolean,
     error: string | undefined,
 }
 
 const initialState = {
     order: null,
+    orderData: {
+        createdAt: "",
+        ingredients: [],
+        name: "",
+        owner: "",
+        status: "",
+        updatedAt: "",
+        number: 0,
+        _id: "",
+        __v: 0,
+    },
     isLoading: false,
     error: undefined,
 }

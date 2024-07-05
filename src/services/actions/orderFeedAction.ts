@@ -10,7 +10,7 @@ export const WS_ORDER_ERROR = 'WS_ORDER_ERROR';
 
 export interface IWsOrderConnectAction {
     readonly type: typeof WS_ORDER_CONNECT;
-    readonly payload: any;
+    readonly payload: string;
 }
 export interface IWsOrderDisconnectAction {
     readonly type: typeof WS_ORDER_DISCONNECT;

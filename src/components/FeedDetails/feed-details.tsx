@@ -3,9 +3,7 @@ import React, {useCallback, useEffect} from "react";
 import css from "./feed-details.module.css";
 
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
-import { getOrderNumber } from "../../services/selectors/order";
-import {useLocation, useParams} from "react-router-dom";
-import {getIngredients} from "../../services/selectors/ingredients";
+import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "../../services/store";
 import {wsConnect, wsDisconnect} from "../../services/actions/orderFeedAction";
 import {WS_FEED_URL} from "../../const";
@@ -21,7 +19,6 @@ export default function FeedDetails(): React.JSX.Element {
         (state) => state.feedOrders.orders,
     );
     const order = orders.find((item: { _id: string | undefined; }) => item._id === id)!;
-    console.log('order', order);
 
     const connectToWebSocket = useCallback(() => {
         dispatch(wsConnect(WS_FEED_URL))

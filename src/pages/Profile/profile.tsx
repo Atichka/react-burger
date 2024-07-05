@@ -15,10 +15,6 @@ type TLinks = {
 const ORDERS_SERVER_URL = "ws://localhost:3000";
 
 export const ProfilePage = (): React.JSX.Element => {
-    // const orders = useSelector(getOrderOrders);
-    // const status = useSelector(getWebSocketStatus);
-    // const isDisconnected = status !== WebSocketStatus.ONLINE;
-
     const dispatch = useDispatch();
     const location = useLocation();
 

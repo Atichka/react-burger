@@ -72,17 +72,23 @@ export type Credentials =  {
 }
 
 export type TOrder = {
-    _id: string;
-    status: string;
-    name: string;
     createdAt: string;
-    updatedAt: string;
-    number: number;
     ingredients: string[];
+    name: string;
+    number: number;
+    owner: string;
+    status: string;
+    updatedAt: string;
+    _id: string;
+    __v: number;
 };
 
 export type TOrderCard = {
     order: TOrder;
+};
+
+export type TOrderNumber = {
+    orderNumber: number;
 };
 
 export type TImages = {

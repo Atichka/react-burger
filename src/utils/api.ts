@@ -1,5 +1,5 @@
 import {BASE_URL} from "../const";
-import {checkResponse} from "./functions";
+import {checkResponse, request} from "./functions";
 import {AuthResponse, Credentials, TUser} from "./types";
 
 // Запрос на сброс пароля
@@ -128,3 +128,5 @@ export const apiUpdateUser = (email: string, name: string, password: string): Pr
     })
         .then(checkResponse<{success: boolean, user: Omit<TUser, 'password'>}>)
 };
+
+export const getOrderInfoData = (order: string | undefined): Promise<any> => request(`/orders/${order}`);

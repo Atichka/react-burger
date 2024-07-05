@@ -10,7 +10,15 @@ export const WS_ORDER_CLOSE = 'WS_ORDER_CLOSE';
 export const WS_ORDER_MESSAGE = 'WS_ORDER_MESSAGE';
 export const WS_ORDER_ERROR = 'WS_ORDER_ERROR';
 
-export type TWsActionTypes = {
+export const WS_ORDER_PROFILE_CONNECT = 'WS_ORDER_PROFILE_CONNECT';
+export const WS_ORDER_PROFILE_DISCONNECT = 'WS_ORDER_PROFILE_DISCONNECT';
+export const WS_ORDER_PROFILE_CONNECTING = 'WS_ORDER_PROFILE_CONNECTING';
+export const WS_ORDER_PROFILE_OPEN = 'WS_ORDER_PROFILE_OPEN';
+export const WS_ORDER_PROFILE_CLOSE = 'WS_ORDER_PROFILE_CLOSE';
+export const WS_ORDER_PROFILE_MESSAGE = 'WS_ORDER_PROFILE_MESSAGE';
+export const WS_ORDER_PROFILE_ERROR = 'WS_ORDER_PROFILE_ERROR';
+
+export type TFeedOrdersMiddleware = {
     wsConnect: typeof WS_ORDER_CONNECT;
     wsDisconnect: typeof WS_ORDER_DISCONNECT;
     wsConnecting: typeof WS_ORDER_CONNECTING;
@@ -19,11 +27,20 @@ export type TWsActionTypes = {
     onMessage: typeof WS_ORDER_MESSAGE;
     onError: typeof WS_ORDER_ERROR;
 };
+export type TProfileOrdersMiddleware = {
+    wsConnect: typeof WS_ORDER_PROFILE_CONNECT;
+    wsDisconnect: typeof WS_ORDER_PROFILE_DISCONNECT;
+    wsConnecting: typeof WS_ORDER_PROFILE_CONNECTING;
+    onOpen: typeof WS_ORDER_PROFILE_OPEN;
+    onClose: typeof WS_ORDER_PROFILE_CLOSE;
+    onError: typeof WS_ORDER_PROFILE_ERROR;
+    onMessage: typeof WS_ORDER_PROFILE_MESSAGE;
+};
 
 const RECONNECT_PERIOD = 3000;
 
 export const socketMiddleware = (
-    wsActions: TWsActionTypes,
+    wsActions: TFeedOrdersMiddleware | TProfileOrdersMiddleware,
 ): Middleware<{}, RootState> => {
     return (store: MiddlewareAPI<AppDispatch, RootState>) => {
         let socket: WebSocket | null = null;
