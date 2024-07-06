@@ -3,7 +3,7 @@ import css from './burger-ingredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../Card/card'
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/store";
 import {Link, useLocation} from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import {TBurgerConstructor} from "../../utils/types";

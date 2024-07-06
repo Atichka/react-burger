@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/store";
 import { Navigate, useLocation } from "react-router-dom";
 import {TComponent, TProtected} from "../../utils/types";
 import { getIsAuthChecked, getUser } from "../../services/selectors/user";

@@ -3,7 +3,7 @@ import css from './register.module.css';
 import {Input, Button, EmailInput, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Link, useNavigate} from "react-router-dom";
 import {regInUser} from "../../services/actions/userAction";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/store";
 import {useForm} from "../../hooks/useForm";
 
 type RegisterFormData = {

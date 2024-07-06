@@ -2,9 +2,7 @@ import React from 'react';
 import css from './profile.module.css';
 import { NavLink, useLocation, Outlet } from "react-router-dom";
 import { logOutUser } from '../../services/actions/userAction'
-import {useDispatch, useSelector} from "react-redux";
-import {WebSocketStatus} from "../../types/feed-orders";
-import {wsConnect, wsDisconnect} from "../../services/actions/orderFeedAction";
+import {useDispatch} from "../../services/store";
 
 type TLinks = {
     to: string;

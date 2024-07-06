@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './user-profile.module.css';
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/store";
 import {setUserData} from "../../services/actions/userAction";
 import { getUser } from '../../services/selectors/user';
 
