@@ -4,7 +4,6 @@
 }
 
 .wrapper {
-    width: 480px;
     display: flex;
     flex-direction: row;
     margin: 135px auto;

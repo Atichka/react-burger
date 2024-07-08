@@ -15,7 +15,7 @@ import { TOrder } from "../../utils/types";
 export const Orders = (): React.JSX.Element => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const { orders } = useSelector((state) => state.ordersProfile.orders);
+    const ordersResponse = useSelector((state) => state.ordersProfile.orders);
 
     useEffect(() => {
         const accessToken: string | undefined = localStorage.getItem("accessToken")
@@ -30,13 +30,13 @@ export const Orders = (): React.JSX.Element => {
 
     return (
         <ul className={`custom-scroll ${css.list}`}>
-            {orders &&
-                orders
+            {ordersResponse &&
+                ordersResponse.orders
                     .slice()
                     .reverse()
                     .map((order: TOrder) => (
                         <Link
-                            to={`/profile/orders/${order._id}`}
+                            to={`/profile/orders/${order.number}`}
                             className={css.link}
                             key={order._id}
                             state={{ background: location }}

@@ -1,6 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {socketMiddleware} from "./middleware/socket-middleware";
-import {TOrderFeedActions, wsConnect, wsDisconnect} from "./actions/orderFeedAction";
+import {
+    TOrderFeedActions, WS_ORDER_CLOSE,
+    WS_ORDER_CONNECT, WS_ORDER_CONNECTING,
+    WS_ORDER_DISCONNECT, WS_ORDER_ERROR, WS_ORDER_MESSAGE, WS_ORDER_OPEN,
+} from "./actions/orderFeedAction";
 import {
     useDispatch as dispatchHook,
     useSelector as selectorHook
@@ -11,23 +15,11 @@ import { TIngredientsActions } from "./actions/ingredientsAction";
 import { TOrderActions } from "./actions/orderAction";
 import { TUserActions } from "./actions/userAction";
 import { rootReducer } from "./reducers/rootReducer";
-import {TOrderProfileActions} from "./actions/orderProfileAction";
-
-export const WS_ORDER_CONNECT = 'WS_ORDER_CONNECT';
-export const WS_ORDER_DISCONNECT = 'WS_ORDER_DISCONNECT';
-export const WS_ORDER_CONNECTING = 'WS_ORDER_CONNECTING';
-export const WS_ORDER_OPEN = 'WS_ORDER_OPEN';
-export const WS_ORDER_CLOSE = 'WS_ORDER_CLOSE';
-export const WS_ORDER_MESSAGE = 'WS_ORDER_MESSAGE';
-export const WS_ORDER_ERROR = 'WS_ORDER_ERROR';
-
-export const WS_ORDER_PROFILE_CONNECT = 'WS_ORDER_PROFILE_CONNECT';
-export const WS_ORDER_PROFILE_DISCONNECT = 'WS_ORDER_PROFILE_DISCONNECT';
-export const WS_ORDER_PROFILE_CONNECTING = 'WS_ORDER_PROFILE_CONNECTING';
-export const WS_ORDER_PROFILE_OPEN = 'WS_ORDER_PROFILE_OPEN';
-export const WS_ORDER_PROFILE_CLOSE = 'WS_ORDER_PROFILE_CLOSE';
-export const WS_ORDER_PROFILE_MESSAGE = 'WS_ORDER_PROFILE_MESSAGE';
-export const WS_ORDER_PROFILE_ERROR = 'WS_ORDER_PROFILE_ERROR';
+import {
+    TOrderProfileActions, WS_ORDER_PROFILE_CLOSE,
+    WS_ORDER_PROFILE_CONNECT, WS_ORDER_PROFILE_CONNECTING,
+    WS_ORDER_PROFILE_DISCONNECT, WS_ORDER_PROFILE_ERROR, WS_ORDER_PROFILE_MESSAGE, WS_ORDER_PROFILE_OPEN
+} from "./actions/orderProfileAction";
 
 const feedOrdersMiddleware = socketMiddleware({
     wsConnect: WS_ORDER_CONNECT,

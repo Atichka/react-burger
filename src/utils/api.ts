@@ -85,7 +85,18 @@ export const refreshToken = (): Promise<Credentials & { success: boolean}> => {
         body: JSON.stringify({
             token: localStorage.getItem("refreshToken"),
         }),
-    }).then(checkResponse<Credentials & { success: boolean}>);
+    })
+        .then(checkResponse<Credentials & { success: boolean}>)
+        .then(res => {
+            if (!res.success) {
+                return Promise.reject(res);
+            }
+
+            localStorage.setItem("refreshToken", res.refreshToken);
+            localStorage.setItem("accessToken", res.accessToken);
+            return res;
+        })
+
 };
 
 export const getToken = (): string | null => {
@@ -99,11 +110,6 @@ export const fetchWithRefresh = async <T>(url: string, options: RequestInit): Pr
     } catch (err) {
         if ((err as {message: string}).message === "jwt expired") {
             const refreshData = await refreshToken(); //обновляем токен
-            if (!refreshData.success) {
-                return Promise.reject(refreshData);
-            }
-            localStorage.setItem("refreshToken", refreshData.refreshToken);
-            localStorage.setItem("accessToken", refreshData.accessToken);
             (options.headers as {[key: string]: string}).authorization = refreshData.accessToken;
             const res = await fetch(url, options); //повторяем запрос
             return await checkResponse(res);
@@ -129,4 +135,4 @@ export const apiUpdateUser = (email: string, name: string, password: string): Pr
         .then(checkResponse<{success: boolean, user: Omit<TUser, 'password'>}>)
 };
 
-export const getOrderInfoData = (order: string | undefined): Promise<any> => request(`/orders/${order}`);
+export const getOrderInfoData = (order: number): Promise<any> => request(`${BASE_URL}/orders/${order}`);

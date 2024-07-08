@@ -5,31 +5,41 @@ import css from "./feed-details.module.css";
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "../../services/store";
-import {wsConnect, wsDisconnect} from "../../services/actions/orderFeedAction";
-import {WS_FEED_URL} from "../../const";
 import {getStatus} from "../../utils/functions";
 import {TBurgerConstructor} from "../../utils/types";
+import { getOrderByNumber } from "../../services/actions/orderAction";
 
 
 export default function FeedDetails(): React.JSX.Element {
     const dispatch = useDispatch();
-    const { id } = useParams();
+    const { number } = useParams();
     const listIngredients = useSelector((store) => store.ingredients.ingredients);
-    const { orders } = useSelector(
-        (state) => state.feedOrders.orders,
-    );
-    const order = orders.find((item: { _id: string | undefined; }) => item._id === id)!;
 
-    const connectToWebSocket = useCallback(() => {
-        dispatch(wsConnect(WS_FEED_URL))
-        return () => {
-            dispatch(wsDisconnect());
-        };
-    }, [dispatch]);
+    const order = useSelector(state => {
+        let order = state.feedOrders.orders?.orders.find(order => order.number === Number(number));
+        if (order) {
+            return order;
+        }
+
+        order = state.ordersProfile.orders?.orders.find(order => order.number === Number(number));
+        if (order) {
+            return order;
+        }
+
+        return state.order.selectedOrder;
+    })
+
+
     useEffect(() => {
-        const disconnectWebSocket = connectToWebSocket();
-        return () => disconnectWebSocket();
+        if (!order) {
+            dispatch(getOrderByNumber(Number(number)));
+        }
     }, []);
+
+    if (!order) {
+        return <p>Загрузка</p>
+    }
+
     const dataIngredients: TBurgerConstructor[] = [];
     const counter: any = {};
     const totalPrice =

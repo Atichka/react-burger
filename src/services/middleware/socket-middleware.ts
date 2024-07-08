@@ -1,69 +1,44 @@
-import {Middleware, MiddlewareAPI} from "@reduxjs/toolkit";
-import {AppDispatch, RootState} from "../store";
-import {getUser} from "../selectors/user";
+import { Middleware } from "redux";
+import { RootState } from "../store";
+import { refreshToken } from "../../utils/api";
 
-export const WS_ORDER_CONNECT = 'WS_ORDER_CONNECT';
-export const WS_ORDER_DISCONNECT = 'WS_ORDER_DISCONNECT';
-export const WS_ORDER_CONNECTING = 'WS_ORDER_CONNECTING';
-export const WS_ORDER_OPEN = 'WS_ORDER_OPEN';
-export const WS_ORDER_CLOSE = 'WS_ORDER_CLOSE';
-export const WS_ORDER_MESSAGE = 'WS_ORDER_MESSAGE';
-export const WS_ORDER_ERROR = 'WS_ORDER_ERROR';
-
-export const WS_ORDER_PROFILE_CONNECT = 'WS_ORDER_PROFILE_CONNECT';
-export const WS_ORDER_PROFILE_DISCONNECT = 'WS_ORDER_PROFILE_DISCONNECT';
-export const WS_ORDER_PROFILE_CONNECTING = 'WS_ORDER_PROFILE_CONNECTING';
-export const WS_ORDER_PROFILE_OPEN = 'WS_ORDER_PROFILE_OPEN';
-export const WS_ORDER_PROFILE_CLOSE = 'WS_ORDER_PROFILE_CLOSE';
-export const WS_ORDER_PROFILE_MESSAGE = 'WS_ORDER_PROFILE_MESSAGE';
-export const WS_ORDER_PROFILE_ERROR = 'WS_ORDER_PROFILE_ERROR';
-
-export type TFeedOrdersMiddleware = {
-    wsConnect: typeof WS_ORDER_CONNECT;
-    wsDisconnect: typeof WS_ORDER_DISCONNECT;
-    wsConnecting: typeof WS_ORDER_CONNECTING;
-    onOpen: typeof WS_ORDER_OPEN;
-    onClose: typeof WS_ORDER_CLOSE;
-    onMessage: typeof WS_ORDER_MESSAGE;
-    onError: typeof WS_ORDER_ERROR;
-};
-export type TProfileOrdersMiddleware = {
-    wsConnect: typeof WS_ORDER_PROFILE_CONNECT;
-    wsDisconnect: typeof WS_ORDER_PROFILE_DISCONNECT;
-    wsConnecting: typeof WS_ORDER_PROFILE_CONNECTING;
-    onOpen: typeof WS_ORDER_PROFILE_OPEN;
-    onClose: typeof WS_ORDER_PROFILE_CLOSE;
-    onError: typeof WS_ORDER_PROFILE_ERROR;
-    onMessage: typeof WS_ORDER_PROFILE_MESSAGE;
-};
-
-const RECONNECT_PERIOD = 3000;
+export type WsActions = {
+    wsConnect: string;
+    wsDisconnect: string;
+    wsConnecting: string;
+    wsSendMessage?: string;
+    onOpen: string;
+    onClose: string;
+    onError: string;
+    onMessage: string;
+}
 
 export const socketMiddleware = (
-    wsActions: TFeedOrdersMiddleware | TProfileOrdersMiddleware,
+    wsActions: WsActions,
 ): Middleware<{}, RootState> => {
-    return (store: MiddlewareAPI<AppDispatch, RootState>) => {
+    return (store) => {
+        const {
+            wsConnect,
+            wsDisconnect,
+            wsConnecting,
+            wsSendMessage,
+            onOpen,
+            onError,
+            onClose,
+            onMessage,
+        } = wsActions;
+        const { dispatch } = store;
         let socket: WebSocket | null = null;
+        let url: string;
+
         return (next) => (action) => {
-            const { dispatch } = store;
-            // @ts-ignore
-            const { type } = action;
-            const {
-                wsConnect,
-                wsDisconnect,
-                wsConnecting,
-                onOpen,
-                onError,
-                onClose,
-                onMessage,
-            } = wsActions;
+            const { type, payload } = action as {type: string; payload: any};
 
             if(type === wsConnect) {
-                // @ts-ignore
-                socket = new WebSocket(action.payload);
+                socket = new WebSocket(payload);
+                url = payload;
                 dispatch({ type: wsConnecting });
-            }
-            if (socket) {
+
                 socket.onopen = () => {
                     dispatch({type: onOpen});
                 };
@@ -75,22 +50,40 @@ export const socketMiddleware = (
                 socket.onmessage = (event) => {
                     const {data} = event;
                     const parsedData = JSON.parse(data);
+                    console.log(parsedData);
                     if (parsedData.message === "Invalid or missing token") {
-                        // @ts-ignore
-                        dispatch(getUser());
+                        refreshToken()
+                            .then(res => {
+                                let wssUrl = new URL(url);
+                                wssUrl.searchParams.set("accessToken", res.accessToken.replace("Bearer ", ""));
+                                dispatch({ type: wsConnect, payload: wssUrl.toString() });
+                            })
+                            .catch(err => {
+                                dispatch({ type: onError, payload: (err as {message: string}).message })
+                            })
+                        dispatch({type: wsDisconnect});
+
                     } else {
                         dispatch({type: onMessage, payload: parsedData});
                     }
                 };
+
                 socket.onclose = () => {
                     dispatch({ type: onClose });
                 };
+            }
 
-                if (action === wsDisconnect) {
+            if (socket) {
+                if (wsSendMessage && type === wsSendMessage) {
+                    socket.send(JSON.stringify(payload))
+                }
+
+                if (type === wsDisconnect) {
                     socket.close();
                     socket = null;
                 }
-            };
+            }
+
             next(action);
         };
     };

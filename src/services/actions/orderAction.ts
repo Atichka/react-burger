@@ -74,7 +74,7 @@ export const sendOrder = (ingredients: Array<string>) => (dispatch: AppDispatch)
         .catch(err => dispatch({ type: SEND_ORDER_FAILED, payload: err.message }));
 
 }
-export const getOrderByNumber = (order: string | undefined) => {
+export const getOrderByNumber = (order: number) => {
     return async (dispatch: AppDispatch) => {
         dispatch({ type: GET_ORDER_BY_NUMBER_REQUEST });
         try {

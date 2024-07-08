@@ -9,9 +9,7 @@ import FeedCard from "../../components/FeedCard/feedCard";
 export const FeedPage = (): React.JSX.Element => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const { orders, total, totalToday } = useSelector(
-        (state) => state.feedOrders.orders,
-    );
+    const ordersResponse = useSelector((state) => state.feedOrders.orders);
 
     const connectToWebSocket = useCallback(() => {
         dispatch(wsConnect(WS_FEED_URL))
@@ -24,6 +22,12 @@ export const FeedPage = (): React.JSX.Element => {
         const disconnectWebSocket = connectToWebSocket();
         return () => disconnectWebSocket();
     }, []);
+
+    if (!ordersResponse) {
+        return <p>Загрузка...</p>;
+    }
+
+    const { orders, total, totalToday } = ordersResponse;
 
     const doneOrders = orders
         ?.filter((order) => order.status === "done")
@@ -40,7 +44,7 @@ export const FeedPage = (): React.JSX.Element => {
                 <div className={css.orders}>
                     {orders && orders.map((order: any) => (
                         <Link
-                            to={`/feed/${order._id}`}
+                            to={`/feed/${order.number}`}
                             className={css.link}
                             key={order._id}
                             state={{ background: location }}

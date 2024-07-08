@@ -1,25 +1,21 @@
 import {TOrders} from "../../utils/types";
-import {TOrderFeedActions} from "../actions/orderFeedAction";
-
-export const WS_ORDER_OPEN = 'WS_ORDER_OPEN';
-export const WS_ORDER_MESSAGE = 'WS_ORDER_MESSAGE';
-export const WS_ORDER_CLOSE = 'WS_ORDER_CLOSE';
-export const WS_ORDER_ERROR = 'WS_ORDER_ERROR';
+import {
+    TOrderFeedActions,
+    WS_ORDER_CLOSE,
+    WS_ORDER_ERROR,
+    WS_ORDER_MESSAGE,
+    WS_ORDER_OPEN
+} from "../actions/orderFeedAction";
 
 export type TFeedOrderState = {
     wsConnected: boolean;
-    orders: TOrders;
+    orders: TOrders | null;
     error: string;
 }
 
 const initialState: TFeedOrderState = {
     wsConnected: false,
-    orders: {
-        success: true,
-        orders: [],
-        total: 0,
-        totalToday: 0,
-    },
+    orders: null,
     error: "",
 }
 

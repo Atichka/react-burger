@@ -1,4 +1,5 @@
 import {
+    GET_ORDER_BY_NUMBER_SUCCESS,
     RESET_ORDER,
     SEND_ORDER_FAILED,
     SEND_ORDER_REQUEST,
@@ -10,6 +11,7 @@ import {TOrder, TOrderNumber} from "../../utils/types";
 export type TOrderState = {
     order: number | null,
     orderData: TOrder;
+    selectedOrder: TOrder | null;
     isLoading: boolean,
     error: string | undefined,
 }
@@ -27,6 +29,7 @@ const initialState = {
         _id: "",
         __v: 0,
     },
+    selectedOrder: null,
     isLoading: false,
     error: undefined,
 }
@@ -44,6 +47,9 @@ export const orderReducer = (state = initialState, action: TOrderActions): TOrde
         }
         case RESET_ORDER: {
             return initialState;
+        }
+        case GET_ORDER_BY_NUMBER_SUCCESS: {
+            return { ...state, selectedOrder: action.payload }
         }
         default: {
             return state;

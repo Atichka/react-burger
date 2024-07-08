@@ -60,14 +60,13 @@ export default function App(): React.JSX.Element {
                                 <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPasswordPage />} />
                                 } />
                                 <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />}>
-                                    <Route index element={<OnlyAuth component={<UserProfile />} />}/>
-                                    <Route path={'orders'} element={<OnlyAuth component={<ProfileOrders />} />} />
-                                    <Route path={'orders/:orderNumber'} element={<OnlyAuth component={<div>ordersNumber</div>} />} />
+                                    <Route index element={<UserProfile />}/>
+                                    <Route path={'orders'} element={<ProfileOrders />} />
                                 </Route>
                                 <Route path="/ingredients/:id" element={<IngredientDetails />}></Route>
-                                <Route path="/feed" element={<FeedPage />}>
-                                    <Route path={'feed/:number'} element={<div>feed number</div>} />
-                                </Route>
+                                <Route path="/feed" element={<FeedPage />}/>
+                                <Route path={'feed/:number'} element={<FeedDetails />} />
+                                <Route path={'/profile/orders/:number'} element={<OnlyAuth component={<FeedDetails />} />} />
                             </Routes>
                             {background && (
                                 <Routes>
@@ -78,21 +77,23 @@ export default function App(): React.JSX.Element {
                                             title='Детали ингредиента'>
                                             <IngredientDetails />
                                         </Modal>
-                                        }></Route>
+                                        }/>
                                     <Route
-                                        path="/feed/:id"
+                                        path="/feed/:number"
                                         element={<Modal
                                             onClose={onClose}>
                                             <FeedDetails />
                                         </Modal>
-                                        }></Route>
+                                        }/>
                                     <Route
-                                        path="/profile/orders/:id"
-                                        element={<Modal
-                                            onClose={onClose}>
-                                            <FeedDetails />
-                                        </Modal>
-                                        }></Route>
+                                        path="/profile/orders/:number"
+                                        element={<OnlyAuth component={(
+                                            <Modal
+                                                onClose={onClose}>
+                                                <FeedDetails />
+                                            </Modal>
+                                        )} />} />
+
                                 </Routes>
                             )}
                         </main>

@@ -6,7 +6,7 @@ import {
     apiUpdateUser
 } from "../../utils/api";
 import {TUser} from "../../utils/types";
-import {AppDispatch, AppThunk} from "../store";
+import {AppThunk} from "../store";
 
 export const SET_AUTH_CHECKED = "SET_AUTH_CHECKED";
 export const SET_USER = "SET_USER";
@@ -162,6 +162,7 @@ export const checkUserAuth = (): AppThunk => {
     return (dispatch) => {
         if (localStorage.getItem("accessToken")) {
             getUserApi()
+                .then(res => dispatch(setUser(res.user)))
                 .catch(() => {
                     localStorage.removeItem("accessToken");
                     localStorage.removeItem("refreshToken");
