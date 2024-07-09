@@ -2,7 +2,7 @@ import React from 'react';
 import css from './profile.module.css';
 import { NavLink, useLocation, Outlet } from "react-router-dom";
 import { logOutUser } from '../../services/actions/userAction'
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../../services/store";
 
 type TLinks = {
     to: string;
@@ -10,9 +10,12 @@ type TLinks = {
     description: string;
 }
 
+const ORDERS_SERVER_URL = "ws://localhost:3000";
+
 export const ProfilePage = (): React.JSX.Element => {
     const dispatch = useDispatch();
     const location = useLocation();
+
     const links: Array<TLinks> = [
         {
             to: "",
@@ -51,9 +54,29 @@ export const ProfilePage = (): React.JSX.Element => {
                     </p>
                 )}
                 {location.pathname === "/profile/orders" && (
-                    <p className={css.text}>
-                        {links[1].description}
-                    </p>
+                    <div>
+                        <h3 className={css.text}>
+                            {links[1].description}
+                        </h3>
+                        {/* <p>
+                            Статус соединения: <span>{status}</span>
+                        </p>
+                        <div>
+                            <button
+                                disabled={!isDisconnected}
+                                onClick={connect}
+                            >
+                                Подключение
+                            </button>
+                            <button
+                                disabled={isDisconnected}
+                                onClick={disconnect}
+                            >
+                                Отключение
+                            </button>
+                        </div> */}
+                        {/* <OrderTable table={table}/> */}
+                    </div>
                 )}
             </nav>
             <main>

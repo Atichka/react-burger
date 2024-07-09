@@ -3,7 +3,7 @@ import css from './login.module.css';
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from "react-router-dom";
 import {logInUser} from "../../services/actions/userAction";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/store";
 import {useForm} from "../../hooks/useForm";
 
 type LoginFormData = {

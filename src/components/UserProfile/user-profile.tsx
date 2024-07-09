@@ -1,15 +1,13 @@
 import React from 'react';
 import css from './user-profile.module.css';
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/store";
 import {setUserData} from "../../services/actions/userAction";
-import {RootState} from "../../App";
+import { getUser } from '../../services/selectors/user';
 
-export const getUser = (state: RootState) => state.userData.user;
-
-export const UserProfile = () => {
+export const UserProfile = (): React.JSX.Element => {
     const dispatch = useDispatch();
-    const data = useSelector(getUser);
+    const data = useSelector(getUser)!;
 
     const [name, setName] = React.useState(data.name)
     const [email, setEmail] = React.useState(data.email)

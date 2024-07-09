@@ -3,18 +3,17 @@ import css from './burger-ingredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Card from '../Card/card'
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/store";
 import {Link, useLocation} from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import {TBurgerConstructor} from "../../utils/types";
-import {RootState} from "../../App";
-
-export const getIngredients = (state: RootState) => state.ingredients;
+import { getIngredients, getIngredientsLoading } from '../../services/selectors/ingredients';
 
 export default function BurgerIngredients(): React.JSX.Element {
     const location = useLocation();
-    const data = useSelector(getIngredients);
     const [current, setCurrent] = React.useState("Булки");
+    const ingredients = useSelector(getIngredients);
+    const isLoading = useSelector(getIngredientsLoading);
 
     const setTab = (tab: React.SetStateAction<string>) => {
         setCurrent(tab);
@@ -54,8 +53,8 @@ export default function BurgerIngredients(): React.JSX.Element {
             <div className={css.content}>
                 <div>
                     <h2 id="buns" ref={bunsRef} className={css.text}>Булки</h2>
-                    {!data.isLoading && (<div className={css.cards}>
-                        {data.ingredients.filter((ingredient: { type: string; }) => ingredient.type === "bun").map((ingredient: TBurgerConstructor) => (
+                    {!isLoading && (<div className={css.cards}>
+                        {ingredients.filter((ingredient: { type: string; }) => ingredient.type === "bun").map((ingredient: TBurgerConstructor) => (
                             <Link
                                 to={`/ingredients/${ingredient._id}`}
                                 className={css.link}
@@ -74,8 +73,8 @@ export default function BurgerIngredients(): React.JSX.Element {
                 </div>
                 <div>
                     <h2 id="sauces" ref={saucesRef} className={css.text}>Соусы</h2>
-                    {!data.isLoading && (<div className={css.cards}>
-                        {data.ingredients.filter((ingredient: { type: string; }) => ingredient.type === "sauce").map((ingredient: TBurgerConstructor) => (
+                    {!isLoading && (<div className={css.cards}>
+                        {ingredients.filter((ingredient: { type: string; }) => ingredient.type === "sauce").map((ingredient: TBurgerConstructor) => (
                             <Link
                                 to={`/ingredients/${ingredient._id}`}
                                 className={css.link}
@@ -94,8 +93,8 @@ export default function BurgerIngredients(): React.JSX.Element {
                 </div>
                 <div>
                     <h2 id="mains" ref={mainsRef} className={css.text}>Начинки</h2>
-                    {!data.isLoading && (<div className={css.cards}>
-                        {data.ingredients.filter((ingredient: { type: string; }) => ingredient.type === "main").map((ingredient: TBurgerConstructor) => (
+                    {!isLoading && (<div className={css.cards}>
+                        {ingredients.filter((ingredient: { type: string; }) => ingredient.type === "main").map((ingredient: TBurgerConstructor) => (
                             <Link
                                 to={`/ingredients/${ingredient._id}`}
                                 className={css.link}

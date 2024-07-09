@@ -13,33 +13,31 @@ import {UserProfile} from "./components/UserProfile/user-profile"
 
 import css from './App.module.css';
 import IngredientDetails from "./components/IngredientDetails/ingredient-details";
+import FeedDetails from "./components/FeedDetails/feed-details";
 import OrderDetails from "./components/OrderDetails/order-details";
 import {getIngredients} from "./services/actions/ingredientsAction";
-import {useDispatch, useSelector} from "react-redux";
 import { OnlyAuth, OnlyUnAuth } from "./components/ProtectedRoute/protected-route";
 import {checkUserAuth} from "./services/actions/userAction";
-import { combineReducers } from '@reduxjs/toolkit'
-const rootReducer = combineReducers({})
-export type RootState = ReturnType<typeof rootReducer>
-
-export const ingredients = (state: RootState) => state.ingredients;
+import { getIngredientsLoading, getIngredients as ingredients } from "./services/selectors/ingredients";
+import { useDispatch, useSelector } from './services/store';
+import { FeedPage } from './pages/Feed/feed';
+import {ProfileOrders} from "./components/ProfileOrders/profile-orders";
 
 export default function App(): React.JSX.Element {
     const [isModal, setModal] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state?.background;
-    const data = useSelector(ingredients);
+    const allIngredients = useSelector(ingredients);
+    const isLoading = useSelector(getIngredientsLoading);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // @ts-ignore
         dispatch(getIngredients())
     }, [dispatch]);
 
     useEffect(() => {
-        // @ts-ignore
         dispatch(checkUserAuth());
     }, []);
 
@@ -51,7 +49,7 @@ export default function App(): React.JSX.Element {
         <div className="App">
             <>
                 <AppHeader />
-                {!data.isLoading && data.ingredients.length > 0 ? (
+                {!isLoading && allIngredients.length > 0 ? (
                     <>
                         <main className={css.block}>
                             <Routes location={background || location}>
@@ -62,11 +60,13 @@ export default function App(): React.JSX.Element {
                                 <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPasswordPage />} />
                                 } />
                                 <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />}>
-                                    <Route index element={<OnlyAuth component={<UserProfile />} />}/>
-                                    <Route path={'orders'} element={<OnlyAuth component={<div>orders</div>} />} />
-                                    <Route path={'orders/:orderNumber'} element={<OnlyAuth component={<div>ordersNumber</div>} />} />
+                                    <Route index element={<UserProfile />}/>
+                                    <Route path={'orders'} element={<ProfileOrders />} />
                                 </Route>
                                 <Route path="/ingredients/:id" element={<IngredientDetails />}></Route>
+                                <Route path="/feed" element={<FeedPage />}/>
+                                <Route path={'feed/:number'} element={<FeedDetails />} />
+                                <Route path={'/profile/orders/:number'} element={<OnlyAuth component={<FeedDetails />} />} />
                             </Routes>
                             {background && (
                                 <Routes>
@@ -77,7 +77,23 @@ export default function App(): React.JSX.Element {
                                             title='Детали ингредиента'>
                                             <IngredientDetails />
                                         </Modal>
-                                        }></Route>
+                                        }/>
+                                    <Route
+                                        path="/feed/:number"
+                                        element={<Modal
+                                            onClose={onClose}>
+                                            <FeedDetails />
+                                        </Modal>
+                                        }/>
+                                    <Route
+                                        path="/profile/orders/:number"
+                                        element={<OnlyAuth component={(
+                                            <Modal
+                                                onClose={onClose}>
+                                                <FeedDetails />
+                                            </Modal>
+                                        )} />} />
+
                                 </Routes>
                             )}
                         </main>

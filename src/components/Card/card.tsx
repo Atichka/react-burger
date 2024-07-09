@@ -4,22 +4,19 @@ import { useDrag } from 'react-dnd';
 import css from './card.module.css'
 
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {useSelector} from "react-redux";
-import {RootState} from "../../App";
 import {TCard} from "../../utils/types";
-
-export const stuffings = (state: RootState) => state.currBurger.stuffings;
-export const bun = (state: RootState) => state.currBurger.bun;
+import { getBun, getStuffings } from '../../services/selectors/constructor';
+import { useSelector } from '../../services/store';
 
 export default function Card(props: TCard): React.JSX.Element {
     let counter = 0;
-    const mainAndSauce = useSelector(stuffings);
-    const bunCount = useSelector(bun);
+    const mainAndSauce = useSelector(getStuffings);
+    const bunCount = useSelector(getBun);
 
     if(bunCount && bunCount.id === props.id) {
         counter = 2;
     } else if(mainAndSauce) {
-        counter = mainAndSauce.filter((item: { id: string; }) => item.id === props.id).length;
+        counter = mainAndSauce.filter((item) => item.id === props.id).length;
     }
 
     const [{ isDrag }, dragRef] = useDrag({
