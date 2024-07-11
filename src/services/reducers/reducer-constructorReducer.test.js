@@ -1,7 +1,5 @@
 import {constructorReducer, initialState} from './constructorReducer'
 import * as actions from '../actions/constructorAction'
-import {INGREDIENT_DELETE} from "../actions/constructorAction";
-// import {UPDATE_INGREDIENTS} from "../actions/constructorAction";
 
 describe('constructor reducer', () => {
     test('should return the initial state', () => {

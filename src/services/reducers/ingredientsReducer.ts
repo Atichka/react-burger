@@ -12,7 +12,7 @@ export type TIngredientState = {
     error: string | undefined,
 }
 
-const initialState = {
+export const initialState = {
     ingredients: [],
     isLoading: false,
     error: undefined,
