@@ -34,7 +34,7 @@ export type TUserState = {
     postUserDataFailed: boolean
 }
 
-const initialState = {
+export const initialState = {
     logInUserRequest: false,
     logInUserSuccess: false,
     logInUserFailed: false,
