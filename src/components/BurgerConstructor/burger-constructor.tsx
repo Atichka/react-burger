@@ -59,7 +59,7 @@ export default function BurgerConstructor(): React.JSX.Element {
     }
 
     return (
-        <div ref={dropRef}>
+        <div ref={dropRef} data-cy='list'>
             <div className={css.box}>
                 {bun &&
                     ((totalPrice += bun.price),
