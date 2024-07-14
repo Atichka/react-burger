@@ -1,6 +1,7 @@
+import {testUrl} from "../../src/const";
 describe('page constructor', function() {
     beforeEach('should be available on localhost:3000', function() {
-        cy.visit('http://localhost:3000');
+        cy.visit(testUrl);
     });
     it('should drag ingredients', () => {
         cy.contains('p', 'булка').trigger('dragstart').first();
