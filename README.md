@@ -15,7 +15,7 @@
 
 В проекте использовались технологии, такие как CSS, React, Redux, TypeScript, WebSocket, взаимодействие с сервером. На сайте предусмотрена валидация форм.
 
-Ссылка на проект: https://atichka.github.io/react-burger/
+Ссылка на проект: https://atichka.github.io
 
 ---
 
