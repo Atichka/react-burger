@@ -2985,11 +2985,10 @@
     "color-convert" "^2.0.1"
 
 "ansi-styles@^4.1.0":
-  "integrity" "sha512-9VGjrMsG1vePxcSweQsN20KY/c4zN0h9fLjqAbwbPfahM3t+NL+M9HC8xeXG2I8pX5NoamTGNuomEUFI7fcUjA=="
-  "resolved" "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.2.1.tgz"
-  "version" "4.2.1"
+  "integrity" "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg=="
+  "resolved" "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz"
+  "version" "4.3.0"
   dependencies:
-    "@types/color-name" "^1.1.1"
     "color-convert" "^2.0.1"
 
 "ansi-styles@^5.0.0":
@@ -10407,9 +10406,9 @@
     "has-flag" "^4.0.0"
 
 "supports-color@^7.1.0":
-  "integrity" "sha512-oRSIpR8pxT1Wr2FquTNnGet79b3BWljqOuoW/h4oBhxJ/HUbX5nX6JSruTkvXDCFMwDPvsaTTbvMLKZWSy0R5g=="
-  "resolved" "https://registry.npmjs.org/supports-color/-/supports-color-7.1.0.tgz"
-  "version" "7.1.0"
+  "integrity" "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw=="
+  "resolved" "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz"
+  "version" "7.2.0"
   dependencies:
     "has-flag" "^4.0.0"
 
