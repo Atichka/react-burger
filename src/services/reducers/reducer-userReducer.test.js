@@ -122,7 +122,7 @@ describe('user reducer', () => {
             logInUserSuccess: false,
             logInUserFailed: false,
             logOutUserRequest: false,
-            logOutUserSuccess: false,
+            logOutUserSuccess: true,
             logOutUserFailed: false,
         });
     });

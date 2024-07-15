@@ -19,7 +19,19 @@ describe('order reducer', () => {
     });
     it("should create SEND_ORDER_SUCCESS", () => {
         let isLoading = false;
-        let number = 555;
+        let number = {
+            "_id": "668c3774119d45001b4f55e4",
+            "ingredients": [
+                "643d69a5c3f7b9001cfa093c",
+                "643d69a5c3f7b9001cfa0943",
+                "643d69a5c3f7b9001cfa093c"
+            ],
+            "status": "done",
+            "name": "Краторный space бургер",
+            "createdAt": "2024-07-08T19:01:08.324Z",
+            "updatedAt": "2024-07-08T19:01:08.891Z",
+            "number": 45256
+        };
         expect(
             orderReducer(undefined, {
                 type: actions.SEND_ORDER_SUCCESS,
@@ -29,7 +41,7 @@ describe('order reducer', () => {
         ).toEqual({
             ...initialState,
             isLoading: false,
-            order: number,
+            order: number.number,
         });
     });
     it("should create SEND_ORDER_FAILED", () => {
