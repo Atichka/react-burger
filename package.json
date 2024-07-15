@@ -1,6 +1,7 @@
 {
   "name": "react-burger",
   "version": "0.1.0",
+  "homepage": "https://atichka.github.io/react-burger",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
@@ -71,6 +72,5 @@
   },
   "jest": {
     "transformIgnorePatterns": []
-  },
-  "homepage": "./"
+  }
 }
