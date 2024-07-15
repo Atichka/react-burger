@@ -72,5 +72,5 @@
   "jest": {
     "transformIgnorePatterns": []
   },
-  "homepage": "https://atichka.github.io/react-burger"
+  "homepage": "./"
 }
