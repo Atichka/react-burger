@@ -72,5 +72,5 @@
   "jest": {
     "transformIgnorePatterns": []
   },
-  "homepage": "./"
+  "homepage": "./react-burger"
 }
