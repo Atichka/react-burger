@@ -12,7 +12,7 @@ export type TOrderProfileState = {
     error: string;
 }
 
-const initialState: TOrderProfileState = {
+export const initialState: TOrderProfileState = {
     wsConnected: false,
     orders: null,
     error: "",

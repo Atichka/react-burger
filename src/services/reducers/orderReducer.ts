@@ -16,7 +16,7 @@ export type TOrderState = {
     error: string | undefined,
 }
 
-const initialState = {
+export const initialState = {
     order: null,
     orderData: {
         createdAt: "",

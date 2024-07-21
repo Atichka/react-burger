@@ -13,7 +13,7 @@ export type TFeedOrderState = {
     error: string;
 }
 
-const initialState: TFeedOrderState = {
+export const initialState: TFeedOrderState = {
     wsConnected: false,
     orders: null,
     error: "",

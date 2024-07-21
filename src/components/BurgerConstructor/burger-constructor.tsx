@@ -6,7 +6,7 @@ import css from './burger-constructor.module.css'
 import ConstructorItem from "../ConstructorItem/constructor-item";
 import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {shallowEqual} from "react-redux";
-import {addToConstructor, INGREDIENT_DELETE, updateIngredients} from "../../services/actions/constructorAction";
+import {addToConstructor, INGREDIENT_DELETE} from "../../services/actions/constructorAction";
 import {useLocation, useNavigate} from "react-router-dom";
 import {TBurgerConstructor} from "../../utils/types";
 import { resetOrder, sendOrder } from '../../services/actions/orderAction';
@@ -26,14 +26,6 @@ export default function BurgerConstructor(): React.JSX.Element {
     const user = useSelector(getUser);
     const isLoading = useSelector(getLoading);
     const { orderNumber } = useSelector(getOrderNumber, shallowEqual);
-
-    const moveCard = (dragIndex: number, hoverIndex: number) => {
-        const dragCard = stuffings[dragIndex];
-        const newIngredients = [...stuffings];
-        newIngredients.splice(dragIndex, 1);
-        newIngredients.splice(hoverIndex, 0, dragCard);
-        dispatch(updateIngredients(newIngredients));
-    };
 
     const bun = useSelector(getBun);
     const [, dropRef] = useDrop({
@@ -67,7 +59,7 @@ export default function BurgerConstructor(): React.JSX.Element {
     }
 
     return (
-        <div ref={dropRef}>
+        <div ref={dropRef} data-cy='list'>
             <div className={css.box}>
                 {bun &&
                     ((totalPrice += bun.price),
@@ -96,7 +88,6 @@ export default function BurgerConstructor(): React.JSX.Element {
                                             price={item.price}
                                             type={item.type}
                                             id={item.nanoid}
-                                            moveCard={moveCard}
                                             deleteIngredient={deleteIngredient}
                                             isLocked
                                         />

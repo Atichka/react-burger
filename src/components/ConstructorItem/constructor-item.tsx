@@ -8,7 +8,6 @@ import { TConstructorItem } from '../../utils/types';
 
 export default function ConstructorItem(props: TConstructorItem): React.JSX.Element {
     const id = props.id;
-    const moveCard = props.moveCard;
     const index = props.index;
     const ref = useRef<HTMLInputElement>(null);
     const [, drop] = useDrop({
@@ -41,9 +40,6 @@ export default function ConstructorItem(props: TConstructorItem): React.JSX.Elem
                 return;
             }
 
-            if (moveCard) {
-                moveCard(dragIndex, hoverIndex);
-            }
             item.index = hoverIndex;
         }
     });

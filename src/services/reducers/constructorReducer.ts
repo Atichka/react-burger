@@ -1,7 +1,7 @@
 import {
     TConstructorActions
 } from "../actions/constructorAction";
-import {INGREDIENT_ADD, INGREDIENT_DELETE, UPDATE_INGREDIENTS} from "../actions/constructorAction";
+import {INGREDIENT_ADD, INGREDIENT_DELETE} from "../actions/constructorAction";
 import {TBurgerConstructor} from "../../utils/types";
 
 export type TConstructorState = {
@@ -9,7 +9,7 @@ export type TConstructorState = {
     bun?: TBurgerConstructor | null,
 }
 
-const initialState: TConstructorState = {
+export const initialState: TConstructorState = {
     stuffings: [],
     bun: null,
 }
@@ -25,11 +25,6 @@ export const constructorReducer = (state = initialState, action: TConstructorAct
                 stuffings: [...state.stuffings, action.payload],
             };
         }
-        case UPDATE_INGREDIENTS:
-            return {
-                ...state,
-                stuffings: action.ingredients,
-            };
         case (INGREDIENT_DELETE): {
             return {
                 ...state,
